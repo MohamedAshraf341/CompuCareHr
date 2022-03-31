@@ -1,0 +1,27 @@
+.container{
+    margin: 20px;
+}
+mat-card-title{
+    color: cornflowerblue;
+}
+section{
+    margin-top: 20px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  button{
+      height: 40px;
+  }
+table{
+    width: 100%;
+}
+
+
+  .green-icon {
+    color: green;
+}
+.red-icon {
+    color: red;
+}

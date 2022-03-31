@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Sky system\Api Mobile</_PublishTargetUrl>
+    <History>True|2022-01-16T11:20:35.6314475Z;True|2022-01-15T14:35:23.1311996-08:00;True|2022-01-15T14:28:04.7106373-08:00;True|2022-01-15T14:26:38.3472249-08:00;True|2022-01-15T13:09:04.7437800-08:00;True|2022-01-15T12:39:09.0260491-08:00;True|2022-01-15T12:10:57.0545019-08:00;False|2022-01-15T08:20:40.8014335-08:00;True|2022-01-15T02:45:56.2456419-08:00;True|2022-01-15T02:37:29.5737547-08:00;True|2022-01-15T02:28:39.9072799-08:00;True|2022-01-15T02:08:41.7458555-08:00;True|2022-01-15T02:08:02.7952473-08:00;True|2022-01-15T01:16:17.8833247-08:00;True|2022-01-15T01:15:33.7700334-08:00;True|2022-01-15T01:13:04.4742007-08:00;True|2022-01-15T00:00:38.8733308-08:00;</History>
+  </PropertyGroup>
+</Project>

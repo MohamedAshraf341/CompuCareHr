@@ -1,0 +1,83 @@
+<div class="example-form">
+    <form [formGroup]="leavesForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <span *ngIf="this.leaveId==0">
+              Add New
+            </span>
+            <span  *ngIf="this.leaveId!=0">
+              Edit
+            </span> Leave
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="flex">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput type="text" placeholder="Name"  [(ngModel)]="this.leaveIdArr.Name" formControlName="Name" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Alis Name</mat-label>
+              <input matInput type="text" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.Alis" formControlName="Alis" >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>CutVal</mat-label>
+              <input matInput type="number" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.CutVal" formControlName="CutVal" >
+            </mat-form-field>
+            
+            </div>
+          <div class="flex">
+            <mat-form-field>
+              <mat-label>Types</mat-label>
+              <mat-select [(ngModel)]="this.leaveIdArr.Type" formControlName="Type">
+                <mat-option *ngFor="let Type of leavesTypes" [value]="Type.Id">
+                  {{Type.Name}}
+                </mat-option>
+  
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field>
+              <mat-label>Leaves Rules</mat-label>
+              <mat-select [(ngModel)]="this.leaveIdArr.LeavesRuleID" formControlName="LeavesRuleID">
+                <mat-option *ngFor="let Rule of LeavesRules" [value]="Rule.Id">
+                  {{Rule.Name}}
+                </mat-option>
+  
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Leaves Vacations</mat-label>
+              <mat-select [(ngModel)]="this.leaveIdArr.leavesVacId" formControlName="leavesVacId">
+                <mat-option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
+                  {{LeavesVac.VacName}}
+                </mat-option>
+  
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+         
+          <div class="flex">
+           
+          
+            <section class="example-section">
+              <mat-checkbox class="example-margin" [(ngModel)]="this.leaveIdArr.ISsub" formControlName="ISsub">medical insurance
+              </mat-checkbox>
+            </section>
+            <section class="example-section">
+              <mat-checkbox class="example-margin" [(ngModel)]="this.leaveIdArr.AcceptVac" formControlName="AcceptVac">Social insurance
+              </mat-checkbox>
+            </section>
+          </div>
+      
+  
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="!leavesForm.valid" (click)="createOrEditLeaves()">Save</button>
+          <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>

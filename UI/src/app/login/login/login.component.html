@@ -1,0 +1,22 @@
+<div class="form-container">
+  <mat-card class="bgc">
+    <img class="center" src="../../../assets/images/profile.png" alt="" width="20%" height="50%">
+    <mat-card-title>Login Page</mat-card-title>
+<mat-card-content>
+<form [formGroup]="loginform">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" formControlName="Username" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+
+  <div class="button">
+    <button type="submit" mat-button (click)="login()" [disabled]="!loginform.valid">Login</button>
+  </div>
+
+</form>
+</mat-card-content>
+</mat-card>
+</div>

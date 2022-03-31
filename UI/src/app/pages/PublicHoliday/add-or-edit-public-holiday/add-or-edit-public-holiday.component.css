@@ -1,0 +1,12 @@
+.example-form {
+    margin: 20px;
+     }
+mat-form-field{
+    width: 50%;
+    display: block;
+}
+mat-card-actions{
+    margin-top: 50px;
+    margin-left:25%;
+    margin-right:25%;
+  }

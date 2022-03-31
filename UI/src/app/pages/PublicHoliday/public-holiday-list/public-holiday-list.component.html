@@ -1,0 +1,81 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">الاجازات الرسمية</div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="example-form">
+            <mat-card>
+                <mat-card-header>
+        <mat-card-title>
+            قائمة الاجازات
+        </mat-card-title>
+                </mat-card-header>
+              
+            </mat-card>
+        
+            <section fxLayout fxLayoutAlign="space-between ">
+                <div>
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+            </mat-form-field>
+                 </div>
+                 <button mat-raised-button color="primary" [routerLink]="['/defaultPage/addOrEditPublicHoliday/0']"
+                 matTooltip=" Add New Public Holiday"
+                 matTooltipClass="example-tooltip-red"
+                 aria-label="Button that shows a red tooltip"
+                 class="example-button">
+                 <mat-icon>add_box</mat-icon>اضافة اجازة
+         </button>
+             </section>
+        
+         
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="Id"  >
+                    <th  hidden mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Id
+                    </th>
+                    <td hidden mat-cell *matCellDef="let element"> {{element.Id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Enname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        كود الاجازه
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Enname}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Arname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        اسم الاجازه
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Arname}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Fdate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Fdate
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Fdate}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Tdate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Tdate
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Tdate}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>
+                        actions
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-icon class="green-icon" (click)="addOrEditPublicHoliday(element.Id)">edit</mat-icon>
+                        <mat-icon class="red-icon"  (click)="delete(element)">delete</mat-icon>
+                    </td>
+        
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="colums"></tr>
+                <tr mat-row *matRowDef="let row; columns: colums;"></tr>
+            </table>
+            <mat-paginator [length]="publicHolidays.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+        </div>
+    </div>
+  </div>

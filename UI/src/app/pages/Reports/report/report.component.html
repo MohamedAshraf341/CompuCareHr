@@ -1,0 +1,111 @@
+<div class="example-form">
+    <form [formGroup]="searchForm">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Search Reports
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+  
+  
+          <div class="flex">
+            <mat-form-field>
+              <mat-label>Report Name</mat-label>
+              <mat-select (selectionChange)="doSomething($event)" required>
+                <mat-option *ngFor="let reportname of reportnames" [value]="reportname.Id">
+                  {{reportname.Enname}}
+                </mat-option>
+  
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>From date</mat-label>
+              <input matInput [matDatepicker]="picker1" formControlName="fdate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>To date</mat-label>
+                <input matInput [matDatepicker]="picker2"  formControlName="tdate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+  
+
+         
+
+           
+     
+          </div>
+  
+  
+          <div class="flex">
+            <mat-form-field>
+              <mat-label>From Employee</mat-label>
+              <mat-select  formControlName="femp">
+                <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+                  {{employee.EmpName}}
+                </mat-option>
+  
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field>
+                <mat-label>To Employee</mat-label>
+                <mat-select formControlName="temp">
+                    <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+                        {{employee.EmpName}}
+                      </mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+          
+          </div>
+          
+          <div class="flex">
+         
+            <mat-form-field>
+              <mat-label>Time Tables</mat-label>
+              <mat-select formControlName="filter" multiple>
+            
+                <mat-option *ngFor="let timetable of reporttimetables" [value]="timetable.Id">
+                  {{timetable.Enname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+         
+          <mat-form-field>
+            <mat-label>Report Departments</mat-label>
+           
+            <mat-select formControlName="filter2" multiple>
+          
+              <mat-option *ngFor="let department of reportdepartments" [value]="department.Id">
+                {{department.Enname}}
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+         
+          <mat-form-field>
+            <mat-label>Leaves</mat-label>
+            <mat-select formControlName="filter3">
+          
+              <mat-option *ngFor="let Leave of Leaves" [value]="Leave.Id">
+                {{Leave.Enname}}
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field> 
+        
+
+        </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="!searchForm.valid" (click)="searchReport()">Search</button>
+          <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>

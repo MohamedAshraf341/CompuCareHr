@@ -1,0 +1,32 @@
+
+.example-form {
+  margin: 20px;
+   }
+   .flex{
+     display: flex;
+     justify-content: space-around;
+   }
+   
+   .mat-radio-button ~ .mat-radio-button {
+     margin-left: 16px;
+     margin-top: 10px;
+   }
+   mat-form-field{
+     width: 30%;
+   }
+   mat-card-actions{
+     margin-top: 50px;
+     margin-left:35%;
+     margin-right:35%;
+   }
+
+   .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
