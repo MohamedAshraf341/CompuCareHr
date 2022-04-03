@@ -26,6 +26,6 @@ namespace Site4Check.listVm
         public string Reason { get; set; }
         public int? BossNo { get; set; }
 
-
+        public int? Empcode { get; set; }
     }
 }
