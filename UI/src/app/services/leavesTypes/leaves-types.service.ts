@@ -11,7 +11,7 @@ export class LeavesTypesService {
   getLeavesTypes()
   {
     return this.http.get(
-      `${environment.apiUrl}ar/leavestypes`
+      `${environment.apiUrl}ar/leaves/3`
     );
   }
   getLeavesTypesIdUrl(Id:number)
