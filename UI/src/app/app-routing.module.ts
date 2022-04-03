@@ -43,6 +43,7 @@ import { ListsectionComponent } from './pages/section/listsection/listsection.co
 import { AddOrEditshiftComponent } from './pages/shift/add-or-editshift/add-or-editshift.component';
 import { ShiftListComponent } from './pages/shift/shift-list/shift-list.component';
 import { AddTransactionComponent } from './pages/Transaction/add-transaction/add-transaction.component';
+import { ListtransactionComponent } from './pages/Transaction/listtransaction/listtransaction.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -140,6 +141,8 @@ const routes: Routes = [
 
         // add transactions
         {path:'addtransactions',component:AddTransactionComponent},
+        {path:'Listtransaction',component:ListtransactionComponent},
+        {path:'Listtransaction/:id',component:ListtransactionComponent}
 
 
         
