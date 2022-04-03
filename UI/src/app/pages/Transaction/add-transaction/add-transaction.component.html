@@ -13,7 +13,7 @@
             <mat-form-field>
                 <mat-label>Employee</mat-label>
                 <mat-select  formControlName="EmpCode">
-                  <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+                  <mat-option *ngFor="let employee of employees" [value]="employee.EmpCode">
                     {{employee.EmpName}}
                   </mat-option>
     
