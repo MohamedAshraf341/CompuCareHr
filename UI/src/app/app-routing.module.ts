@@ -141,6 +141,7 @@ const routes: Routes = [
 
         // add transactions
         {path:'addtransactions',component:AddTransactionComponent},
+        {path:'addtransactions/:id',component:AddTransactionComponent},
         {path:'Listtransaction',component:ListtransactionComponent},
         {path:'Listtransaction/:id',component:ListtransactionComponent}
 
