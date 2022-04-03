@@ -21,6 +21,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
+import { ListtransactionComponent } from './pages/Transaction/listtransaction/listtransaction.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 
     ListworktimeComponent,
     AddOrEditworktimeComponent,
+    ListtransactionComponent,
     
 
 
