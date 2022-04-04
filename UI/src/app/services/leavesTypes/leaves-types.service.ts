@@ -14,6 +14,18 @@ export class LeavesTypesService {
       `${environment.apiUrl}ar/leaves/1`
     );
   }
+  getLeaveserrand()
+  {
+    return this.http.get(
+      `${environment.apiUrl}ar/leaves/2`
+    );
+  }
+  getLeavespermission()
+  {
+    return this.http.get(
+      `${environment.apiUrl}ar/leaves/3`
+    );
+  }
   getLeavesTypesIdUrl(Id:number)
   {
     return this.http.get(

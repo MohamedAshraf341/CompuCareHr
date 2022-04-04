@@ -23,6 +23,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { ListtransactionComponent } from './pages/Transaction/listtransaction/listtransaction.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ListholidayComponent } from './pages/Transaction/holiday/listholiday/listholiday.component';
+import { AddholidayComponent } from './pages/Transaction/holiday/addholiday/addholiday.component';
+import { AddpermissionsComponent } from './pages/Transaction/permissions/addpermissions/addpermissions.component';
+import { ListpermissionsComponent } from './pages/Transaction/permissions/listpermissions/listpermissions.component';
+import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
+import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
 
 
 
@@ -35,6 +41,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ListworktimeComponent,
     AddOrEditworktimeComponent,
     ListtransactionComponent,
+    ListholidayComponent,
+    AddholidayComponent,
+    AddpermissionsComponent,
+    ListpermissionsComponent,
+    ListerrandsComponent,
+    AdderrandsComponent,
     
 
 

@@ -1,0 +1,55 @@
+.container{
+    margin: 20px;
+}
+mat-card-title{
+    color: cornflowerblue;
+}
+section{
+    margin-top: 20px;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  button{
+      height: 40px;
+  }
+table{
+    width: 100%;
+}
+
+
+  .green-icon {
+    color: green;
+}
+.red-icon {
+    color: red;
+}
+.example-form {
+    margin: 20px;
+     }
+  .page {
+      color: white;
+      padding: 0 1rem;
+      background: #f1f5f9;
+  }
+      .page__box {
+        min-height: 120px;
+        background: #1e293b;
+        margin: 0 -1rem;
+        font-size: 36px;
+      }
+      .page__content {
+        min-height: calc(100vh - 178px);
+        border-radius: 10px;
+        margin-top: -2rem;
+        background: white;
+        color: black;
+        font-size: 2rem;
+        
+      }
+  .page__content-data {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }

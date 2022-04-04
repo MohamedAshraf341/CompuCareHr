@@ -44,6 +44,12 @@ import { AddOrEditshiftComponent } from './pages/shift/add-or-editshift/add-or-e
 import { ShiftListComponent } from './pages/shift/shift-list/shift-list.component';
 import { AddTransactionComponent } from './pages/Transaction/add-transaction/add-transaction.component';
 import { ListtransactionComponent } from './pages/Transaction/listtransaction/listtransaction.component';
+import { AddholidayComponent } from './pages/Transaction/holiday/addholiday/addholiday.component';
+import { ListholidayComponent } from './pages/Transaction/holiday/listholiday/listholiday.component';
+import { AddpermissionsComponent } from './pages/Transaction/permissions/addpermissions/addpermissions.component';
+import { ListpermissionsComponent } from './pages/Transaction/permissions/listpermissions/listpermissions.component';
+import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
+import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -143,7 +149,14 @@ const routes: Routes = [
         {path:'addtransactions',component:AddTransactionComponent},
         {path:'addtransactions/:id',component:AddTransactionComponent},
         {path:'Listtransaction',component:ListtransactionComponent},
-        {path:'Listtransaction/:id',component:ListtransactionComponent}
+        {path:'Listtransaction/:id',component:ListtransactionComponent},
+        //transaction
+        {path:'addtransactionholiday',component:AddholidayComponent},
+        {path:"listtransactionholiday",component:ListholidayComponent},
+        {path:'addtransactionerrned',component:AdderrandsComponent},
+        {path:'listtransactionerrned',component:ListerrandsComponent},
+        {path:'addtransactionpermission',component:AddpermissionsComponent},
+        {path:'listtransactionpermission',component:ListpermissionsComponent}
 
 
         
