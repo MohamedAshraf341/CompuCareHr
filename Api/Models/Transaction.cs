@@ -19,5 +19,7 @@ namespace Site4Check.Models
         public int? BossNo { get; set; }
 
         public Leaves Leave { get; set; }
+
+        //public virtual Employees employees { get; set; }
     }
 }

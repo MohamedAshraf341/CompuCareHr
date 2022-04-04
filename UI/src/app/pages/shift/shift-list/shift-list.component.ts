@@ -9,9 +9,6 @@ import { shift } from 'src/app/models/shift.model';
 import { ShiftService } from 'src/app/services/shift/shift.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
-
-
-
 @Component({
   selector: 'app-shift-list',
   templateUrl: './shift-list.component.html',

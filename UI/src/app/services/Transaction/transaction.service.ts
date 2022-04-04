@@ -16,6 +16,10 @@ export class TransactionService {
       // ,  { responseType: 'text' }
     );
   }
+  deleteTransaction(Id:Number)
+  {
+    return this.http.delete(`${environment.apiUrl}en/Transactions/Delete/${Id}`);
+  }
   getallholiday()
   {
     return this.http.get(`${environment.apiUrl}en/leaves/1/2022`);

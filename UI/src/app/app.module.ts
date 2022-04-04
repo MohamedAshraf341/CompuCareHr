@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { ListtransactionComponent } from './pages/Transaction/listtransaction/listtransaction.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { ListtransactionComponent } from './pages/Transaction/listtransaction/li
  
   ],
   imports: [
+    MatExpansionModule,
     HttpClientModule,
     MatDatepickerModule,
     MatSelectModule,
