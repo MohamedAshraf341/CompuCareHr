@@ -10,8 +10,6 @@ import {transaction} from 'src/app/models/transactions';
 import { TransactionService } from 'src/app/services/Transaction/transaction.service';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { employee } from 'src/app/models/employee.model';
-
-
 @Component({
   selector: 'app-listtransaction',
   templateUrl: './listtransaction.component.html',
@@ -19,8 +17,8 @@ import { employee } from 'src/app/models/employee.model';
 })
 export class ListtransactionComponent implements OnInit {
   employees: employee[]=[];
-  dataSource!: MatTableDataSource<transaction>;
   transactions: transaction[] = [];
+  dataSource!: MatTableDataSource<transaction>;
   colums: string[] = ["Empcode", "Empname", "Type", "actions"];
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
@@ -31,7 +29,7 @@ export class ListtransactionComponent implements OnInit {
     private transactionService: TransactionService,
     private router: Router,
     private snackBar: MatSnackBarComponent,
-     private dialog: MatDialog) { }
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getListOfholiday();
@@ -55,7 +53,7 @@ export class ListtransactionComponent implements OnInit {
 
     });
   }
-  addOrEditshift(id: number) {
+  addtransactions(id: number) {
     this.router.navigate(['/defaultPage/addtransactions', id])
   }
   delete(element: any) {

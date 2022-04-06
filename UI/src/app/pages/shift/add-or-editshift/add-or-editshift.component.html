@@ -1,3 +1,4 @@
+
 <div class="example-form">
     <form [formGroup]="shiftForm">
       <mat-card>
@@ -21,9 +22,6 @@
                 <input matInput type="text" placeholder="Arabic Name"  [(ngModel)]="this.shiftArr.Arname"  formControlName="Arname" required>
               </mat-form-field>
 
-  
-      
-  
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" [disabled]="!shiftForm.valid" (click)="createOrEditShift()">حفظ</button>

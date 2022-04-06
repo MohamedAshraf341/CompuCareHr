@@ -3,7 +3,12 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-           Add Transactions
+            <span *ngIf="this.transactionid==0">
+              add          
+            </span>
+            <span *ngIf="this.transactionid!=0">
+              edit          
+            </span>transaction          
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -63,7 +68,7 @@
       
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" [disabled]="!transactionForm.valid" (click)="addTransaction()">Search</button>
+          <button mat-raised-button color="primary" [disabled]="!transactionForm.valid" (click)="addorEditTransaction()">save</button>
           <button mat-raised-button color="warn" (click)="clear()">Clear</button>
         </mat-card-actions>
       </mat-card>

@@ -8,8 +8,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { worktime } from 'src/app/models/worktime.model';
 import { WorktimeService } from 'src/app/services/worktime/worktime.service';
-import { shift } from 'src/app/models/shift.model';
-
 @Component({
   selector: 'app-listworktime',
   templateUrl: './listworktime.component.html',
@@ -17,7 +15,6 @@ import { shift } from 'src/app/models/shift.model';
 })
 export class ListworktimeComponent implements OnInit {
   dataSource!: MatTableDataSource<worktime>;
-
   empworks: worktime[] = [];
   colums: string[] = ["Shift", "FromDate", "ToDate", "actions"];
   @ViewChild(MatSort, { static: true })
@@ -26,7 +23,9 @@ export class ListworktimeComponent implements OnInit {
   paginator!: MatPaginator;
 
   constructor(private empWorkService: WorktimeService,
-    private snackBar: MatSnackBarComponent, private router: Router, private dialog: MatDialog) { }
+    private snackBar: MatSnackBarComponent,
+     private router: Router,
+      private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getListOfempwork();

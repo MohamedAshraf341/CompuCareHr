@@ -29,7 +29,7 @@ namespace Site4Check.Controllers
         }
 
         // GET: api/Transactions/5
-        [HttpGet("{id}")]
+        [HttpGet("GetTransaction/{id}")]
         public async Task<IActionResult> GetTransaction([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace Site4Check.Controllers
 
        
         // PUT: api/Transactions/5
-        [HttpPut("{id}")]
+        [HttpPut("PutTransaction/{id}")]
         public async Task<IActionResult> PutTransaction([FromRoute] int id, [FromBody] Transaction transaction)
         {
             if (!ModelState.IsValid)
@@ -109,7 +109,7 @@ namespace Site4Check.Controllers
         }
 
         // DELETE: api/Transactions/5
-        [HttpGet("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteTransaction([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -170,6 +170,7 @@ namespace Site4Check.Controllers
 
             return Ok(tranlistVm);
         }
+
 
 
 

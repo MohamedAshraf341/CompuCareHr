@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit {
     this.loginService.getLoginUrl(this.loginform.value.Username,this.loginform.value.password)
     .subscribe((res:any)=>{
       console.log('res',res);
-      
-      
-      localStorage.setItem('UserId', JSON.stringify(res.UsId));
+            localStorage.setItem('UserId', JSON.stringify(res.UsId));
       this.router.navigate(['defaultPage'])
       if(res.status=="Success")
       {

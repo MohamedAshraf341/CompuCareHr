@@ -53,8 +53,8 @@ export class ListerrandsComponent implements OnInit {
 
     });
   }
-  addOrEditshift(id: number) {
-    this.router.navigate(['/defaultPage/addtransactions', id])
+  addtransactions(id: number) {
+    this.router.navigate(['/defaultPage/addtransactionerrned', id])
   }
   delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

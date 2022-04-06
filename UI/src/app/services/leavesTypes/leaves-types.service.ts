@@ -11,9 +11,15 @@ export class LeavesTypesService {
   getLeavesTypes()
   {
     return this.http.get(
-      `${environment.apiUrl}ar/leaves/1`
+      `${environment.apiUrl}en/leavesTypes`
     );
   }
+  getLeavesholiday()
+  {
+    return this.http.get(
+      `${environment.apiUrl}ar/leaves/1`
+    );
+  }  
   getLeaveserrand()
   {
     return this.http.get(

@@ -15,7 +15,6 @@ export class AddOrEditshiftComponent implements OnInit {
   shiftId: any;
   shiftArr: any = [];
 
-
   constructor(private _formBuilder: FormBuilder,
     private shiftService: ShiftService,
     private route: Router, private snackBar: MatSnackBarComponent,
@@ -25,7 +24,6 @@ export class AddOrEditshiftComponent implements OnInit {
     this.shiftForm = this._formBuilder.group({
       Arname: [this.shiftArr.Arname, [Validators.required]],
       Enname: [this.shiftArr.Enname, [Validators.required]],
-
     });
   }
   get Arname() {
@@ -42,6 +40,7 @@ export class AddOrEditshiftComponent implements OnInit {
       })
     }
   }
+  
   createOrEditShift() {
     if (this.shiftId == 0) {
       this.shiftService.addShift(this.shiftForm.value).subscribe((res: any) => {

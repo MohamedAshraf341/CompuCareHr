@@ -152,10 +152,13 @@ const routes: Routes = [
         {path:'Listtransaction/:id',component:ListtransactionComponent},
         //transaction
         {path:'addtransactionholiday',component:AddholidayComponent},
+        {path:'addtransactionholiday/:id',component:AddholidayComponent},
         {path:"listtransactionholiday",component:ListholidayComponent},
         {path:'addtransactionerrned',component:AdderrandsComponent},
+        {path:'addtransactionerrned/:id',component:AdderrandsComponent},
         {path:'listtransactionerrned',component:ListerrandsComponent},
         {path:'addtransactionpermission',component:AddpermissionsComponent},
+        {path:'addtransactionpermission/:id',component:AddpermissionsComponent},
         {path:'listtransactionpermission',component:ListpermissionsComponent}
 
 

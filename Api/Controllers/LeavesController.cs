@@ -125,9 +125,9 @@ namespace Site4Check.Controllers
                         StatusCode = item.TransacrtionCode,
                         TranDate = item.Date.Substring(4, 4),
                         Day = day.DayOfWeek.ToString(),
-                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault()
-                        , TypeCode = item.LeaveId
-                        , Id = item.Id
+                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
+                        TypeCode = item.LeaveId,
+                        Id = item.Id
                     };
                     Tleaves.Add(Temp);
                 }
@@ -166,10 +166,48 @@ namespace Site4Check.Controllers
                         Empcode=item.EmpCode,
                         TranDate = item.Date.Substring(4, 4),
                         Day = day.DayOfWeek.ToString(),
-                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault()
-                        ,
-                        TypeCode = item.LeaveId
-                        ,
+                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
+                        TypeCode = item.LeaveId,
+                        Id = item.Id
+                    };
+                    Tleaves.Add(Temp);
+                }
+            }
+
+            if (Tleaves == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Tleaves);
+        }
+        [HttpGet("{type}/{year}/{id}")]
+        public IActionResult GetEmpLeavesTypeById([FromRoute] int type, [FromRoute] int year,[FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            List<TransData> Tleaves = new List<TransData>();
+            var leaves = _context.Transaction.Where(i => i.Id == id);
+            // var year = _context.Year.FirstOrDefault();
+            foreach (var item in leaves)
+            {
+                var LItem = _context.Leaves.Where(l => l.Id == item.LeaveId).FirstOrDefault();
+                if (LItem.Type == type && int.Parse(item.Date.Substring(0, 4)) == year)
+                {
+                    var day = DateTime.ParseExact(item.Date.Substring(0, 8), "yyyyMMdd", null);
+                    TransData Temp = new TransData
+                    {
+                        From = item.From,
+                        To = item.To,
+                        Status = _context.TransactionStatus.Where(t => t.Id == item.TransacrtionCode).Select(tt => tt.Name).FirstOrDefault(),
+                        StatusCode = item.TransacrtionCode,
+                        Empcode = item.EmpCode,
+                        TranDate = item.Date.Substring(4, 4),
+                        Day = day.DayOfWeek.ToString(),
+                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
+                        TypeCode = item.LeaveId,
                         Id = item.Id
                     };
                     Tleaves.Add(Temp);

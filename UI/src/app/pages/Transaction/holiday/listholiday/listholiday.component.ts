@@ -54,8 +54,9 @@ export class ListholidayComponent implements OnInit {
 
     });
   }
-  addOrEditshift(id: number) {
-    this.router.navigate(['/defaultPage/addtransactions', id])
+  
+  addtransactions(id: number) {
+    this.router.navigate(['/defaultPage/addtransactionholiday', id])
   }
   delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

@@ -24,20 +24,21 @@ export class LeavesService {
   addLeaves(data:any)
   {
     return this.http.post(
-      `${environment.apiUrl}ar/leaves`,data,  { responseType: 'text' }
+      `${environment.apiUrl}ar/leaves/NewLeaves`,data,  { responseType: 'text' }
     );
   }
 
   editLeaves(Id:number,data:any)
   {
     return this.http.put(
-      `${environment.apiUrl}ar/leaves/${Id}`,data,  { responseType: 'text' }
+      `${environment.apiUrl}ar/leaves/UpdateLeaves/${Id}`,data,  { responseType: 'text' }
     );
   }
   deleteLeaves(Id:Number)
   {
     return this.http.delete(
-      `${environment.apiUrl}ar/leaves/${Id}`,  { responseType: 'text' }
+      `${environment.apiUrl}ar/leaves/DeleteLeaves/${Id}`,  { responseType: 'text' }
     );
   }
+
 }

@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { employee } from 'src/app/models/employee.model';
 import { leavesType } from 'src/app/models/leavesType.model';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
@@ -14,36 +14,67 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./adderrands.component.css']
 })
 export class AdderrandsComponent implements OnInit {
-
-  transactionForm:FormGroup;
-  UserCode!:number;
-  TransacrtionCode!:number;
-  employees: employee[]=[];
+  transactionForm: FormGroup;
+  transactionid: any;
+  holidayArr: any = [];
+  employees: employee[] = [];
   leavesTypes: leavesType[] = [];
-  constructor(private employeeService:EmployeeService,
-    private _formBuilder:FormBuilder,
+  constructor(private employeeService: EmployeeService,
+    private _formBuilder: FormBuilder,
     private LeavesTypesService: LeavesTypesService,
-    private transactionServices:TransactionService,private snackBar:MatSnackBarComponent,
-    private router:Router,
+    private transactionServices: TransactionService, private snackBar: MatSnackBarComponent,
+    private router: Router,
+    private activateRout: ActivatedRoute,
     private datePipe: DatePipe) {
     this.transactionForm = this._formBuilder.group({
-      UserCode:[,[]],
-      EmpCode: ['', []],
-      From:['',[Validators.required]],
-      To:['',[Validators.required]],
-      TransacrtionCode:[3,[]],
-      Note:['',[]],
-      LeaveId:['',[]],
-      Value:['',[]]
-    
+      UserCode: [this.holidayArr.UserCode, []],
+      EmpCode: [this.holidayArr.EmpCode, []],
+      From: [this.holidayArr.From, [Validators.required]],
+      To: [this.holidayArr.To, [Validators.required]],
+      TransacrtionCode: [this.holidayArr.TransacrtionCode, []],
+      Note: [this.holidayArr.Note, []],
+      LeaveId: [this.holidayArr.LeaveId, []],
+      Value: [this.holidayArr.Value, []]
     });
-   }
-
+  }
+  get UserCode() {
+    return this.transactionForm.get('UserCode');
+  }
+  get EmpCode() {
+    return this.transactionForm.get('EmpCode');
+  }
+  get From() {
+    return this.transactionForm.get('From');
+  }
+  get To() {
+    return this.transactionForm.get('To');
+  }
+  get TransacrtionCode() {
+    return this.transactionForm.get('TransacrtionCode');
+  }
+  get Note() {
+    return this.transactionForm.get('Note');
+  }
+  get LeaveId() {
+    return this.transactionForm.get('LeaveId');
+  }
+  get Value() {
+    return this.transactionForm.get('Value');
+  }
   ngOnInit(): void {
-    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any) ;
-    console.log('this.UserCode ',this.UserCode );
+    this.transactionid = this.activateRout.snapshot.paramMap.get('id');
+    console.log('id', this.transactionid)
+    if (this.transactionid != 0) {
+      this.transactionServices.gettransactionbyiud(this.transactionid).subscribe((res: any) => {
+        console.log(res)
+        this.holidayArr = res
+      })
+    }
     this.getListOfemployees();
     this.getListOfleavesTypes();
+  }
+  changeStop(Stop: any) {
+    console.log('asmaa', Stop.value);
   }
   getListOfemployees() {
     this.employeeService.getEmployeeUrl().subscribe((res: any) => {
@@ -55,29 +86,34 @@ export class AdderrandsComponent implements OnInit {
       this.leavesTypes = res;
     });
   }
-  addTransaction(){
-    this.transactionForm.value.From=this.datePipe.transform(this.transactionForm.value.From, 'yyyy-MM-dd');
-    this.transactionForm.value.To=this.datePipe.transform(this.transactionForm.value.To, 'yyyy-MM-dd');
-    console.log('this.transactionForm.value',this.transactionForm.value);
-    this.transactionForm.value.UserCode=this.UserCode
+  addorEditTransaction() {
+    this.transactionForm.value.From = this.datePipe.transform(this.transactionForm.value.From, 'yyyy-MM-dd');
+    this.transactionForm.value.To = this.datePipe.transform(this.transactionForm.value.To, 'yyyy-MM-dd');
+    console.log('this.transactionForm.value', this.transactionForm.value);
+    this.transactionForm.value.UserCode = this.UserCode
 
-    
-    this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {
-      console.log('addd',res)
-      if (res != null) {
-        this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-        this.router.navigate(['/defaultPage/home'])
-      }
-      else {
-        this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+    if (this.transactionid == 0) {
+      this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {
+        console.log('addd', res)
+        if (res != null) {
+          this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+          this.router.navigate(['/defaultPage/listtransaction'])
+        }
+        else {
+          this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
 
-      }
+        }
 
-    });
+      });
+    }
+    else {
+      this.transactionServices.updateTransaction(this.transactionid, this.transactionForm.value).subscribe((res: any) => {
+        this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
+        this.router.navigate(['/defaultPage/listtransaction'])
+      });
+    }
   }
-  clear()
-  {
+  clear() {
     this.transactionForm.reset();
   }
-
 }

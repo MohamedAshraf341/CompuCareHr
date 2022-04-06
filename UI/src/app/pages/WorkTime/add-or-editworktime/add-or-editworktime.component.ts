@@ -82,7 +82,6 @@ export class AddOrEditworktimeComponent implements OnInit {
     return this.employeeworkForm.get('ShiftId');
   }
 
-
   ngOnInit(): void {
     this.empworkid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.empworkid)
