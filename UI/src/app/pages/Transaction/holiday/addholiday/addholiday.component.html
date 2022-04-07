@@ -4,32 +4,33 @@
       <mat-card-header>
         <mat-card-title>
           <span *ngIf="this.transactionid==0">
-            add          
+            add
           </span>
           <span *ngIf="this.transactionid!=0">
-            edit          
-          </span>transaction          
+            edit
+          </span>transaction
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="flex">
           <mat-form-field>
             <mat-label>Employee</mat-label>
-            <mat-select formControlName="EmpCode">
-              <mat-option *ngFor="let employee of employees" [value]="employee.EmpCode">
+            <mat-select [(ngModel)]="this.holidayArr.emploeesid" formControlName="emploeesid">
+              <mat-option *ngFor="let employee of employees" [value]="employee.Id">
                 {{employee.EmpName}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field>
             <mat-label>From date</mat-label>
-            <input matInput [matDatepicker]="picker1" formControlName="From" required>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="this.holidayArr.From" formControlName="From"
+              required>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
             <mat-label>To date</mat-label>
-            <input matInput [matDatepicker]="picker2" formControlName="To" required>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="this.holidayArr.To" formControlName="To" required>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
@@ -37,7 +38,7 @@
         <div class="flex">
           <mat-form-field>
             <mat-label>Leaves Types</mat-label>
-            <mat-select formControlName="LeaveId">
+            <mat-select [(ngModel)]="this.holidayArr.LeaveId" formControlName="LeaveId">
               <mat-option *ngFor="let Type of leavesTypes" [value]="Type.Id">
                 {{Type.Name}}
               </mat-option>
@@ -45,11 +46,13 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Value</mat-label>
-            <input matInput type="number" placeholder="Value" formControlName="Value">
+            <input matInput type="number" [(ngModel)]="this.holidayArr.Value" placeholder="Value"
+              formControlName="Value">
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Leave a note</mat-label>
-            <textarea matInput placeholder="note..." formControlName="Note"></textarea>
+            <textarea matInput placeholder="note..." formControlName="Note"
+              [(ngModel)]="this.holidayArr.Note"></textarea>
           </mat-form-field>
         </div>
       </mat-card-content>

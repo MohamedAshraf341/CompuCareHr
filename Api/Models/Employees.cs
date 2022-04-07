@@ -41,5 +41,7 @@ namespace Site4Check.Models
         public string Message { get; set; }
         public string Image { get; set; }
         public bool? ImageRequired { get; set; }
+        public ICollection<Transaction> Transaction { get; set; }
+
     }
 }

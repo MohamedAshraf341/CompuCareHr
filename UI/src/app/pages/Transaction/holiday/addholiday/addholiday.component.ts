@@ -15,6 +15,8 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddholidayComponent implements OnInit {
   transactionForm: FormGroup;
+  UserCode!:number;
+  TransacrtionCode!:number;
   transactionid: any;
   holidayArr: any = [];
   employees: employee[] = [];
@@ -22,35 +24,32 @@ export class AddholidayComponent implements OnInit {
   constructor(private employeeService: EmployeeService,
     private _formBuilder: FormBuilder,
     private LeavesTypesService: LeavesTypesService,
-    private transactionServices: TransactionService, private snackBar: MatSnackBarComponent,
+    private transactionServices: TransactionService,
+    private snackBar: MatSnackBarComponent,
     private router: Router,
     private activateRout: ActivatedRoute,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe)
+     {
     this.transactionForm = this._formBuilder.group({
-      UserCode: [this.holidayArr.UserCode, []],
-      EmpCode: [this.holidayArr.EmpCode, []],
+      UserCode: [, []],
+      emploeesid: [this.holidayArr.emploeesid, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
-      TransacrtionCode: [this.holidayArr.TransacrtionCode, []],
+      TransacrtionCode: ["1", []],
       Note: [this.holidayArr.Note, []],
       LeaveId: [this.holidayArr.LeaveId, []],
       Value: [this.holidayArr.Value, []]
     });
   }
-  get UserCode() {
-    return this.transactionForm.get('UserCode');
-  }
-  get EmpCode() {
-    return this.transactionForm.get('EmpCode');
+
+  get emploeesid() {
+    return this.transactionForm.get('emploeesid');
   }
   get From() {
     return this.transactionForm.get('From');
   }
   get To() {
     return this.transactionForm.get('To');
-  }
-  get TransacrtionCode() {
-    return this.transactionForm.get('TransacrtionCode');
   }
   get Note() {
     return this.transactionForm.get('Note');
@@ -62,6 +61,7 @@ export class AddholidayComponent implements OnInit {
     return this.transactionForm.get('Value');
   }
   ngOnInit(): void {
+    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any) ;
     this.transactionid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.transactionid)
     if (this.transactionid != 0) {
@@ -86,11 +86,13 @@ export class AddholidayComponent implements OnInit {
       this.leavesTypes = res;
     });
   }
+  
   addorEditTransaction() {
     this.transactionForm.value.From = this.datePipe.transform(this.transactionForm.value.From, 'yyyy-MM-dd');
     this.transactionForm.value.To = this.datePipe.transform(this.transactionForm.value.To, 'yyyy-MM-dd');
     console.log('this.transactionForm.value', this.transactionForm.value);
     this.transactionForm.value.UserCode = this.UserCode
+    let form = JSON.stringify(this.transactionForm.value);
 
     if (this.transactionid == 0) {
       this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {

@@ -24,11 +24,11 @@ namespace Site4Check.listVm
         public string Day { get; set; }
         public string Type { get; set; }
         public int? TypeCode { get; set; }
+        public int? emploeesid { get; set; }
+        public virtual Employees employees { get; set; }
         public string Reason { get; set; }
         public int? BossNo { get; set; }
+        //public int? Empcode { get; set; }
 
-        public int? Empcode { get; set; }
-
-        //public virtual Employees employees { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace Site4Check.Models
         public string LatePermission { get; set; }
         public int? OverTimeStart { get; set; }
         public int? ShiftId { get; set; }
-
         public virtual AttShift Shift { get; set; }
     }
 }

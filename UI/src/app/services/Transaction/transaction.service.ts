@@ -22,7 +22,7 @@ export class TransactionService {
   }
   updateTransaction(Id:number,data:any)
   {
-    return this.http.post(
+    return this.http.put(
       `${environment.apiUrl}en/Transactions/PutTransaction/${Id}`,data
       // ,  { responseType: 'text' }
     );

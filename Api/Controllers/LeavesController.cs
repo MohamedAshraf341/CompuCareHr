@@ -127,6 +127,7 @@ namespace Site4Check.Controllers
                         Day = day.DayOfWeek.ToString(),
                         Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
                         TypeCode = item.LeaveId,
+                        emploeesid = item.employeesId,
                         Id = item.Id
                     };
                     Tleaves.Add(Temp);
@@ -163,7 +164,7 @@ namespace Site4Check.Controllers
                         To = item.To,
                         Status = _context.TransactionStatus.Where(t => t.Id == item.TransacrtionCode).Select(tt => tt.Name).FirstOrDefault(),
                         StatusCode = item.TransacrtionCode,
-                        Empcode=item.EmpCode,
+                        emploeesid=item.employeesId,
                         TranDate = item.Date.Substring(4, 4),
                         Day = day.DayOfWeek.ToString(),
                         Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
@@ -189,7 +190,7 @@ namespace Site4Check.Controllers
                 return BadRequest(ModelState);
             }
             List<TransData> Tleaves = new List<TransData>();
-            var leaves = _context.Transaction.Where(i => i.Id == id);
+            var leaves = _context.Transaction.Where(i => i.Id == id).Include(e => e.employees);
             // var year = _context.Year.FirstOrDefault();
             foreach (var item in leaves)
             {
@@ -203,7 +204,8 @@ namespace Site4Check.Controllers
                         To = item.To,
                         Status = _context.TransactionStatus.Where(t => t.Id == item.TransacrtionCode).Select(tt => tt.Name).FirstOrDefault(),
                         StatusCode = item.TransacrtionCode,
-                        Empcode = item.EmpCode,
+                        emploeesid = item.employeesId,
+                        employees = item.employees,
                         TranDate = item.Date.Substring(4, 4),
                         Day = day.DayOfWeek.ToString(),
                         Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),

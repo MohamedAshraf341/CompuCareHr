@@ -15,6 +15,8 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddpermissionsComponent implements OnInit {
   transactionForm: FormGroup;
+  UserCode!:number;
+  TransacrtionCode!:number;
   transactionid: any;
   holidayArr: any = [];
   employees: employee[] = [];
@@ -27,30 +29,25 @@ export class AddpermissionsComponent implements OnInit {
     private activateRout: ActivatedRoute,
     private datePipe: DatePipe) {
     this.transactionForm = this._formBuilder.group({
-      UserCode: [this.holidayArr.UserCode, []],
-      EmpCode: [this.holidayArr.EmpCode, []],
+      UserCode: [, []],
+      emploeesid: [this.holidayArr.emploeesid, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
-      TransacrtionCode: [this.holidayArr.TransacrtionCode, []],
+      TransacrtionCode: ["1", []],
       Note: [this.holidayArr.Note, []],
       LeaveId: [this.holidayArr.LeaveId, []],
       Value: [this.holidayArr.Value, []]
     });
   }
-  get UserCode() {
-    return this.transactionForm.get('UserCode');
-  }
-  get EmpCode() {
-    return this.transactionForm.get('EmpCode');
+
+  get emploeesid() {
+    return this.transactionForm.get('emploeesid');
   }
   get From() {
     return this.transactionForm.get('From');
   }
   get To() {
     return this.transactionForm.get('To');
-  }
-  get TransacrtionCode() {
-    return this.transactionForm.get('TransacrtionCode');
   }
   get Note() {
     return this.transactionForm.get('Note');
@@ -62,6 +59,7 @@ export class AddpermissionsComponent implements OnInit {
     return this.transactionForm.get('Value');
   }
   ngOnInit(): void {
+    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any) ;
     this.transactionid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.transactionid)
     if (this.transactionid != 0) {

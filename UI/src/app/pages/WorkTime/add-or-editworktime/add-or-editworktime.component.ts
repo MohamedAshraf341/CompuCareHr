@@ -39,10 +39,10 @@ export class AddOrEditworktimeComponent implements OnInit {
       EndShift:[this.empArr.EndShift,[Validators.required]],
       EarlyPermission:[this.empArr.EarlyPermission,[Validators.required]],
       LatePermission:[this.empArr.LatePermission,[Validators.required]],
-    isHour:[this.empArr.isHour,[]],
-    isDayOff:[this.empArr.isDayOff,[]],
-    OverTimeStart:[this.empArr.OverTimeStart,[Validators.required]],
-    ShiftId:[this.empArr.ShiftId,[]],
+      isHour:[this.empArr.isHour,[]],
+      isDayOff:[this.empArr.isDayOff,[]],
+      OverTimeStart:[this.empArr.OverTimeStart,[Validators.required]],
+      ShiftId:[this.empArr.ShiftId,[]],
     });
   }
   get FromDate() {

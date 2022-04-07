@@ -121,6 +121,7 @@ namespace Site4Check.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<AccountStatement>(entity =>
             {
                 entity.Property(e => e.AccountCode).HasMaxLength(50);
