@@ -15,7 +15,7 @@
           <div class="flex">
             <mat-form-field>
               <mat-label>Employee</mat-label>
-              <mat-select [(ngModel)]="this.holidayArr.emploeesid" formControlName="emploeesid">
+              <mat-select [(ngModel)]="this.holidayArr.employeesId" formControlName="employeesId">
                 <mat-option *ngFor="let employee of employees" [value]="employee.Id">
                   {{employee.EmpName}}
                 </mat-option>

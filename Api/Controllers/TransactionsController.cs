@@ -47,16 +47,45 @@ namespace Site4Check.Controllers
             return Ok(transaction);
         }
 
-       
-        // PUT: api/Transactions/5
-        [HttpPut("PutTransaction/{id}")]
-        public async Task<IActionResult> PutTransaction([FromRoute] int id, [FromBody] Transaction transaction)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
+        // PUT: api/Transactions/5
+        //[HttpPut("PutTransaction/{id}")]
+        //public async Task<IActionResult> PutTransaction([FromRoute] int id, [FromBody] Transaction transaction)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    if (id != transaction.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    _context.Entry(transaction).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!TransactionExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
+        [HttpPut("PutTransaction/{id}")]
+        public async Task<IActionResult> PutTransaction(int id, Transaction transaction)
+        {
             if (id != transaction.Id)
             {
                 return BadRequest();
@@ -67,7 +96,6 @@ namespace Site4Check.Controllers
             try
             {
                 await _context.SaveChangesAsync();
-
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -85,7 +113,7 @@ namespace Site4Check.Controllers
         }
 
         // POST: api/Transactions
-        [HttpPost]
+        [HttpPost("PostTransaction")]
         public  IActionResult PostTransaction([FromBody] Transaction transaction)
         {
             if (!ModelState.IsValid)

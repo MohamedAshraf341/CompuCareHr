@@ -32,7 +32,7 @@ export class AddholidayComponent implements OnInit {
      {
     this.transactionForm = this._formBuilder.group({
       UserCode: [, []],
-      emploeesid: [this.holidayArr.emploeesid, []],
+      employeesId: [this.holidayArr.employeesId, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
       TransacrtionCode: ["1", []],
@@ -42,8 +42,8 @@ export class AddholidayComponent implements OnInit {
     });
   }
 
-  get emploeesid() {
-    return this.transactionForm.get('emploeesid');
+  get employeesId() {
+    return this.transactionForm.get('employeesId');
   }
   get From() {
     return this.transactionForm.get('From');

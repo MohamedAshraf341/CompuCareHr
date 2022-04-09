@@ -30,7 +30,7 @@ export class AdderrandsComponent implements OnInit {
     private datePipe: DatePipe) {
     this.transactionForm = this._formBuilder.group({
       UserCode: [, []],
-      EmpCode: [this.holidayArr.EmpCode, []],
+      employeesId: [this.holidayArr.employeesId, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
       TransacrtionCode: ["1", []],
@@ -40,8 +40,8 @@ export class AdderrandsComponent implements OnInit {
     });
   }
 
-  get EmpCode() {
-    return this.transactionForm.get('EmpCode');
+  get employeesId() {
+    return this.transactionForm.get('employeesId');
   }
   get From() {
     return this.transactionForm.get('From');

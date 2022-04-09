@@ -149,46 +149,77 @@ namespace Site4Check.Controllers
             {
                 return BadRequest(ModelState);
             }
-            List<TransData> Tleaves = new List<TransData>();
-            var leaves = _context.Transaction.ToList();
-            // var year = _context.Year.FirstOrDefault();
-            foreach (var item in leaves)
-            {
-                var LItem = _context.Leaves.Where(l => l.Id == item.LeaveId).FirstOrDefault();
-                if (LItem.Type == type && int.Parse(item.Date.Substring(0, 4)) == year)
-                {
-                    var day = DateTime.ParseExact(item.Date.Substring(0, 8), "yyyyMMdd", null);
-                    TransData Temp = new TransData
-                    {
-                        From = item.From,
-                        To = item.To,
-                        Status = _context.TransactionStatus.Where(t => t.Id == item.TransacrtionCode).Select(tt => tt.Name).FirstOrDefault(),
-                        StatusCode = item.TransacrtionCode,
-                        emploeesid=item.employeesId,
-                        TranDate = item.Date.Substring(4, 4),
-                        Day = day.DayOfWeek.ToString(),
-                        Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
-                        TypeCode = item.LeaveId,
-                        Id = item.Id
-                    };
-                    Tleaves.Add(Temp);
-                }
-            }
+            var entryPoint = (from ep in _context.Transaction
+                              join e in _context.Employees on ep.employeesId equals e.Id
+                              join t in _context.Leaves on ep.LeaveId equals t.Id
+                              where t.Type == type /*-&& Int32.Parse(ep.From.Substring(1,4)) == year*/
+                              select new
+                              {
+                                  Id = ep.Id,
+                                  Empcode = e.Id,
+                                  Empname = e.Name,
+                                  From = ep.From,
+                                  TO = ep.To,
+                                  Type = t.Name
+                              }).ToList();
+            //List<TransData> Tleaves = new List<TransData>();
+            //var leaves = _context.Transaction.ToList();
+            //// var year = _context.Year.FirstOrDefault();
+            //foreach (var item in leaves)
+            //{
+            //    var LItem = _context.Leaves.Where(l => l.Id == item.LeaveId).FirstOrDefault();
+            //    if (LItem.Type == type && int.Parse(item.Date.Substring(0, 4)) == year)
+            //    {
+            //        var day = DateTime.ParseExact(item.Date.Substring(0, 8), "yyyyMMdd", null);
+            //        TransData Temp = new TransData
+            //        {
+            //            From = item.From,
+            //            To = item.To,
+            //            Status = _context.TransactionStatus.Where(t => t.Id == item.TransacrtionCode).Select(tt => tt.Name).FirstOrDefault(),
+            //            StatusCode = item.TransacrtionCode,
+            //            emploeesid = item.employeesId,
+            //            TranDate = item.Date.Substring(4, 4),
+            //            Day = day.DayOfWeek.ToString(),
+            //            Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
+            //            TypeCode = item.LeaveId,
+            //            Id = item.Id
+            //        };
+            //        Tleaves.Add(Temp);
+            //    }
+            //}
 
-            if (Tleaves == null)
+            if (entryPoint == null)
             {
                 return NotFound();
             }
 
-            return Ok(Tleaves);
+            return Ok(entryPoint);
         }
-        [HttpGet("{type}/{year}/{id}")]
-        public IActionResult GetEmpLeavesTypeById([FromRoute] int type, [FromRoute] int year,[FromRoute] int id)
+        [HttpGet("GetEmpLeavesTypeById/{id}")]
+        public IActionResult GetEmpLeavesTypeById([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+
+            var entryPoint = (from ep in _context.Transaction
+                              join e in _context.Employees on ep.employeesId equals e.Id
+                              join t in _context.Leaves on ep.LeaveId equals t.Id
+                              where ep. Id == id
+                              select new
+                              {
+                                  Id =ep.Id,
+                                  employeesId = ep.employeesId,
+                                  Empname = e.Name,
+                                  From = ep.From,
+                                  TO = ep.To,
+                                  Type = t.Name,
+                                  Value =ep.Value,
+                                  Note = ep.Note,
+                              }).ToList();
+            /*
             List<TransData> Tleaves = new List<TransData>();
             var leaves = _context.Transaction.Where(i => i.Id == id).Include(e => e.employees);
             // var year = _context.Year.FirstOrDefault();
@@ -220,8 +251,8 @@ namespace Site4Check.Controllers
             {
                 return NotFound();
             }
-
-            return Ok(Tleaves);
+            */
+            return Ok(entryPoint);
         }
 
         // PUT: api/Leaves/5

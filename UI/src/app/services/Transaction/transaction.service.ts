@@ -16,7 +16,7 @@ export class TransactionService {
   addTransaction(data:any)
   {
     return this.http.post(
-      `${environment.apiUrl}en/Transactions`,data
+      `${environment.apiUrl}en/Transactions/PostTransaction`,data
       // ,  { responseType: 'text' }
     );
   }
