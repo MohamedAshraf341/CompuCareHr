@@ -15,8 +15,8 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddholidayComponent implements OnInit {
   transactionForm: FormGroup;
-  UserCode!:number;
-  TransacrtionCode!:number;
+  UserCode!: number;
+  TransacrtionCode!: number;
   transactionid: any;
   holidayArr: any = [];
   employees: employee[] = [];
@@ -28,11 +28,10 @@ export class AddholidayComponent implements OnInit {
     private snackBar: MatSnackBarComponent,
     private router: Router,
     private activateRout: ActivatedRoute,
-    private datePipe: DatePipe)
-     {
+    private datePipe: DatePipe) {
     this.transactionForm = this._formBuilder.group({
       UserCode: [, []],
-      employeesId: [this.holidayArr.employeesId, []],
+      EmpCode: [this.holidayArr.EmpCode, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
       TransacrtionCode: ["1", []],
@@ -42,8 +41,8 @@ export class AddholidayComponent implements OnInit {
     });
   }
 
-  get employeesId() {
-    return this.transactionForm.get('employeesId');
+  get EmpCode() {
+    return this.transactionForm.get('EmpCode');
   }
   get From() {
     return this.transactionForm.get('From');
@@ -61,13 +60,15 @@ export class AddholidayComponent implements OnInit {
     return this.transactionForm.get('Value');
   }
   ngOnInit(): void {
-    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any) ;
+    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any);
     this.transactionid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.transactionid)
     if (this.transactionid != 0) {
       this.transactionServices.gettransactionbyiud(this.transactionid).subscribe((res: any) => {
         console.log(res)
         this.holidayArr = res
+        this.holidayArr.Value = res.Value
+
       })
     }
     this.getListOfemployees();
@@ -86,7 +87,7 @@ export class AddholidayComponent implements OnInit {
       this.leavesTypes = res;
     });
   }
-  
+
   addorEditTransaction() {
     this.transactionForm.value.From = this.datePipe.transform(this.transactionForm.value.From, 'yyyy-MM-dd');
     this.transactionForm.value.To = this.datePipe.transform(this.transactionForm.value.To, 'yyyy-MM-dd');
@@ -96,10 +97,9 @@ export class AddholidayComponent implements OnInit {
 
     if (this.transactionid == 0) {
       this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {
-        console.log('addd', res)
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.router.navigate(['/defaultPage/listtransaction'])
+          this.router.navigate(['/defaultPage/listtransactionholiday'])
         }
         else {
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -109,7 +109,7 @@ export class AddholidayComponent implements OnInit {
     else {
       this.transactionServices.updateTransaction(this.transactionid, this.transactionForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-        this.router.navigate(['/defaultPage/listtransaction'])
+        this.router.navigate(['/defaultPage/listtransactionholiday'])
       });
     }
   }

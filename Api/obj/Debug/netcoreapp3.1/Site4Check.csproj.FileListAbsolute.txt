@@ -36,6 +36,7 @@ D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkC
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.BrowserLink.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
@@ -49,6 +50,9 @@ D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Remotion.Linq.dll
+D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
 D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
@@ -78,6 +82,7 @@ D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.GeneratedMSBuil
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.AssemblyInfoInputs.cache
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.AssemblyInfo.cs
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.csproj.CoreCompileInputs.cache
+D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.MvcApplicationPartsAssemblyInfo.cs
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.MvcApplicationPartsAssemblyInfo.cache
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.RazorAssemblyInfo.cache
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.RazorAssemblyInfo.cs
@@ -86,8 +91,3 @@ D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.csproj.CopyComp
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.dll
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.pdb
 D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.genruntimeconfig.cache
-D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
-D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\MY Projects\Compu Care\Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\MY Projects\Compu Care\Api\obj\Debug\netcoreapp3.1\Site4Check.MvcApplicationPartsAssemblyInfo.cs

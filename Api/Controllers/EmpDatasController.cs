@@ -28,6 +28,11 @@ namespace Site4Check.Controllers
         {
             return _context.EmpData;
         }
+        //[HttpGet]
+        //public IEnumerable<EmpData> GetEmpData()
+        //{
+        //    return _context.EmpData;
+        //}
 
         // GET: api/EmpDatas/5
         [HttpGet("{id}")]

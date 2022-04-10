@@ -30,7 +30,7 @@ export class AdderrandsComponent implements OnInit {
     private datePipe: DatePipe) {
     this.transactionForm = this._formBuilder.group({
       UserCode: [, []],
-      employeesId: [this.holidayArr.employeesId, []],
+      EmpCode: [this.holidayArr.EmpCode, []],
       From: [this.holidayArr.From, [Validators.required]],
       To: [this.holidayArr.To, [Validators.required]],
       TransacrtionCode: ["1", []],
@@ -40,8 +40,8 @@ export class AdderrandsComponent implements OnInit {
     });
   }
 
-  get employeesId() {
-    return this.transactionForm.get('employeesId');
+  get EmpCode() {
+    return this.transactionForm.get('EmpCode');
   }
   get From() {
     return this.transactionForm.get('From');
@@ -92,10 +92,9 @@ export class AdderrandsComponent implements OnInit {
 
     if (this.transactionid == 0) {
       this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {
-        console.log('addd', res)
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.router.navigate(['/defaultPage/listtransaction'])
+          this.router.navigate(['/defaultPage/listtransactionerrned'])
         }
         else {
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -107,7 +106,7 @@ export class AdderrandsComponent implements OnInit {
     else {
       this.transactionServices.updateTransaction(this.transactionid, this.transactionForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-        this.router.navigate(['/defaultPage/listtransaction'])
+        this.router.navigate(['/defaultPage/listtransactionerrned'])
       });
     }
   }

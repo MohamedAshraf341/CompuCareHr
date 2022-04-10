@@ -127,7 +127,7 @@ namespace Site4Check.Controllers
                         Day = day.DayOfWeek.ToString(),
                         Type = _context.Leaves.Where(l => l.Id == item.LeaveId).Select(ll => ll.Name).FirstOrDefault(),
                         TypeCode = item.LeaveId,
-                        emploeesid = item.employeesId,
+                        Empcode = item.EmpCode,
                         Id = item.Id
                     };
                     Tleaves.Add(Temp);
@@ -150,14 +150,14 @@ namespace Site4Check.Controllers
                 return BadRequest(ModelState);
             }
             var entryPoint = (from ep in _context.Transaction
-                              join e in _context.Employees on ep.employeesId equals e.Id
+                              join e in _context.EmpData on ep.EmpCode equals e.Id
                               join t in _context.Leaves on ep.LeaveId equals t.Id
                               where t.Type == type /*-&& Int32.Parse(ep.From.Substring(1,4)) == year*/
                               select new
                               {
                                   Id = ep.Id,
-                                  Empcode = e.Id,
-                                  Empname = e.Name,
+                                  Empcode = e.EmpCode,
+                                  Empname = e.EmpName,
                                   From = ep.From,
                                   TO = ep.To,
                                   Type = t.Name
@@ -205,17 +205,16 @@ namespace Site4Check.Controllers
 
 
             var entryPoint = (from ep in _context.Transaction
-                              join e in _context.Employees on ep.employeesId equals e.Id
+                              join e in _context.Employees on ep.UserCode equals e.Id
                               join t in _context.Leaves on ep.LeaveId equals t.Id
                               where ep. Id == id
                               select new
                               {
-                                  Id =ep.Id,
-                                  employeesId = ep.employeesId,
-                                  Empname = e.Name,
+                                  //Id =ep.Id,
+                                  EmpCode = ep.EmpCode,
                                   From = ep.From,
                                   TO = ep.To,
-                                  Type = t.Name,
+                                  LeaveId = t.Id,
                                   Value =ep.Value,
                                   Note = ep.Note,
                               }).ToList();

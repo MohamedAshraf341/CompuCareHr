@@ -10,7 +10,7 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
   gettransactionbyiud(id:number)
   {
-    return this.http.get(`${environment.apiUrl}en/Transactions/GetTransaction/${id}`);
+    return this.http.get(`${environment.apiUrl}en/transactions/GetTransaction/${id}`);
   }
   
   addTransaction(data:any)

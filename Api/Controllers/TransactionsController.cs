@@ -84,12 +84,56 @@ namespace Site4Check.Controllers
         //    return NoContent();
         //}
         [HttpPut("PutTransaction/{id}")]
-        public async Task<IActionResult> PutTransaction(int id, Transaction transaction)
+        public async Task<IActionResult> PutTransaction(int id, TransData transaction)
         {
-            if (id != transaction.Id)
+
+            var check = _context.Transaction.Find(id);
+            if (id != check.Id)
             {
                 return BadRequest();
             }
+            check.Note = transaction.Note;
+            check.EmpCode = transaction.Empcode;
+            check.UserCode = transaction.UserCode;
+            check.Value = transaction.Value;
+            check.From = transaction.From;
+            check.To = transaction.To;
+            check.LeaveId = transaction.LeaveId;
+            check.TransacrtionCode = transaction.TransacrtionCode;
+             
+
+            _context.Entry(check).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TransactionExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+            /*
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var check = _context.Transaction.Find(id);
+            if (id != check.Id)
+            {
+                return BadRequest();
+            }
+
+            check.Note = transaction.Note;
+
 
             _context.Entry(transaction).State = EntityState.Modified;
 
@@ -110,6 +154,7 @@ namespace Site4Check.Controllers
             }
 
             return NoContent();
+            */
         }
 
         // POST: api/Transactions

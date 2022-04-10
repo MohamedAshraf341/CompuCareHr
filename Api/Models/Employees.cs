@@ -6,6 +6,7 @@ namespace Site4Check.Models
     public partial class Employees
     {
         public int Id { get; set; }
+        public int EmpCode { get; set; }
         public string Name { get; set; }
         public string CardNo { get; set; }
         public string Mobile { get; set; }
@@ -41,7 +42,6 @@ namespace Site4Check.Models
         public string Message { get; set; }
         public string Image { get; set; }
         public bool? ImageRequired { get; set; }
-        public ICollection<Transaction> Transaction { get; set; }
 
     }
 }

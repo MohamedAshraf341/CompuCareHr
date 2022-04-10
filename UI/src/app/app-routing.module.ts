@@ -160,8 +160,6 @@ const routes: Routes = [
         {path:'addtransactionpermission',component:AddpermissionsComponent},
         {path:'addtransactionpermission/:id',component:AddpermissionsComponent},
         {path:'listtransactionpermission',component:ListpermissionsComponent}
-
-
         
   ]
 },
