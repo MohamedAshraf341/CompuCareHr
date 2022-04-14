@@ -71,6 +71,7 @@ export class ReportComponent implements OnInit {
       this.reporttimetables = res;
     });
   }
+  
   getLeaves() {
     this.reportService.getLeaves().subscribe((res: any) => {
       console.log(res)

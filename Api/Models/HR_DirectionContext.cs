@@ -14,9 +14,11 @@ namespace Site4Check.Models
             : base(options)
         {
         }
-
         public virtual DbSet<AccountStatement> AccountStatement { get; set; }
         public virtual DbSet<AggregatedCounter> AggregatedCounter { get; set; }
+
+        public virtual DbSet<Systempage> Systempage { get; set; }
+        public virtual DbSet<UserSystempage> UserSystempage { get; set; }
         public virtual DbSet<ApprovalEdafi> ApprovalEdafi { get; set; }
         public virtual DbSet<AttBranch> AttBranch { get; set; }
         public virtual DbSet<EmpWorkTime> EmpWorkTime { get; set; }

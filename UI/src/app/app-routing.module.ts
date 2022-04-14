@@ -10,6 +10,7 @@ import { AddOrEditbranchComponent } from './pages/Branch/add-or-editbranch/add-o
 import { ListbranchComponent } from './pages/Branch/listbranch/listbranch.component';
 import { AddOrEditbusComponent } from './pages/Bus/add-or-editbus/add-or-editbus.component';
 import { ListbusComponent } from './pages/Bus/listbus/listbus.component';
+import { PermissionsComponent } from './pages/permissions/permissions.component';
 
 import { ListworktimeComponent } from './pages/WorkTime/listworktime/listworktime.component';
 import { AddOrEditworktimeComponent } from './pages/WorkTime/add-or-editworktime/add-or-editworktime.component';
@@ -50,13 +51,17 @@ import { AddpermissionsComponent } from './pages/Transaction/permissions/addperm
 import { ListpermissionsComponent } from './pages/Transaction/permissions/listpermissions/listpermissions.component';
 import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
 import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
-
+import { AddPermissionComponent } from './add-permission/add-permission.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
 
   {path:'defaultPage',component:DefaultComponent,
   children:
   [
+    //permission
+    {path:'permission',component:PermissionsComponent},
+    {path:'addpermission',component:AddPermissionComponent},
+    //
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'dashboard', component: DashboardComponent },

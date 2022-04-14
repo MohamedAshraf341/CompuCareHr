@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,8 +31,8 @@ import { AddpermissionsComponent } from './pages/Transaction/permissions/addperm
 import { ListpermissionsComponent } from './pages/Transaction/permissions/listpermissions/listpermissions.component';
 import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
 import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
-
-
+import { PermissionsComponent } from './pages/permissions/permissions.component';
+import { AddPermissionComponent } from './add-permission/add-permission.component';
 
 @NgModule({
   declarations: [
@@ -47,12 +49,15 @@ import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adde
     ListpermissionsComponent,
     ListerrandsComponent,
     AdderrandsComponent,
+    PermissionsComponent,
+    AddPermissionComponent,
     
 
 
  
   ],
   imports: [
+    MatCheckboxModule,
     MatExpansionModule,
     HttpClientModule,
     MatDatepickerModule,

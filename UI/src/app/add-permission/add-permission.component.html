@@ -1,0 +1,48 @@
+<div class="example-form">
+    <form [formGroup]="permissionForm">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <span>Add Permission</span>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="flex">
+
+                    <mat-form-field>
+                        <mat-label>Employee</mat-label>
+                        <mat-select [(ngModel)]="this.permissionArr.userid" formControlName="userid">
+                            <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+                                {{employee.EmpName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>pge</mat-label>
+                        <mat-select [(ngModel)]="this.permissionArr.pageId" formControlName="pageId">
+                            <mat-option *ngFor="let page of pages" [value]="page.Id">
+                                {{page.Name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="this.permissionArr.New" formControlName="New">
+                            Add</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="this.permissionArr.edit"
+                            formControlName="edit">Edit</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" [(ngModel)]="this.permissionArr.delete"
+                            formControlName="delete">Delete</mat-checkbox>
+                    </section>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" [disabled]="!permissionForm.valid" (click)="createpermission()">save</button>
+                <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

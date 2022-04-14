@@ -1,0 +1,63 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">permission</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="example-form">
+      <form [formGroup]="permissionForm">
+        <mat-form-field style="width: auto;">
+          <mat-label>Employee</mat-label>
+          <mat-select [(ngModel)]="this.permissionArr.userid" formControlName="userid">
+            <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+              {{employee.EmpName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              select
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.Id}} <mat-checkbox ></mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="PaageName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              PaageName
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="New">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              New
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [(ngModel)]="permissionArr.New" formControlName="New"></mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              edit
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [(ngModel)]="this.permissionArr.edit" formControlName="edit"></mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              delete
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox [(ngModel)]="this.permissionArr.delete" formControlName="delete"></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colums"></tr>
+          <tr mat-row *matRowDef="let row; columns: colums;"></tr>
+        </table>
+        <button style="margin-top: 10px;margin-left: 10px;" mat-raised-button color="primary" [disabled]="!permissionForm.valid"
+          (click)="createpermission()">save</button>
+        <button style=" margin-top: 10px;margin-left: 10px;" mat-raised-button color="warn" (click)="clear()">Clear</button>
+      </form>
+    </div>
+  </div>
+</div>

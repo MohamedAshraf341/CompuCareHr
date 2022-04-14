@@ -5,8 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
+    // "strict": true,
+    // "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -19,7 +19,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "noImplicitReturns": false,
+    "strictPropertyInitialization": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "strictNullChecks":false,
+    "strict": false,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
