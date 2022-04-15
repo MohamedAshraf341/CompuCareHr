@@ -79,17 +79,17 @@ export class AddPermissionComponent implements OnInit {
         delete: false,
       });
     }
-    this.Permission.addpermission(this.permissionForm.value).subscribe((res: any) => {
-      if (res != null) {
-        this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-        this.router.navigate(['/defaultPage/permission'])
-      }
-      else {
-        this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+    // this.Permission.addpermission(this.permissionForm.value).subscribe((res: any) => {
+    //   if (res != null) {
+    //     this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+    //     this.router.navigate(['/defaultPage/permission'])
+    //   }
+    //   else {
+    //     this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
 
-      }
+    //   }
 
-    });
+    // });
     console.log(this.permissionForm.value);
 
   }

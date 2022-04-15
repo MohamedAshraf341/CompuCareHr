@@ -32,7 +32,9 @@ import { ListpermissionsComponent } from './pages/Transaction/permissions/listpe
 import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
 import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
 import { PermissionsComponent } from './pages/permissions/permissions.component';
-import { AddPermissionComponent } from './add-permission/add-permission.component';
+import { AddPermissionComponent } from './pages/add-permission/add-permission.component';
+import { AddOrEditbusComponent } from './pages/bus/add-or-editbus/add-or-editbus.component';
+import { ListbusComponent } from './pages/bus/listbus/listbus.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { AddPermissionComponent } from './add-permission/add-permission.componen
     AdderrandsComponent,
     PermissionsComponent,
     AddPermissionComponent,
+    AddOrEditbusComponent,
+    ListbusComponent,
     
 
 

@@ -8,8 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ListaccountComponent } from './pages/account/listaccount/listaccount.component';
 import { AddOrEditbranchComponent } from './pages/Branch/add-or-editbranch/add-or-editbranch.component';
 import { ListbranchComponent } from './pages/Branch/listbranch/listbranch.component';
-import { AddOrEditbusComponent } from './pages/Bus/add-or-editbus/add-or-editbus.component';
-import { ListbusComponent } from './pages/Bus/listbus/listbus.component';
+
 import { PermissionsComponent } from './pages/permissions/permissions.component';
 
 import { ListworktimeComponent } from './pages/WorkTime/listworktime/listworktime.component';
@@ -51,7 +50,9 @@ import { AddpermissionsComponent } from './pages/Transaction/permissions/addperm
 import { ListpermissionsComponent } from './pages/Transaction/permissions/listpermissions/listpermissions.component';
 import { AdderrandsComponent } from './pages/Transaction/errands/adderrands/adderrands.component';
 import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/listerrands.component';
-import { AddPermissionComponent } from './add-permission/add-permission.component';
+import { AddPermissionComponent } from './pages/add-permission/add-permission.component';
+import { ListbusComponent } from './pages/bus/listbus/listbus.component';
+import { AddOrEditbusComponent } from './pages/bus/add-or-editbus/add-or-editbus.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
 
