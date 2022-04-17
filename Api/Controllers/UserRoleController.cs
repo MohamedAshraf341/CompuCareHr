@@ -22,6 +22,11 @@ namespace Site4Check.Controllers
         {
             _context = context;
         }
+        [HttpGet("getusers")]
+        public async Task<ActionResult<IEnumerable<UserSystem>>> getusers()
+        {
+            return await _context.UserSystem.ToListAsync();
+        }
         [HttpGet("getpages")]
         public IActionResult getpages()
         {
@@ -46,29 +51,25 @@ namespace Site4Check.Controllers
             {
                 return BadRequest(ModelState);
             }
-            //var result = from person in _context.Systempage
-            //             join detail in _dbContext.PersonDetails on person.Id equals detail.PersonId into Details
-            //             from m in Details.DefaultIfEmpty()
-            //             select new
-            //             {
-            //                 id = person.Id,
-            //                 firstname = person.Firstname,
-            //                 lastname = person.Lastname,
-            //                 detailText = m.DetailText
-            //             };
+          
             var entryPoint = (from SP in _context.Systempage
                               join us in _context.UserSystempage on SP.Id equals us.pageId
-                             into us1
-                              from defaultVal in us1.DefaultIfEmpty()
-                              where defaultVal.Userid == UserId
+                              join u in _context.UserSystem on us.Userid equals u.id
+                             
+                              where us.Userid == UserId
                               select new
                               {
                                   UserId = UserId,
                                   pageId = SP.Id,
                                   PaageName = SP.Name,
-                                  New = defaultVal.New,
-                                  edit = defaultVal.edit,
-                                  delete = defaultVal.delete,
+                                  New = us.New,
+                                  edit = us.edit,
+                                  delete = us.delete,
+                                  login = us.login,
+                                  username=u.UserName,
+                                  password=u.Password,  
+                                
+
                               }).ToList();
 
             if (entryPoint == null)
@@ -79,13 +80,68 @@ namespace Site4Check.Controllers
             return Ok(entryPoint);
         }
 
-        [HttpPost("NewUserRole")]
-        public async Task<ActionResult<Attcomp>> NewUserRole(UserSystempage company)
+        [HttpGet("SystemPage")]
+        public IActionResult SystemPage()
         {
-            _context.UserSystempage.Add(company);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var entryPoint = (from SP in _context.Systempage
+                               
+                              select new
+                              {
+                                  UserId = 0,
+                                  pageId = SP.Id,
+                                  PaageName = SP.Name,
+                                  New = false,
+                                  edit = false,
+                                  delete = false,
+                                  login = false,
+                              }).ToList();
+
+            if (entryPoint == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(entryPoint);
+        }
+
+        [HttpPost("NewUserRole/{Row}")]
+        public async Task<ActionResult<UserSystem>> NewUserRole(UserSystempageVm userpermission,int Row)
+        {
+            var UserSystempage1 = new UserSystempage();
+
+            var UserSystem1 = new UserSystem();
+
+            //UserSystempage1.Id = 0;
+            
+            UserSystempage1.pageId = userpermission.pageId;
+            UserSystempage1.New = userpermission.New;
+            UserSystempage1.edit = userpermission.edit;
+            UserSystempage1.delete = userpermission.delete;
+            UserSystempage1.login = userpermission.login;
+
+            UserSystem1.UserName = userpermission.UserName;
+            UserSystem1.Password = userpermission.Password;
+
+            if (Row == 1)
+            {
+                _context.UserSystem.Add(UserSystem1);
+                await _context.SaveChangesAsync();
+               
+
+            }
+            var UserData = _context.UserSystem.Where(u => u.UserName == userpermission.UserName && u.Password == userpermission.Password).FirstOrDefault();
+
+            UserSystempage1.Userid = UserData.id;
+
+            _context.UserSystempage.Add(UserSystempage1);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCompanies", new { id = company.Id }, company);
+            return CreatedAtAction("adduserpermission", new { id = UserSystempage1.Id }, userpermission);
         }
     }
 }

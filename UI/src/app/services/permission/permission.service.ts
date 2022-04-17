@@ -11,15 +11,23 @@ export class PermissionService {
   constructor(private http: HttpClient) { }
   getpermission()
   {
-    return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPage/40`);
+    return this.http.get(`${environment.apiUrl}userrole/SystemPage`);
   }
   getpages()
   {
     return this.http.get(`${environment.apiUrl}UserRole/getpages`);
   }
+  getusers()
+  {
+    return this.http.get(`${environment.apiUrl}userrole/getusers`);
+  }
   addpermission(data:any)
   {
-    return this.http.post(`${environment.apiUrl}userrole/NewUserRole`,data);
+    return this.http.post(`${environment.apiUrl}userrole/NewUserRole`,data );
+  }
+  addpermission1(data:any,row:number)
+  {
+    return this.http.post(`${environment.apiUrl}userrole/NewUserRole/${row}`,data );
   }
   addListpermission(data: usersystempage[]): Observable<usersystempage[]> {
     return forkJoin(

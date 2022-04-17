@@ -8,12 +8,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ListaccountComponent } from './pages/account/listaccount/listaccount.component';
 import { AddOrEditbranchComponent } from './pages/Branch/add-or-editbranch/add-or-editbranch.component';
 import { ListbranchComponent } from './pages/Branch/listbranch/listbranch.component';
-
 import { PermissionsComponent } from './pages/permissions/permissions.component';
-
 import { ListworktimeComponent } from './pages/WorkTime/listworktime/listworktime.component';
 import { AddOrEditworktimeComponent } from './pages/WorkTime/add-or-editworktime/add-or-editworktime.component';
-
 import { AddOrEditClientComponent } from './pages/client/add-or-edit-client/add-or-edit-client.component';
 import { ListClientComponent } from './pages/client/list-client/list-client.component';
 import { AddEditCompanyComponent } from './pages/company/add-edit-company/add-edit-company.component';
@@ -52,6 +49,9 @@ import { ListerrandsComponent } from './pages/Transaction/errands/listerrands/li
 import { AddPermissionComponent } from './pages/add-permission/add-permission.component';
 import { ListbusComponent } from './pages/bus/listbus/listbus.component';
 import { AddOrEditbusComponent } from './pages/bus/add-or-editbus/add-or-editbus.component';
+import { ListUserPermissionComponent } from './pages/UserPermission/list-user-permission/list-user-permission.component';
+import { AddUserPermissionComponent } from './pages/UserPermission/add-user-permission/add-user-permission.component';
+import { EditUserPermissionComponent } from './pages/UserPermission/edit-user-permission/edit-user-permission.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
 
@@ -61,6 +61,9 @@ const routes: Routes = [
     //permission
     {path:'permission',component:PermissionsComponent},
     {path:'addpermission',component:AddPermissionComponent},
+    {path:'listuserpermission',component:ListUserPermissionComponent},
+    {path: 'adduserpermission',component:AddUserPermissionComponent},
+    {path: 'edituserpermission',component:EditUserPermissionComponent},
     //
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },

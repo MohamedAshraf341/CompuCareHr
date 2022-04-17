@@ -16,14 +16,14 @@ namespace Site4Check.Models
         }
         public virtual DbSet<AccountStatement> AccountStatement { get; set; }
         public virtual DbSet<AggregatedCounter> AggregatedCounter { get; set; }
-
         public virtual DbSet<Systempage> Systempage { get; set; }
+        public virtual DbSet<UserSystem> UserSystem { get; set; }
         public virtual DbSet<UserSystempage> UserSystempage { get; set; }
         public virtual DbSet<ApprovalEdafi> ApprovalEdafi { get; set; }
         public virtual DbSet<AttBranch> AttBranch { get; set; }
         public virtual DbSet<EmpWorkTime> EmpWorkTime { get; set; }
         public virtual DbSet<Attbus> Attbus { get; set; }
-        public virtual DbSet<Attcomp> Attcomp { get; set; }
+        public virtual DbSet<attcomp> Attcomp { get; set; }
         public virtual DbSet<Attcost> Attcost { get; set; }
         public virtual DbSet<AttDepartment> AttDepartment { get; set; }
         public virtual DbSet<Attjob> Attjob { get; set; }
@@ -207,7 +207,7 @@ namespace Site4Check.Models
                     .HasMaxLength(100);
             });
 
-            modelBuilder.Entity<Attcomp>(entity =>
+            modelBuilder.Entity<attcomp>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 

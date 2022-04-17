@@ -36,6 +36,9 @@ import { PermissionsComponent } from './pages/permissions/permissions.component'
 import { AddPermissionComponent } from './pages/add-permission/add-permission.component';
 import { AddOrEditbusComponent } from './pages/bus/add-or-editbus/add-or-editbus.component';
 import { ListbusComponent } from './pages/bus/listbus/listbus.component';
+import { ListUserPermissionComponent } from './pages/UserPermission/list-user-permission/list-user-permission.component';
+import { AddUserPermissionComponent } from './pages/UserPermission/add-user-permission/add-user-permission.component';
+import { EditUserPermissionComponent } from './pages/UserPermission/edit-user-permission/edit-user-permission.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { ListbusComponent } from './pages/bus/listbus/listbus.component';
     AddPermissionComponent,
     AddOrEditbusComponent,
     ListbusComponent,
+    ListUserPermissionComponent,
+    AddUserPermissionComponent,
+    EditUserPermissionComponent,
     
 
 

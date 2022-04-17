@@ -5,4 +5,7 @@ export interface usersystempage{
     New:boolean;
     edit:boolean;
     delete:boolean;
+    login:boolean
+    UserName:string;
+    Password:string;
 }

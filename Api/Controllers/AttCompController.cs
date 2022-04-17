@@ -21,12 +21,12 @@ namespace Site4Check.Controllers
         }
         //GET: api/AttComp/GetCompanies
        [HttpGet("GetCompanies")]
-        public async Task<ActionResult<IEnumerable<Attcomp>>> GetCompanies()
+        public async Task<ActionResult<IEnumerable<attcomp>>> GetCompanies()
         {
             return await _context.Attcomp.ToListAsync();
         }
         [HttpGet("GetCompany/{id}")]
-        public async Task<ActionResult<Attcomp>> GetCompany(int id)
+        public async Task<ActionResult<attcomp>> GetCompany(int id)
         {
             var company = await _context.Attcomp.FindAsync(id);
 
@@ -86,7 +86,7 @@ namespace Site4Check.Controllers
         // POST: api/Attcomp/AddComany
 
         [HttpPost("AddComany")]
-        public async Task<ActionResult<Attcomp>> AddComany(Attcomp company)
+        public async Task<ActionResult<attcomp>> AddComany(attcomp company)
         {
             _context.Attcomp.Add(company);
             await _context.SaveChangesAsync();
@@ -96,7 +96,7 @@ namespace Site4Check.Controllers
 
         // DELETE: api/Attcomp/DeleteCpmpany/5
         [HttpDelete("DeleteCpmpany/{id}")]
-        public async Task<ActionResult<Attcomp>> DeleteCpmpany(int id)
+        public async Task<ActionResult<attcomp>> DeleteCpmpany(int id)
         {
             var Company = await _context.Attcomp.FindAsync(id);
             if (Company == null)
