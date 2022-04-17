@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { PermissionService } from 'src/app/services/permission/permission.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +18,7 @@ import { ItemStatus } from 'src/app/models/ItemStatus';
   styleUrls: ['./add-user-permission.component.css']
 })
 export class AddUserPermissionComponent implements OnInit {
+  userpermissionId: any;
   permissionForm!: FormGroup;
   permissionArr: any = [];
   employees: employee[] = [];
@@ -35,10 +36,10 @@ export class AddUserPermissionComponent implements OnInit {
   constructor(private employeeService: EmployeeService,
     private Permission: PermissionService,
     private router: Router,
-    private snackBar: MatSnackBarComponent, private dialog: MatDialog, private _formBuilder: FormBuilder) {
+    private snackBar: MatSnackBarComponent, private dialog: MatDialog, private _formBuilder: FormBuilder,private activateRout: ActivatedRoute,) {
     this.permissionForm = this._formBuilder.group({
-      UserName: [this.permissionArr.UserName, [Validators.required]],
-      Password: [this.permissionArr.Password, [Validators.required]],
+      username: [this.permissionArr.username, [Validators.required]],
+      password: [this.permissionArr.password, [Validators.required]],
       password2: [this.permissionArr.password2, [Validators.required]],
       pageId: [this.permissionArr.pageId, []],
       New: [this.permissionArr.New, []],
@@ -49,11 +50,11 @@ export class AddUserPermissionComponent implements OnInit {
     },);
 
   }
-  get UserName() {
-    return this.permissionForm.get('UserName');
+  get username() {
+    return this.permissionForm.get('username');
   }
-  get Password() {
-    return this.permissionForm.get('Password');
+  get password() {
+    return this.permissionForm.get('password');
   }
   get password2() {
     return this.permissionForm.get('password2');
@@ -75,8 +76,17 @@ export class AddUserPermissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getpages();
-    this.getListOfemployees();
+    this.userpermissionId = this.activateRout.snapshot.paramMap.get('id');
+    if(this.userpermissionId==0)
+    {
+      this.getpagesadd();
+    }
+    if (this.userpermissionId != 0) {
+      this.getpagesedit(this.userpermissionId);
+      
+    }
+    
+    // this.getListOfemployees();
 // console.log("faisal");
 // console.log(this.userpage);
 
@@ -97,7 +107,35 @@ export class AddUserPermissionComponent implements OnInit {
   }
 
 
-  getpages() {
+  
+  getpagesedit(id:number) {
+
+
+    this.Permission.getuserpermissionbyid(id).subscribe((res: any) => {
+      this.userpage = res;
+      console.log(res);
+      this.permissionArr.username=res[0].username;
+        this.permissionArr.password=res[0].password;
+        this.permissionArr.Password2=res[0].password;
+      //   res.forEach(chk =>{
+      //   this.permissionArr.username=res[0].username;
+      //   this.permissionArr.password=res[0].password;
+      //   this.permissionArr.Password2=res[0].password;
+      //   this.permissionArr.New=chk.New;
+      //   this.permissionArr.edit=chk.edit;
+      //   this.permissionArr.delete=chk.delete;
+
+        
+      // })
+
+       console.log(this.permissionArr.username);
+      this.dataSource = new MatTableDataSource(this.userpage);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+       
+    });
+  }
+  getpagesadd() {
 
 
     this.Permission.getpermission().subscribe((res: any) => {
@@ -106,12 +144,11 @@ export class AddUserPermissionComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
        
-
-
-     // console.log(this.pages);
     });
+  }
 
-
+   SetChkState(Val:boolean):boolean { 
+    return Val;
   }
   changeChkState(elment:number,id:number) {
     this.userpage.forEach(chk => {
@@ -132,25 +169,32 @@ export class AddUserPermissionComponent implements OnInit {
     console.log("faisal");
     console.log(this.userpage);
     this.row1=0;
-
-    this.userpage.forEach(chk => {
-      chk.UserId = 0;
-      chk.UserName=this.UserName.value;
-      chk.Password=this.Password.value;
+    this.userpage[0].username=this.permissionArr.username
+    this.userpage[0].password=this.permissionArr.password
+    this.Permission.addpermission1(this.userpage ).subscribe((res: any) => {
+      if (res != null && this.row1==this.userpage.length) {
+        this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+      } 
+  })
     
-    this.row1=this.row1+1;
-      this.Permission.addpermission1(chk , this.row1).subscribe((res: any) => {
-          if (res != null) {
-            this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-            this.router.navigate(['/defaultPage/permission'])
-          }
-          else {
-            this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+    // this.userpage.forEach(chk => {
+    //   chk.UserId = 0;
+    //   chk.username=this.username.value;
+    //   chk.password=this.password.value;
     
-          }
+    // this.row1=this.row1+1;
+    //   this.Permission.addpermission1(chk ).subscribe((res: any) => {
+    //     if (res != null && this.row1==this.userpage.length) {
+    //       this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+    //      //this.router.navigate(['/defaultPage/permission'])
+    //     }
+    //     //  else {
+    //     //    this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+    
+    //     //  }
     
     
-    })})
+    // })})
   
 
   }

@@ -3,31 +3,29 @@
     <div class="page__content shadow p-3 position-relative">
       <div class="example-form">
         <form [formGroup]="permissionForm">
+          
           <div style="width: 300px;">
             <mat-form-field>
               <mat-label>UserName</mat-label>
-              <input matInput type="text" placeholder="UserName" [(ngModel)]="this.permissionArr.UserName" formControlName="UserName" required>
+              <input matInput type="text" placeholder="username" [(ngModel)]="this.permissionArr.username" formControlName="username" required  >
             </mat-form-field>
           </div>
           <div style="width: 300px;">
             <mat-form-field>
               <mat-label>Password</mat-label>
-              <input matInput type="password" [(ngModel)]="this.permissionArr.Password" placeholder="Password" formControlName="Password" (input)="onPasswordInput()">
+              <input matInput type="password" [(ngModel)]="this.permissionArr.Password" placeholder="Password" formControlName="password" (input)="onPasswordInput()">
             </mat-form-field>
           </div>
           <div style="width: 300px;">
             <mat-form-field>
               <mat-label>confirm Password</mat-label>
-              <input matInput type="password" [(ngModel)]="this.permissionArr.password2"  placeholder="Confirm password" formControlName="password2" (input)="onPasswordInput()">
+              <input matInput type="password" [(ngModel)]="this.permissionArr.password"  placeholder="Confirm password" formControlName="password" (input)="onPasswordInput()">
               <mat-error *ngIf="password2.hasError('required')">Please confirm your password</mat-error>
               <mat-error *ngIf="password2.invalid && !password2.hasError('required')">Passwords don't match</mat-error>
             </mat-form-field>
           </div>
-            
-            
-            
-              
           <table mat-table [dataSource]="dataSource" matSort>
+           
             <ng-container matColumnDef="select">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 select
@@ -48,7 +46,7 @@
                 New
               </th>
               <td mat-cell *matCellDef="let element">
-                <mat-checkbox  (click)="changeChkState(element.pageId,1)"></mat-checkbox>
+                <mat-checkbox  [checked]="SetChkState(element.New)" (click)="changeChkState(element.pageId,1)" ></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="edit">
@@ -56,7 +54,7 @@
                 edit
               </th>
               <td mat-cell *matCellDef="let element">
-                <mat-checkbox  (click)="changeChkState(element.pageId,2)"></mat-checkbox>
+                <mat-checkbox [checked]="SetChkState(element.edit)" (click)="changeChkState(element.pageId,2)"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="delete">
@@ -64,7 +62,7 @@
                 delete
               </th>
               <td mat-cell *matCellDef="let element">
-                <mat-checkbox   (click)="changeChkState(element.pageId,3)"></mat-checkbox>
+                <mat-checkbox  [checked]="SetChkState(element.delete)" (click)="changeChkState(element.pageId,3)"></mat-checkbox>
               </td>
             </ng-container>
             <ng-container matColumnDef="login">

@@ -1,1 +1,82 @@
-<p>edit-user-permission works!</p>
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">permission</div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="example-form">
+        <form [formGroup]="permissionForm">
+          <div style="width: 300px;">
+            <mat-form-field>
+              <mat-label>username</mat-label>
+              <input matInput type="text" placeholder="username" [(ngModel)]="this.permissionArr.username" formControlName="username" required>
+            </mat-form-field>
+          </div>
+          <div style="width: 300px;">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput type="password" [(ngModel)]="this.permissionArr.password" placeholder="password" formControlName="password" (input)="onPasswordInput()">
+            </mat-form-field>
+          </div>
+          <div style="width: 300px;">
+            <mat-form-field>
+              <mat-label>confirm Password</mat-label>
+              <input matInput type="password" [(ngModel)]="this.permissionArr.password2"  placeholder="Confirm password" formControlName="password2" (input)="onPasswordInput()">
+              <mat-error *ngIf="password2.invalid && !password2.hasError('required')">Passwords don't match</mat-error>
+            </mat-form-field>
+          </div>
+                  
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                select
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{element.pageId}} 
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="PaageName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                PaageName
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.PaageName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="New">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                New
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox  (click)="changeChkState(element.pageId,1)"></mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                edit
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox  (click)="changeChkState(element.pageId,2)"></mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                delete
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-checkbox   (click)="changeChkState(element.pageId,3)"></mat-checkbox>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="login">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    login
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-checkbox   (click)="changeChkState(element.pageId,4)"></mat-checkbox>
+                </td>
+              </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="colums"></tr>
+            <tr mat-row *matRowDef="let row; columns: colums;"></tr>
+          </table>
+          <button style="margin-top: 10px;margin-left: 10px;" mat-raised-button color="primary" [disabled]="!permissionForm.valid"
+            (click)="editpermission()">update</button>
+        </form>
+      </div>
+    </div>
+  </div>

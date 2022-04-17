@@ -15,7 +15,8 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class ListUserPermissionComponent implements OnInit {
 
- 
+  userpermissionId: any;
+
   dataSource!: MatTableDataSource<UserSystem>;
   usersystem: UserSystem[]=[];
   colums: string[] = ["id","name","actions"];
@@ -29,6 +30,7 @@ export class ListUserPermissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getListOfuserpermission();
      
    
@@ -42,8 +44,6 @@ export class ListUserPermissionComponent implements OnInit {
   getListOfuserpermission() {
     this.peerService.getusers().subscribe((res: any) => {
       this.usersystem = res;
-      console.log("res");
-      console.log(res);
     this.dataSource = new MatTableDataSource(this.usersystem);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -51,7 +51,7 @@ export class ListUserPermissionComponent implements OnInit {
   }
   Edituserpermission(id:number)
   {
-    this.router.navigate(['/defaultPage/edituserpermission',id])
+    this.router.navigate(['/defaultPage/adduserpermission',id])
   }
 
   // delete(element:any)

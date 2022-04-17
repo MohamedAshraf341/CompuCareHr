@@ -13,6 +13,14 @@ export class PermissionService {
   {
     return this.http.get(`${environment.apiUrl}userrole/SystemPage`);
   }
+  getuserpermissionbyid(id:number)
+  {
+    return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPage/${id}`);
+  }
+  edituserpermission(Id:number,data:any)
+  {
+    return this.http.put(`${environment.apiUrl}userrole/UpdateUserPermission/${Id}`,data);
+  }
   getpages()
   {
     return this.http.get(`${environment.apiUrl}UserRole/getpages`);
@@ -25,9 +33,9 @@ export class PermissionService {
   {
     return this.http.post(`${environment.apiUrl}userrole/NewUserRole`,data );
   }
-  addpermission1(data:any,row:number)
+  addpermission1(data:any)
   {
-    return this.http.post(`${environment.apiUrl}userrole/NewUserRole/${row}`,data );
+    return this.http.post(`${environment.apiUrl}userrole/NewUserRolearr`,data );
   }
   addListpermission(data: usersystempage[]): Observable<usersystempage[]> {
     return forkJoin(

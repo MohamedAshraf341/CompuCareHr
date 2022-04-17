@@ -64,6 +64,9 @@ const routes: Routes = [
     {path:'listuserpermission',component:ListUserPermissionComponent},
     {path: 'adduserpermission',component:AddUserPermissionComponent},
     {path: 'edituserpermission',component:EditUserPermissionComponent},
+    {path: 'edituserpermission/:id',component:EditUserPermissionComponent},
+    {path: 'adduserpermission/:id',component:AddUserPermissionComponent},
+
     //
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },

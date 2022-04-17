@@ -6,6 +6,6 @@ export interface usersystempage{
     edit:boolean;
     delete:boolean;
     login:boolean
-    UserName:string;
-    Password:string;
+    username:string;
+    password:string;
 }

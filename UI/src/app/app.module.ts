@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCheckboxModule, _MatCheckboxRequiredValidatorModule} from '@angular/material/checkbox';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -68,6 +68,7 @@ import { EditUserPermissionComponent } from './pages/UserPermission/edit-user-pe
  
   ],
   imports: [
+    _MatCheckboxRequiredValidatorModule,
     MatCheckboxModule,
     MatExpansionModule,
     HttpClientModule,
