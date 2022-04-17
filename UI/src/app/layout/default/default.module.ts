@@ -72,8 +72,8 @@ import { LeavesTypesListComponent } from 'src/app/pages/leavesTypes/leaves-types
 import { LeavesListComponent } from 'src/app/pages/leaves/leaves-list/leaves-list.component';
 import { AddOrEditleavesComponent } from 'src/app/pages/leaves/add-or-editleaves/add-or-editleaves.component';
 import { AddOrEditbranchComponent } from 'src/app/pages/Branch/add-or-editbranch/add-or-editbranch.component';
-import { ListbusComponent } from 'src/app/pages/Bus/listbus/listbus.component';
-import { AddOrEditbusComponent } from 'src/app/pages/Bus/add-or-editbus/add-or-editbus.component';
+import { ListbusComponent } from 'src/app/pages/bus/listbus/listbus.component'; 
+import { AddOrEditbusComponent } from 'src/app/pages/bus/add-or-editbus/add-or-editbus.component'; 
 import { LeavesRulesListComponent } from 'src/app/pages/LeavesRule/leaves-rules-list/leaves-rules-list.component';
 import { LeavesVacsListComponent } from 'src/app/pages/LeavesVacs/leaves-vacs-list/leaves-vacs-list.component';
 import { AddTransactionComponent } from 'src/app/pages/Transaction/add-transaction/add-transaction.component';
@@ -94,8 +94,6 @@ import { AddTransactionComponent } from 'src/app/pages/Transaction/add-transacti
     ListlocationComponent,
 
     
-    ListbusComponent,
-    AddOrEditbusComponent,
     AddOrEditcostComponent,
     ListcostComponent,
     ListDepartmentComponent,
@@ -116,8 +114,6 @@ import { AddTransactionComponent } from 'src/app/pages/Transaction/add-transacti
     AddOrEditleavesComponent,
     ListbranchComponent,
     AddOrEditbranchComponent,
-    AddOrEditbusComponent,
-    ListbusComponent,
     LeavesRulesListComponent,
     LeavesVacsListComponent,
     AddTransactionComponent,

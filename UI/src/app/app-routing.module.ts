@@ -14,7 +14,6 @@ import { PermissionsComponent } from './pages/permissions/permissions.component'
 import { ListworktimeComponent } from './pages/WorkTime/listworktime/listworktime.component';
 import { AddOrEditworktimeComponent } from './pages/WorkTime/add-or-editworktime/add-or-editworktime.component';
 
-
 import { AddOrEditClientComponent } from './pages/client/add-or-edit-client/add-or-edit-client.component';
 import { ListClientComponent } from './pages/client/list-client/list-client.component';
 import { AddEditCompanyComponent } from './pages/company/add-edit-company/add-edit-company.component';

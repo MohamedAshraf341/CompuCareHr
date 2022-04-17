@@ -5,12 +5,13 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { PermissionService } from 'src/app/services/permission/permission.service';
-import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { employee } from 'src/app/models/employee.model';
 import { pages } from 'src/app/models/pages';
+import { usersystempage } from 'src/app/models/usersystempage';
+import { ItemStatus } from 'src/app/models/ItemStatus';
 
 @Component({
   selector: 'app-permissions',
@@ -23,8 +24,10 @@ export class PermissionsComponent implements OnInit {
   permissionArr: any = [];
   employees: employee[] = [];
   pages: pages[] = [];
+  items: ItemStatus[] = [];
+  userpage :usersystempage[]=[];
 
-  dataSource!: MatTableDataSource<pages>;
+  dataSource!: MatTableDataSource<usersystempage>;
   colums: string[] = [ "select","PaageName", "New", "edit", "delete"];
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
@@ -36,7 +39,7 @@ export class PermissionsComponent implements OnInit {
     private snackBar: MatSnackBarComponent, private dialog: MatDialog, private _formBuilder: FormBuilder) {
     this.permissionForm = this._formBuilder.group({
       userid: [this.permissionArr.userid, [Validators.required]],
-      pageId: [this.permissionArr.pageId, ],
+      pageId: [this.permissionArr.pageId, []],
       New: [this.permissionArr.New, []],
       edit: [this.permissionArr.edit, []],
       delete: [this.permissionArr.delete, []],
@@ -63,61 +66,69 @@ export class PermissionsComponent implements OnInit {
   ngOnInit(): void {
     this.getpages();
     this.getListOfemployees();
+// console.log("faisal");
+// console.log(this.userpage);
+
 
   }
   getListOfemployees() {
     this.employeeService.getEmployeeUrl().subscribe((res: any) => {
       this.employees = res;
     });
+
+  
   }
 
 
   getpages() {
 
 
-    this.Permission.getpages().subscribe((res: any) => {
-      this.pages = res;
-      this.dataSource = new MatTableDataSource(this.pages);
+    this.Permission.getpermission().subscribe((res: any) => {
+      this.userpage = res;
+      this.dataSource = new MatTableDataSource(this.userpage);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+       
 
+
+     // console.log(this.pages);
+    });
+
+
+  }
+  changeChkState(elment:number,id:number) {
+    this.userpage.forEach(chk => {
+      if (elment === chk.pageId && id === 1 ) 
+        chk.New =!chk.New;
+        if (elment === chk.pageId && id === 2 ) 
+        chk.edit =!chk.edit;
+        if (elment === chk.pageId && id === 3 ) 
+        chk.delete =!chk.delete;
+        // if (elment === chk.pageId && id === 4 ) 
+        // chk.Login =!chk.Login;
+
+      
     });
   }
 
   createpermission() {
-    if (this.permissionForm.get('New')?.value == undefined) {
-      this.permissionForm.patchValue({
-        New: false,
-      });
-    }
-    if (this.permissionForm.get('edit')?.value == undefined) {
-      this.permissionForm.patchValue({
-        edit: false,
-      });
-    }
-    if (this.permissionForm.get('delete')?.value == undefined) {
-      this.permissionForm.patchValue({
-        delete: false,
-      });
-    }
-    if (this.permissionForm.get('pageId')?.value == undefined) {
-      this.permissionForm.patchValue({
-        pageId: null,
-      });
-    }
-
-    // this.Permission.addpermission(this.permissionForm.value).subscribe((res: any) => {
-    //   if (res != null) {
-    //     this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-    //     this.router.navigate(['/defaultPage/permission'])
-    //   }
-    //   else {
-    //     this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
-
-    //   }
-
-    // });
-    console.log(this.permissionForm.value);
+    console.log("faisal");
+    console.log(this.userpage);
+    this.userpage.forEach(chk => {
+      chk.UserId =this.userid.value;
+      this.Permission.addpermission(chk).subscribe((res: any) => {
+          if (res != null) {
+            this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+            this.router.navigate(['/defaultPage/permission'])
+          }
+          else {
+            this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+    
+          }
+    
+    
+    })})
+  
 
   }
   clear() {

@@ -57,12 +57,13 @@ namespace Site4Check.Controllers
             //                 detailText = m.DetailText
             //             };
             var entryPoint = (from SP in _context.Systempage
-                               join us in _context.UserSystempage on SP.Id equals us.Pagid
-                              into us1
+                              join us in _context.UserSystempage on SP.Id equals us.pageId
+                             into us1
                               from defaultVal in us1.DefaultIfEmpty()
                               where defaultVal.Userid == UserId
                               select new
                               {
+                                  UserId = UserId,
                                   pageId = SP.Id,
                                   PaageName = SP.Name,
                                   New = defaultVal.New,

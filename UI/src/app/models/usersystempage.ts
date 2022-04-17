@@ -1,5 +1,5 @@
 export interface usersystempage{
-    Id:number;
+    UserId:number;
     pageId:number;
     PaageName:string;
     New:boolean;
