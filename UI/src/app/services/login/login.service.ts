@@ -11,7 +11,7 @@ export class LoginService {
   getLoginUrl(Username:any,password:any)
   {
     return this.http.get(
-      `${environment.apiUrl}ar/login/${Username}/${password}`
+      `${environment.apiUrl}ar/login/login/${Username}/${password}`
     );
   }
 }

@@ -57,9 +57,13 @@
   <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['listtransactionpermission']">
     <mat-icon> location_on</mat-icon>
 أذونات  </a>
-<a mat-list-item routerLinkActive="list-item-active" [routerLink]="['leaves']">
+<a mat-list-item routerLinkActive="list-item-active" [routerLink]="['leaves']"  *ngIf="isActive" >
   <mat-icon>note</mat-icon>
-  Leaves
+  المؤثرات
+</a>
+<a mat-list-item routerLinkActive="list-item-active" [routerLink]="['listuserpermission']">
+  <mat-icon>note</mat-icon>
+  المستخدمين
 </a>
 <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['Listtransaction']">
   <mat-icon>note</mat-icon>

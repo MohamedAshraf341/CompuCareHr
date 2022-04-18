@@ -109,49 +109,8 @@ namespace Site4Check.Controllers
             return Ok(entryPoint);
         }
 
-        [HttpPost("NewUserRole/{Row}")]
-        public async Task<ActionResult<UserSystem>> NewUserRole(UserSystempageVm userpermission,int Row)
-        {
-            var UserSystempage1 = new UserSystempage();
 
-            var UserSystem1 = new UserSystem();
 
-            //UserSystempage1.Id = 0;
-            
-            UserSystempage1.pageId = userpermission.pageId;
-            UserSystempage1.New = userpermission.New;
-            UserSystempage1.edit = userpermission.edit;
-            UserSystempage1.delete = userpermission.delete;
-            UserSystempage1.login = userpermission.login;
-
-            UserSystem1.UserName = userpermission.UserName;
-            UserSystem1.Password = userpermission.Password;
-
-            //if (Row == 1)
-            //{
-            //    _context.UserSystem.Add(UserSystem1);
-            //    await _context.SaveChangesAsync();
-               
-
-            //}
-            var UserData = _context.UserSystem.Where(u => u.UserName == userpermission.UserName && u.Password == userpermission.Password).FirstOrDefault();
-
-            if (UserData is null)
-            {
-                _context.UserSystem.Add(UserSystem1);
-                await _context.SaveChangesAsync();
-                UserSystempage1.Userid = UserSystem1.id;
-            }
-            else
-                UserSystempage1.Userid = UserData.id;
-
-        
-
-            _context.UserSystempage.Add(UserSystempage1);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("adduserpermission", new { id = UserSystempage1.Id }, userpermission);
-        }
         [HttpPost("NewUserRolearr")]
         public async Task<ActionResult<UserSystem>> NewUserRolearr(UserSystempageVm[] userpermission)
         {
@@ -162,9 +121,10 @@ namespace Site4Check.Controllers
                 var UserSystem1 = new UserSystem();
                 for (int Row = 0; Row < userpermission.Length; Row++)
                 {
-
-
+                    UserSystempage1 = new UserSystempage();
+                     
                     //UserSystempage1.Id = 0;
+
 
                     UserSystempage1.pageId = userpermission[Row].pageId;
                     UserSystempage1.New = userpermission[Row].New;
@@ -178,23 +138,75 @@ namespace Site4Check.Controllers
 
                     //  var UserData = _context.UserSystem.Where(u => u.UserName == userpermission[0].UserName && u.Password == userpermission[0].Password).FirstOrDefault();
 
-                    if (Row == 0)
+                    if (userpermission[0].Userid == 0)  // add new user
                     {
-                        _context.UserSystem.Add(UserSystem1);
-                        await _context.SaveChangesAsync();
-                        ID = UserSystem1.id;
-                        UserSystempage1.Userid = UserSystem1.id;
+                        if (Row == 0)
+                        {
+                            _context.UserSystem.Add(UserSystem1);
+                            await _context.SaveChangesAsync();
+                            ID = UserSystem1.id;
+                            UserSystempage1.Userid = UserSystem1.id;
+                        }
+                        else
+                        {
+                            UserSystempage1.Userid = ID;
+                        }
                     }
-                    else
+                    else   // edit current user
                     {
-                        UserSystempage1.Userid = ID;
+                        UserSystempage1.Userid = userpermission[0].Userid;
+                        if (Row == 0)
+                        {
+
+
+                            var UserSystempageBYUserid = _context.UserSystempage.Where(u => u.Userid == userpermission[0].Userid).ToList();
+
+                            
+
+                            var getId = _context.UserSystem.Find(userpermission[0].Userid);
+                            getId.UserName = userpermission[0].UserName;
+                            getId.Password = userpermission[0].Password;
+
+
+                            if (UserSystempageBYUserid == null)
+                            {
+                                return NotFound();
+                            }
+
+                            if (getId == null)
+                            {
+                                return NotFound();
+                            }
+
+                            _context.UserSystempage.RemoveRange(UserSystempageBYUserid);
+
+
+                            _context.Entry(getId).State = EntityState.Modified;
+                            //_context.UserSystem.Add(UserSystem1);
+
+                        }
                     }
 
 
                     _context.Entry(UserSystempage1).State = EntityState.Added;
                     _context.UserSystempage.Add(UserSystempage1);
-                    await _context.SaveChangesAsync();
+                    //   await _context.SaveChangesAsync();
 
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!CompanyExists(ID))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
 
                 }
                 return CreatedAtAction("adduserpermission", new { id = UserSystempage1.Id }, userpermission);
@@ -204,7 +216,7 @@ namespace Site4Check.Controllers
                 return NoContent();
             }
 
-                
+
         }
         [HttpPut("UpdateUserPermission/{id}")]
         public async Task<IActionResult> UpdateUserPermission([FromRoute] int id, [FromBody] UserSystempageVm userrole)
@@ -217,6 +229,7 @@ namespace Site4Check.Controllers
             }
             var getuserroleId = _context.UserSystempage.Find(id);
             var getuserid = _context.UserSystem.Find(getuserroleId.Userid);
+
             getuserid.UserName = userrole.UserName;
             getuserid.Password = userrole.Password;
             
@@ -245,6 +258,10 @@ namespace Site4Check.Controllers
                 throw;
             }
             return NoContent();
+        }
+        private bool CompanyExists(int id)
+        {
+            return _context.UserSystempage.Any(e => e.Id == id);
         }
     }
 }

@@ -6,15 +6,16 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  name :string;
   user :any;
   Username: any;
   password :any;
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-
   constructor(
     private loginService:LoginService,
   ) { }
   ngOnInit(): void {
+    this.name= JSON.parse(localStorage.getItem('username') as any);
   }
   toggleSidebar() {
     this.toggleSidebarForMe.emit();

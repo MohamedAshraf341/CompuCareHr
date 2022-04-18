@@ -8,6 +8,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class NavbarComponent implements OnInit {
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
+  comp:any;
+  isActive=false;
 
 
   constructor() { 
@@ -20,6 +22,11 @@ export class NavbarComponent implements OnInit {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  
+
+  //if(this.user.categoryPg  == false){
+    // document.getElementById('leaves').style.display = 'none';
+  //}
 
   mouseenter() {
     if (!this.isExpanded) {

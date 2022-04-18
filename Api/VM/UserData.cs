@@ -20,4 +20,27 @@ namespace Site4Check.listVm
         public bool? ImageRequired { get; set; }
 
     }
+
+    public class UserPermision
+    {
+        public string status { set; get; }
+        public int? UsId { set; get; }
+        public string Name { set; get; }
+        public string Image { set; get; }
+        public string Job { set; get; }
+        public string Department { set; get; }
+        public int? Year { set; get; }
+        public bool? Active { get; set; }
+        public bool? Audit { get; set; }
+        public string Message { get; set; }
+        public bool? ImageRequired { get; set; }
+
+        public bool? CompLog { get; set; }
+        public bool? CompNew { get; set; }
+
+        public bool? CompEdit { get; set; }
+
+        public bool? CompDelete { get; set; }
+
+    }
 }

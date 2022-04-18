@@ -12,6 +12,7 @@ import { employee } from 'src/app/models/employee.model';
 import { pages } from 'src/app/models/pages';
 import { usersystempage } from 'src/app/models/usersystempage';
 import { ItemStatus } from 'src/app/models/ItemStatus';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 @Component({
   selector: 'app-add-user-permission',
   templateUrl: './add-user-permission.component.html',
@@ -85,7 +86,7 @@ export class AddUserPermissionComponent implements OnInit {
       this.getpagesedit(this.userpermissionId);
       
     }
-    
+   
     // this.getListOfemployees();
 // console.log("faisal");
 // console.log(this.userpage);
@@ -128,7 +129,7 @@ export class AddUserPermissionComponent implements OnInit {
         
       // })
 
-       console.log(this.permissionArr.username);
+     
       this.dataSource = new MatTableDataSource(this.userpage);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -147,30 +148,79 @@ export class AddUserPermissionComponent implements OnInit {
     });
   }
 
-   SetChkState(Val:boolean):boolean { 
+   SetChkState(elment:number,id:number,Val:boolean):boolean { 
+    
+    if ( id === 1 )     
+    {
+    this.userpage[elment-1].New =Val;  
     return Val;
+    }  
+     if ( id === 2 ) 
+     {
+      this.userpage[elment-1].edit =Val;  
+      return Val;
+     }
+      if (id === 3 ) 
+      {
+      this.userpage[elment-1].delete =Val;  
+      return Val;
+      }
+     if ( id === 4 ) 
+     {
+     this.userpage[elment-1].login =Val; 
+     return Val; 
+     }
+     else 
+    return false;
+  }
+  setallchk(id:number,ob: MatCheckboxChange)
+  {
+    this.userpage.forEach(chk => {
+      if ( id === 1 && ob.checked &&  !chk.New) 
+        chk.New=ob.checked;
+        if ( id === 1 && !ob.checked &&  chk.New) 
+        chk.New=ob.checked;
+
+        if ( id === 2 && ob.checked &&  !chk.edit) 
+        chk.edit=ob.checked;
+        if ( id === 2 && !ob.checked &&  chk.edit) 
+        chk.edit=ob.checked;
+
+        if ( id === 3 && ob.checked &&  !chk.delete) 
+        chk.delete=ob.checked;
+        if ( id === 3 && !ob.checked &&  chk.delete) 
+        chk.delete=ob.checked;
+
+        if ( id === 4 && ob.checked &&  !chk.login) 
+        chk.login=ob.checked;
+        if ( id === 4 && !ob.checked &&  chk.login) 
+        chk.login=ob.checked;
+    })
   }
   changeChkState(elment:number,id:number) {
-    this.userpage.forEach(chk => {
-      if (elment === chk.pageId && id === 1 ) 
-        chk.New =!chk.New;
-        if (elment === chk.pageId && id === 2 ) 
-        chk.edit =!chk.edit;
-        if (elment === chk.pageId && id === 3 ) 
-        chk.delete =!chk.delete;
-        if (elment === chk.pageId && id === 4 ) 
-        chk.login =!chk.login;
+     
+  //  this.userpage.forEach(chk => {
+      if ( id === 1 ) 
+      this.userpage[elment-1].New =!this.userpage[elment-1].New;
+       if ( id === 2 ) 
+        this.userpage[elment-1].edit =!this.userpage[elment-1].edit;
+        if (id === 3 ) 
+        this.userpage[elment-1].delete =!this.userpage[elment-1].delete;
+       if ( id === 4 ) 
+       this.userpage[elment-1].login =!this.userpage[elment-1].login;
 
-      
-    });
+       
+  //  });
   }
 
   createpermission() {
-    console.log("faisal");
+   
     console.log(this.userpage);
     this.row1=0;
+    this.userpage[0].UserId=this.userpermissionId;
     this.userpage[0].username=this.permissionArr.username
     this.userpage[0].password=this.permissionArr.password
+    console.log(this.userpage);
     this.Permission.addpermission1(this.userpage ).subscribe((res: any) => {
       if (res != null && this.row1==this.userpage.length) {
         this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');

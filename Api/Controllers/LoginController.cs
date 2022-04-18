@@ -61,6 +61,43 @@ namespace Site4Check.Controllers
 
         }
 
+        private bool userExists(int id)
+        {
+            return _context.UserSystem.Any(e => e.id == id);
+        }
+
+        [HttpGet("login/{username}/{password}")]
+        public UserPermision login(string username, string password, string lang)
+        {
+
+
+            var UserData = _context.UserSystem.Where(u => u.UserName == username).FirstOrDefault();
+
+            if (UserData == null)
+            {
+                return new UserPermision { status = "InvalidUser", UsId = null };
+            }
+
+
+            if (UserData.Password != password)
+                return new UserPermision { status = "InvalidPassword", UsId = null };
+            else
+            {
+                var emp = _context.UserSystem.Where(e => e.id == UserData.id).FirstOrDefault();
+
+            
+                return new UserPermision
+                {
+                    status = "Success",
+                    UsId = UserData.id,
+                    Name = emp.UserName,
+                  
+                };
+
+            }
+
+        }
+
 
         // POST api/<controller>
         public string Post([FromBody] Checkinout c)

@@ -4,7 +4,7 @@ namespace Site4Check.Models
 {
     public class UserSystempage
     {
-       // public int Id { get; set; }
+        public int Id { get; set; }
         public int Userid { get; set; }
         public int pageId { get; set; }
         public bool New { get; set; }
