@@ -8,4 +8,6 @@ export interface usersystempage{
     login:boolean
     username:string;
     password:string;
+    url:string;
+    icon:string;
 }

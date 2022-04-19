@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import { shift } from 'src/app/models/shift.model';
 import { ShiftService } from 'src/app/services/shift/shift.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -14,7 +14,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./shift-list.component.css']
 })
 export class ShiftListComponent implements OnInit {
-
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
   dataSource!: MatTableDataSource<shift>;
   shifts: shift[] = [];
   colums: string[] = ["Id", "Enname", "Arname", "actions"];
@@ -24,13 +26,16 @@ export class ShiftListComponent implements OnInit {
   paginator!: MatPaginator;
   constructor(private shiftService: ShiftService,
     private router: Router,
-    private snackBar: MatSnackBarComponent, private dialog: MatDialog) {
+    private snackBar: MatSnackBarComponent, private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.getListOfshift();
-
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
   }
 
   applyFilter(event: Event) {
@@ -50,7 +55,7 @@ export class ShiftListComponent implements OnInit {
   addOrEditshift(id: number) {
     this.router.navigate(['/defaultPage/addOrEditshift', id])
   }
-  delete(element: any) {
+  Delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Confirm Remove Shift',

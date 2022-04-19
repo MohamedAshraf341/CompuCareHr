@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { branch } from 'src/app/models/branch.model';
 import { BranchService } from 'src/app/services/branch/branch.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -15,6 +15,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./listbranch.component.css']
 })
 export class ListbranchComponent implements OnInit {
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
 
  
   dataSource!: MatTableDataSource<branch>;
@@ -25,13 +28,17 @@ export class ListbranchComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   constructor(private branchService:BranchService,
-    private router:Router,   private snackBar: MatSnackBarComponent,private dialog: MatDialog) {
+    private router:Router,   private snackBar: MatSnackBarComponent,private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
  
 
   }
 
   ngOnInit(): void {
     this.getListOfBranches();
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
 
   }
 
@@ -54,7 +61,7 @@ export class ListbranchComponent implements OnInit {
     this.router.navigate(['/defaultPage/addOrEditbranch',id])
   }
 
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

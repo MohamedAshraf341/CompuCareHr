@@ -118,18 +118,6 @@ export class AddUserPermissionComponent implements OnInit {
       this.permissionArr.username=res[0].username;
         this.permissionArr.password=res[0].password;
         this.permissionArr.Password2=res[0].password;
-      //   res.forEach(chk =>{
-      //   this.permissionArr.username=res[0].username;
-      //   this.permissionArr.password=res[0].password;
-      //   this.permissionArr.Password2=res[0].password;
-      //   this.permissionArr.New=chk.New;
-      //   this.permissionArr.edit=chk.edit;
-      //   this.permissionArr.delete=chk.delete;
-
-        
-      // })
-
-     
       this.dataSource = new MatTableDataSource(this.userpage);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

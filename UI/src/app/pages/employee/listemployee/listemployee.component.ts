@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { bus } from 'src/app/models/bus.model';
 import { employee } from 'src/app/models/employee.model';
 import { BusService } from 'src/app/services/bus/bus.service';
@@ -18,6 +18,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./listemployee.component.css']
 })
 export class ListemployeeComponent implements OnInit {
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
 
   dataSource!: MatTableDataSource<employee>;
 
@@ -29,7 +32,8 @@ export class ListemployeeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   constructor(private employeeService:EmployeeService,
-     private snackBar:MatSnackBarComponent,private router:Router, private dialog: MatDialog) {
+     private snackBar:MatSnackBarComponent,private router:Router, private dialog: MatDialog,
+     private activateRout:ActivatedRoute) {
   
 
   }
@@ -37,7 +41,9 @@ export class ListemployeeComponent implements OnInit {
   ngOnInit(): void {
     this.getListOfemployees();
     
-
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
   }
 
   applyFilter(event: Event) {
@@ -55,7 +61,7 @@ export class ListemployeeComponent implements OnInit {
     });
   }
 
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

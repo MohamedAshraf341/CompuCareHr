@@ -2,12 +2,20 @@
   <div class="logo py-4">
     <img src="./assets/logo.svg" alt="Company Logo" />
   </div>
-  
   <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['home']" >
     <mat-icon>home</mat-icon>
     الصفحة الرئيسية
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['companylist']" >
+    <div *ngFor="let item of userpage">
+
+      <a mat-list-item *ngIf="item.login" routerLinkActive="list-item-active" [routerLink]="[item.url,item.New,item.edit,item.delete]" >
+        <mat-icon>{{item.icon}}</mat-icon>
+        {{ item.PaageName }}
+      </a>
+    </div>
+  
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['companylist']" >
     <mat-icon>payment</mat-icon>
     الشركات
   </a>
@@ -64,7 +72,7 @@
 <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['listuserpermission']">
   <mat-icon>note</mat-icon>
   المستخدمين
-</a>
+</a> -->
 <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['Listtransaction']">
   <mat-icon>note</mat-icon>
   transactions
@@ -115,14 +123,14 @@
   </a> 
 -->
  
- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['employeelist']">
+ <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['employeelist']">
     <mat-icon>person</mat-icon>
     الموظفين
   </a>
   <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['report']">
     <mat-icon>note</mat-icon>
     التقارير
-  </a>
+  </a> -->
  
   
   <!-- 
@@ -142,8 +150,4 @@
     <mat-icon>dns</mat-icon>Atttables
   </a> -->
 
-</mat-nav-list>
-
-<mat-nav-list>
- 
 </mat-nav-list>

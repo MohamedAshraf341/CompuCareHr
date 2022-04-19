@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { publicHoliday } from 'src/app/models/publicHoliday.model';
 import { PublicHolidayService } from 'src/app/services/publicHoliday/public-holiday.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -15,7 +15,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./public-holiday-list.component.css']
 })
 export class PublicHolidayListComponent implements OnInit {
-
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
 
   dataSource!: MatTableDataSource<publicHoliday>;
   publicHolidays: publicHoliday[]=[];
@@ -26,13 +28,16 @@ export class PublicHolidayListComponent implements OnInit {
   paginator!: MatPaginator;
   constructor(private PublicHolidayService:PublicHolidayService, 
     private router:Router,
-    private snackBar: MatSnackBarComponent, private dialog: MatDialog) {
+    private snackBar: MatSnackBarComponent, private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
   
   }
 
   ngOnInit(): void {
     this.getListOfPublicHoliday();
- 
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
   }
 
   applyFilter(event: Event) {
@@ -53,7 +58,7 @@ export class PublicHolidayListComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditPublicHoliday',id])
   }
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

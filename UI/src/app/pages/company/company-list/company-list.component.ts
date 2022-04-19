@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { company } from 'src/app/models/company.model';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -15,6 +15,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./company-list.component.css']
 })
 export class CompanyListComponent implements OnInit {
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
 
   dataSource!: MatTableDataSource<company>;
   companies: company[]=[];
@@ -24,12 +27,19 @@ export class CompanyListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   constructor(private companyService:CompanyService,
-    private router:Router,   private snackBar: MatSnackBarComponent,private dialog: MatDialog) {
+    private router:Router,   private snackBar: MatSnackBarComponent,private dialog: MatDialog,private activateRout:ActivatedRoute) {
  
 
   }
 
   ngOnInit(): void {
+
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
+    console.log(this.New);
+    console.log(this.edit);
+    console.log(this.delete);
     this.getListOfComanies();
 
   }
@@ -52,7 +62,7 @@ export class CompanyListComponent implements OnInit {
     this.router.navigate(['/defaultPage/addOrEditCompany',id])
   }
 
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

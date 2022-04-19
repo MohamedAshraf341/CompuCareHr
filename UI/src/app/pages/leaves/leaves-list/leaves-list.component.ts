@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import { leavemodel } from 'src/app/models/leavemodel.model';
 import { LeavesService } from 'src/app/services/leaves/leaves.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -15,7 +15,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./leaves-list.component.css']
 })
 export class LeavesListComponent implements OnInit {
-
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
   dataSource!: MatTableDataSource<leavemodel>;
   leaves: leavemodel[]=[];
   colums: string[] = ["Id","Name", "Alis","Issub","AcceptVac","actions"];
@@ -25,12 +27,16 @@ export class LeavesListComponent implements OnInit {
   paginator!: MatPaginator;
   constructor(private LeavesService:LeavesService,
     private router:Router,
-    private snackBar: MatSnackBarComponent,private dialog: MatDialog) {
+    private snackBar: MatSnackBarComponent,private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
   
   }
 
   ngOnInit(): void {
     this.getListOfLeaves();
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
  
   }
 
@@ -53,7 +59,7 @@ export class LeavesListComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditLeaves',id])
   }
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

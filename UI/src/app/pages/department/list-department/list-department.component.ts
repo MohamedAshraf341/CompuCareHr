@@ -3,11 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import { department } from 'src/app/models/department.model';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+
 
 @Component({
   selector: 'app-list-department',
@@ -16,7 +17,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class ListDepartmentComponent implements OnInit {
   
-
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
 
   dataSource!: MatTableDataSource<department>;
   departmentes: department[]=[];
@@ -27,13 +30,16 @@ export class ListDepartmentComponent implements OnInit {
   paginator!: MatPaginator;
   constructor(private departmentService:DepartmentService,
     private router:Router,
-    private snackBar: MatSnackBarComponent, private dialog: MatDialog) {
+    private snackBar: MatSnackBarComponent, private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
   
   }
 
   ngOnInit(): void {
     this.getListOfDepartments();
- 
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
   }
 
   applyFilter(event: Event) {
@@ -55,7 +61,7 @@ export class ListDepartmentComponent implements OnInit {
   {
   this.router.navigate(['/defaultPage/addOrEditdepartment',id]);
   }
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

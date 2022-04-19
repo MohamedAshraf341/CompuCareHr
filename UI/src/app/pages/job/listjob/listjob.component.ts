@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import { job } from 'src/app/models/job.model';
 import { JobService } from 'src/app/services/job/job.service';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
@@ -15,7 +15,9 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./listjob.component.css']
 })
 export class ListjobComponent implements OnInit {
-
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
  
   dataSource!: MatTableDataSource<job>;
   jobs: job[]=[];
@@ -26,12 +28,16 @@ export class ListjobComponent implements OnInit {
   paginator!: MatPaginator;
   constructor(private jobService:JobService,  
      private router:Router,
-    private snackBar: MatSnackBarComponent,private dialog: MatDialog) {
+    private snackBar: MatSnackBarComponent,private dialog: MatDialog,
+    private activateRout:ActivatedRoute) {
   
   }
 
   ngOnInit(): void {
     this.getListOfjobes();
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
  
   }
 
@@ -53,7 +59,7 @@ export class ListjobComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditjob',id])
   }
-  delete(element:any)
+  Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

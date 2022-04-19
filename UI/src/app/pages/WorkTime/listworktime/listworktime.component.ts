@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,6 +14,9 @@ import { WorktimeService } from 'src/app/services/worktime/worktime.service';
   styleUrls: ['./listworktime.component.css']
 })
 export class ListworktimeComponent implements OnInit {
+  New :boolean;
+  edit :boolean;
+  delete :boolean;
   dataSource!: MatTableDataSource<worktime>;
   empworks: worktime[] = [];
   colums: string[] = ["Shift", "FromDate", "ToDate", "actions"];
@@ -25,10 +28,14 @@ export class ListworktimeComponent implements OnInit {
   constructor(private empWorkService: WorktimeService,
     private snackBar: MatSnackBarComponent,
      private router: Router,
-      private dialog: MatDialog) { }
+      private dialog: MatDialog,
+      private activateRout:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getListOfempwork();
+    this.New=JSON.parse(this.activateRout.snapshot.paramMap.get('New'));
+    this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
+    this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
 
   }
   applyFilter(event: Event) {
@@ -43,7 +50,7 @@ export class ListworktimeComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-  delete(element: any) {
+  Delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Confirm Remove Employee',

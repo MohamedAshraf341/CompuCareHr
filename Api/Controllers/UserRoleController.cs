@@ -51,11 +51,11 @@ namespace Site4Check.Controllers
             {
                 return BadRequest(ModelState);
             }
-          
+
             var entryPoint = (from SP in _context.Systempage
                               join us in _context.UserSystempage on SP.Id equals us.pageId
                               join u in _context.UserSystem on us.Userid equals u.id
-                             
+
                               where us.Userid == UserId
                               select new
                               {
@@ -66,9 +66,10 @@ namespace Site4Check.Controllers
                                   edit = us.edit,
                                   delete = us.delete,
                                   login = us.login,
-                                  username=u.UserName,
-                                  password=u.Password,  
-                                
+                                  username = u.UserName,
+                                  password = u.Password,
+                                  url = SP.url,
+                                  icon=SP.icon
 
                               }).ToList();
 
