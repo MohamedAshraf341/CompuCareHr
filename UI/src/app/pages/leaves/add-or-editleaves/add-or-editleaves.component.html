@@ -1,4 +1,7 @@
-<div class="example-form">
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">مستوي الوظائف</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="example-form">
     <form [formGroup]="leavesForm">
       <mat-card>
         <mat-card-header>
@@ -11,27 +14,28 @@
             </span> Leave
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <button type="button" class="btn btn-primary" (click)="Backtolist()"> <mat-icon>fast_rewind</mat-icon> </button>
+        <mat-card-content class="content">
           <div class="flex">
             <mat-form-field>
               <mat-label>Name</mat-label>
-              <input matInput type="text" placeholder="Name"  [(ngModel)]="this.leaveIdArr.Name" formControlName="Name" required>
+              <input [readonly]="this.button==false" matInput type="text" placeholder="Name"  [(ngModel)]="this.leaveIdArr.Name" formControlName="Name" required>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Alis Name</mat-label>
-              <input matInput type="text" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.Alis" formControlName="Alis" >
+              <input [readonly]="this.button==false" matInput type="text" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.Alis" formControlName="Alis" >
             </mat-form-field>
             <mat-form-field>
               <mat-label>CutVal</mat-label>
-              <input matInput type="number" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.CutVal" formControlName="CutVal" >
+              <input [readonly]="this.button==false" matInput type="number" placeholder="Alis Name"  [(ngModel)]="this.leaveIdArr.CutVal" formControlName="CutVal" >
             </mat-form-field>
             
             </div>
           <div class="flex">
             <mat-form-field>
               <mat-label>Types</mat-label>
-              <mat-select [(ngModel)]="this.leaveIdArr.Type" formControlName="Type">
-                <mat-option *ngFor="let Type of leavesTypes" [value]="Type.Id">
+              <mat-select [disabled]="this.button==false" [(ngModel)]="this.leaveIdArr.Type" formControlName="Type">
+                <mat-option [disabled]="this.button==false" *ngFor="let Type of leavesTypes" [value]="Type.Id">
                   {{Type.Name}}
                 </mat-option>
   
@@ -40,8 +44,8 @@
   
             <mat-form-field>
               <mat-label>Leaves Rules</mat-label>
-              <mat-select [(ngModel)]="this.leaveIdArr.LeavesRuleID" formControlName="LeavesRuleID">
-                <mat-option *ngFor="let Rule of LeavesRules" [value]="Rule.Id">
+              <mat-select [disabled]="this.button==false" [(ngModel)]="this.leaveIdArr.LeavesRuleID" formControlName="LeavesRuleID">
+                <mat-option [disabled]="this.button==false" *ngFor="let Rule of LeavesRules" [value]="Rule.Id">
                   {{Rule.Name}}
                 </mat-option>
   
@@ -49,8 +53,8 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Leaves Vacations</mat-label>
-              <mat-select [(ngModel)]="this.leaveIdArr.leavesVacId" formControlName="leavesVacId">
-                <mat-option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
+              <mat-select [disabled]="this.button==false" [(ngModel)]="this.leaveIdArr.leavesVacId" formControlName="leavesVacId">
+                <mat-option [disabled]="this.button==false" *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
                   {{LeavesVac.VacName}}
                 </mat-option>
   
@@ -63,21 +67,23 @@
            
           
             <section class="example-section">
-              <mat-checkbox class="example-margin" [(ngModel)]="this.leaveIdArr.ISsub" formControlName="ISsub">medical insurance
+              <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.leaveIdArr.ISsub" formControlName="ISsub">medical insurance
               </mat-checkbox>
             </section>
             <section class="example-section">
-              <mat-checkbox class="example-margin" [(ngModel)]="this.leaveIdArr.AcceptVac" formControlName="AcceptVac">Social insurance
+              <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.leaveIdArr.AcceptVac" formControlName="AcceptVac">Social insurance
               </mat-checkbox>
             </section>
           </div>
       
   
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions *ngIf="this.button==null">
           <button mat-raised-button color="primary" [disabled]="!leavesForm.valid" (click)="createOrEditLeaves()">Save</button>
           <button mat-raised-button color="warn" (click)="clear()">Clear</button>
         </mat-card-actions>
       </mat-card>
     </form>
   </div>
+  </div>
+</div>

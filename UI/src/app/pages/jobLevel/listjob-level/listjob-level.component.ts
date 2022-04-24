@@ -59,6 +59,10 @@ export class ListjobLevelComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditjoblevel',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditjoblevel/'+id+'/'+button])
+  }
   Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

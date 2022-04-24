@@ -1,142 +1,164 @@
-<div class="example-form">
-  <form [formGroup]="employeeForm">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <span *ngIf="this.empid==0">
-            اضافة
-          </span>
-          <span *ngIf="this.empid!=0">
-            تعديل
-          </span> موظف
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="flex">
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">الموظفين</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="example-form">
+      <form [formGroup]="employeeForm">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <span *ngIf="this.empid==0">
+                اضافة
+              </span>
+              <span *ngIf="this.empid!=0">
+                تعديل
+              </span> موظف
+            </mat-card-title>
+          </mat-card-header>
+          <button type="button" class="btn btn-primary" (click)="Backtolist()">
+            <mat-icon>fast_rewind</mat-icon>
+          </button>
+          <mat-card-content class="content">
+            <div class="flex">
 
-          <mat-form-field>
-            <mat-label>اسم الموظف</mat-label>
-            <input matInput type="text" placeholder="Employee Name" [(ngModel)]="this.empArr.EmpName" formControlName="EmpName">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>كود الموظف</mat-label>
-            <input matInput type="text" placeholder="Employee Code" [(ngModel)]="this.empArr.EmpCode" formControlName="EmpCode">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>تاريخ الميلاد</mat-label>
-            <input matInput [matDatepicker]="picker1" [(ngModel)]="this.empArr.Birth" formControlName="Birth">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-
-
-
-        </div>
-
-        <div class="flex">
-          <mat-form-field>
-            <mat-label>الوظيفة</mat-label>
-            <mat-select [(ngModel)]="this.empArr.Job" formControlName="Job">
-              <mat-option *ngFor="let job of jobs" [value]="job.Id">
-                {{job.Enname}}
-              </mat-option>
-
-            </mat-select>
-          </mat-form-field>
+              <mat-form-field>
+                <mat-label>اسم الموظف</mat-label>
+                <input [readonly]="this.button==false" matInput type="text" placeholder="Employee Name"
+                  [(ngModel)]="this.empArr.EmpName" formControlName="EmpName">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>كود الموظف</mat-label>
+                <input [readonly]="this.button==false" matInput type="text" placeholder="Employee Code"
+                  [(ngModel)]="this.empArr.EmpCode" formControlName="EmpCode">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>تاريخ الميلاد</mat-label>
+                <input [readonly]="this.button==false" matInput [matDatepicker]="picker1"
+                  [(ngModel)]="this.empArr.Birth" formControlName="Birth">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
 
 
 
-          <mat-form-field>
-            <mat-label>كودالكارت </mat-label>
-            <input matInput type="text" placeholder="Card ID" [(ngModel)]="this.empArr.CardId" formControlName="CardId">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Hiring</mat-label>
-            <input matInput [matDatepicker]="picker2" [(ngModel)]="this.empArr.Hiring" formControlName="Hiring">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </div>
+            </div>
 
-        <div class="flex">
+            <div class="flex">
+              <mat-form-field>
+                <mat-label>الوظيفة</mat-label>
+                <mat-select [(ngModel)]="this.empArr.Job" formControlName="Job">
+                  <mat-option *ngFor="let job of jobs" [value]="job.Id">
+                    {{job.Enname}}
+                  </mat-option>
 
-
-          <mat-form-field>
-            <mat-label>اسم الشركه</mat-label>
-            <mat-select [(ngModel)]="this.empArr.Comp" formControlName="Comp">
-              <mat-option *ngFor="let company of companies" [value]="company.Id">
-                {{company.Enname}}
-              </mat-option>
-
-            </mat-select>
-          </mat-form-field>
-
-
-          <mat-form-field>
-            <mat-label>Cost</mat-label>
-            <mat-select [(ngModel)]="this.empArr.Cost" formControlName="Cost">
-              <mat-option *ngFor="let cost of costs" [value]="cost.Id">
-                {{cost.Enname}}
-
-              </mat-option>
-
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>اسم القسم</mat-label>
-            <mat-select [(ngModel)]="this.empArr.Dep" formControlName="Dep">
-              <mat-option *ngFor="let department of departments" [value]="department.Id">
-                {{department.Enname}}
-
-              </mat-option>
-
-            </mat-select>
-          </mat-form-field>
-
-        </div>
+                </mat-select>
+              </mat-form-field>
 
 
 
-        <div class="flex">
-          <mat-form-field class="example-full-width">
-            <mat-label>Leave a note</mat-label>
-            <textarea matInput placeholder="note..." [(ngModel)]="this.empArr.Note" formControlName="note"></textarea>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>العنوان</mat-label>
-            <textarea matInput placeholder="Address..." [(ngModel)]="this.empArr.Add" formControlName="Add"></textarea>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>Qualification</mat-label>
-            <textarea matInput placeholder="Qualification..." [(ngModel)]="this.empArr.Quli" formControlName="Quli"></textarea>
-          </mat-form-field>
+              <mat-form-field>
+                <mat-label>كودالكارت </mat-label>
+                <input [readonly]="this.button==false" matInput type="text" placeholder="Card ID"
+                  [(ngModel)]="this.empArr.CardId" formControlName="CardId">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Hiring</mat-label>
+                <input [readonly]="this.button==false" matInput [matDatepicker]="picker2"
+                  [(ngModel)]="this.empArr.Hiring" formControlName="Hiring">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
 
-        </div>
-        <div class="flex">
-          <mat-form-field>
-            <mat-label>المرتب</mat-label>
-            <input matInput type="text" placeholder="Salary" [(ngModel)]="this.empArr.Hourv" formControlName="Hourv">
-          </mat-form-field>
-          <section class="example-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="this.empArr.Stop" formControlName="Stop">Stop</mat-checkbox>
-          </section>
-          <section class="example-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="this.empArr.Isover" formControlName="Isover">IsOver</mat-checkbox>
-          </section>
-          <section class="example-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="this.empArr.Is5" formControlName="IS5">medical insurance
-            </mat-checkbox>
-          </section>
-          <section class="example-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="this.empArr.Is5work" formControlName="IS5Work">Social insurance
-            </mat-checkbox>
-          </section>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" [disabled]="!employeeForm.valid" (click)="createOrEditemployee()">حفظ</button>
-        <button mat-raised-button color="warn" (click)="clear()">Clear</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+            <div class="flex">
+
+
+              <mat-form-field>
+                <mat-label>اسم الشركه</mat-label>
+                <mat-select [disabled]="this.button==false" [(ngModel)]="this.empArr.Comp" formControlName="Comp">
+                  <mat-option *ngFor="let company of companies" [value]="company.Id">
+                    {{company.Enname}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+
+              <mat-form-field>
+                <mat-label>Cost</mat-label>
+                <mat-select [disabled]="this.button==false" [(ngModel)]="this.empArr.Cost" formControlName="Cost">
+                  <mat-option *ngFor="let cost of costs" [value]="cost.Id">
+                    {{cost.Enname}}
+
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>اسم القسم</mat-label>
+                <mat-select [disabled]="this.button==false" [(ngModel)]="this.empArr.Dep" formControlName="Dep">
+                  <mat-option *ngFor="let department of departments" [value]="department.Id">
+                    {{department.Enname}}
+
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+
+
+            <div class="flex">
+              <mat-form-field class="example-full-width">
+                <mat-label>Leave a note</mat-label>
+                <textarea [readonly]="this.button==false" matInput placeholder="note..." [(ngModel)]="this.empArr.Note"
+                  formControlName="note"></textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>العنوان</mat-label>
+                <textarea [readonly]="this.button==false" matInput placeholder="Address..."
+                  [(ngModel)]="this.empArr.Add" formControlName="Add"></textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Qualification</mat-label>
+                <textarea [readonly]="this.button==false" matInput placeholder="Qualification..."
+                  [(ngModel)]="this.empArr.Quli" formControlName="Quli"></textarea>
+              </mat-form-field>
+
+            </div>
+            <div class="flex">
+              <mat-form-field>
+                <mat-label>المرتب</mat-label>
+                <input [readonly]="this.button==false" matInput type="text" placeholder="Salary"
+                  [(ngModel)]="this.empArr.Hourv" formControlName="Hourv">
+              </mat-form-field>
+              <section class="example-section">
+                <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.empArr.Stop"
+                  formControlName="Stop">Stop</mat-checkbox>
+              </section>
+              <section class="example-section">
+                <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.empArr.Isover"
+                  formControlName="Isover">IsOver</mat-checkbox>
+              </section>
+              <section class="example-section">
+                <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.empArr.Is5"
+                  formControlName="IS5">medical insurance
+                </mat-checkbox>
+              </section>
+              <section class="example-section">
+                <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.empArr.Is5work"
+                  formControlName="IS5Work">Social insurance
+                </mat-checkbox>
+              </section>
+            </div>
+          </mat-card-content>
+          <mat-card-actions *ngIf="this.button==null">
+            <button mat-raised-button color="primary" [disabled]="!employeeForm.valid"
+              (click)="createOrEditemployee()">حفظ</button>
+            <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
 </div>

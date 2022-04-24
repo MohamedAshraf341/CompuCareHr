@@ -41,7 +41,10 @@ export class ListDepartmentComponent implements OnInit {
     this.edit=JSON.parse(this.activateRout.snapshot.paramMap.get('edit'));
     this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
   }
-
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditdepartment/'+id+'/'+button])
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

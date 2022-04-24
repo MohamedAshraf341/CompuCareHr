@@ -65,6 +65,10 @@ export class ListholidayComponent implements OnInit {
   addtransactions(id: number) {
     this.router.navigate(['/defaultPage/addtransactionholiday', id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addtransactionholiday/'+id+'/'+button])
+  }
   Delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

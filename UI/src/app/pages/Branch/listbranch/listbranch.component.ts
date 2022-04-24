@@ -58,7 +58,11 @@ export class ListbranchComponent implements OnInit {
   }
   addOrEditBranch(id:number)
   {
-    this.router.navigate(['/defaultPage/addOrEditbranch',id])
+    this.router.navigate(['/defaultPage/addOrEditbranch/'+id])
+  }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditbranch/'+id+'/'+button])
   }
 
   Delete(element:any)

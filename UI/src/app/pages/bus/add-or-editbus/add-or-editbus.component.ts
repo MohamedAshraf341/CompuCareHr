@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BusService } from 'src/app/services/bus/bus.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-add-or-editbus',
@@ -11,11 +12,13 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddOrEditbusComponent implements OnInit {
 
- 
+  button:boolean;
+
   busId:any;
   busArr:any=[];
   busForm:FormGroup;
-  constructor(private _formBuilder:FormBuilder,
+  constructor(private location: Location,
+    private _formBuilder:FormBuilder,
               private busService:BusService,
             private route:Router,
             private activateRout:ActivatedRoute,
@@ -33,6 +36,7 @@ export class AddOrEditbusComponent implements OnInit {
     return this.busForm.get('Enname');
   } 
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.busId=this.activateRout.snapshot.paramMap.get('id');
     if(this.busId!=0)
     {
@@ -52,7 +56,9 @@ export class AddOrEditbusComponent implements OnInit {
         if(res!=null)
         {
       this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/buslist'])
+          // this.route.navigate(['/defaultPage/buslist'])
+          this.location.back()
+
         }
         else{
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -66,13 +72,19 @@ export class AddOrEditbusComponent implements OnInit {
     {
       this.busService.editBus(this.busId,this.busForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/buslist'])
+          // this.route.navigate(['/defaultPage/buslist'])
+          this.location.back()
+
        
         });
 
     }
    
    
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear()
   {

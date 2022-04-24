@@ -1,4 +1,7 @@
-<div class="example-form">
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">الشركات</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="example-form">
   <form [formGroup]="companyForm">
     <mat-card>
       <mat-card-header>
@@ -11,85 +14,88 @@
           </span> شركة
         </mat-card-title>
       </mat-card-header>
-      <mat-card-content>
+      <button type="button" class="btn btn-primary" (click)="Backtolist()"> <mat-icon>fast_rewind</mat-icon> </button>
+      <mat-card-content class="content">
         <div class="flex">
           <mat-form-field>
             <mat-label>كود الشركه</mat-label>
-            <input matInput type="text" placeholder="Arabic Name"  [(ngModel)]="this.companyArr.Arname" formControlName="Arname" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="Arabic Name"  [(ngModel)]="this.companyArr.Arname" formControlName="Arname" required>
           </mat-form-field>
           <mat-form-field>
             <mat-label>اسم الشركه</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Enname" formControlName="Enname" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Enname" formControlName="Enname" required>
           </mat-form-field>
         </div>
         <div class="flex">
           <mat-form-field>
             <mat-label> المحافظه</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.City" formControlName="City" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.City" formControlName="City" required>
           </mat-form-field>
           <mat-form-field>
             <mat-label> مالك الشركه</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Owner" formControlName="Owner" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Owner" formControlName="Owner" required>
           </mat-form-field>
         </div>
         <div class="flex">
           <mat-form-field>
             <mat-label>   الرقم التامينى</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Insno" formControlName="Insno" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Insno" formControlName="Insno" required>
           </mat-form-field>
           <mat-form-field>
             <mat-label>     عنوان الشركة</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Add" formControlName="Add" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Add" formControlName="Add" required>
           </mat-form-field>
         </div>
         <div class="flex">
           
           <mat-form-field>
             <mat-label>       المنطقة</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Twon" formControlName="Twon" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Twon" formControlName="Twon" required>
           </mat-form-field>
           <mat-form-field>
             <mat-label>  الشكل القانونى</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Law" formControlName="Law" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Law" formControlName="Law" required>
           </mat-form-field>
         </div>
         <div class="flex">
           <mat-form-field>
             <mat-label>    المكتب</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.office" formControlName="office" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.office" formControlName="office" required>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>    أسم المسؤل</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Person" formControlName="Person" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Person" formControlName="Person" required>
           </mat-form-field>
         </div>
         <div class="flex">
           <mat-form-field>
             <mat-label>      التـــــاريخ</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Date" formControlName="Date" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.Date" formControlName="Date" required>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>      وظيفة المسؤل</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.PerJob" formControlName="PerJob" required>
+            <input [readonly]="this.button==false" matInput type="text" placeholder="English Name"  [(ngModel)]="this.companyArr.PerJob" formControlName="PerJob" required>
           </mat-form-field>
         </div>
 
             <div class="flex">
               
               <section class="example-section">
-                <mat-checkbox class="example-margin" [(ngModel)]="this.companyArr.IsActive" formControlName="IsActive">الغاء
+                <mat-checkbox [disabled]="this.button==false" class="example-margin" [(ngModel)]="this.companyArr.IsActive" formControlName="IsActive">الغاء
                 </mat-checkbox>
               </section>
             </div>
             
 
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions *ngIf="this.button==null">
         <button mat-raised-button color="primary" [disabled]="!companyForm.valid" (click)="createOrEditCompany()">حفظ</button>
         <button mat-raised-button color="warn" (click)="clear()">Clear</button>
       </mat-card-actions>
     </mat-card>
   </form>
+</div>
+  </div>
 </div>

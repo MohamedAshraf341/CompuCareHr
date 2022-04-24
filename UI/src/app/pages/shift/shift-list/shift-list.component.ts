@@ -55,6 +55,10 @@ export class ShiftListComponent implements OnInit {
   addOrEditshift(id: number) {
     this.router.navigate(['/defaultPage/addOrEditshift', id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditshift/'+id+'/'+button])
+  }
   Delete(element: any) {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {

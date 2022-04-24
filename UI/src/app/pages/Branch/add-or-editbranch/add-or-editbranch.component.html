@@ -1,34 +1,40 @@
-<div class="example-form">
-    <form [formGroup]="branchForm">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            <span *ngIf="this.branchId==0">
-              اضافة
-            </span>
-            <span *ngIf="this.branchId!=0">
-              تعديل
-            </span> فرع
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-form-field>
-            <mat-label>كود الفرع</mat-label>
-            <input matInput type="text" placeholder="English Name"  [(ngModel)]="this.branchArr.Enname" formControlName="Enname" required>
-          </mat-form-field>
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">الفروع</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="example-form">
+      <form [formGroup]="branchForm">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <span *ngIf="this.branchId==0">
+                اضافة
+              </span>
+              <span *ngIf="this.branchId!=0">
+                تعديل
+              </span> فرع
+            </mat-card-title>
+          </mat-card-header>
+          <button type="button" class="btn btn-primary" (click)="Backtolist()"> <mat-icon>fast_rewind</mat-icon> </button>
+          <mat-card-content class="content">
             <mat-form-field>
-                <mat-label>اسم الفرع</mat-label>
-                <input matInput type="text" placeholder="Arabic Name"  [(ngModel)]="this.branchArr.Arname" formControlName="Arname" required>
-              </mat-form-field>
-              
-  
-      
-  
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" [disabled]="!branchForm.valid" (click)="createOrEditBranch()">حفظ</button>
-          <button mat-raised-button color="warn" (click)="clear()">Clear</button>
-        </mat-card-actions>
-      </mat-card>
-    </form>
+              <mat-label>كو الفرع</mat-label>
+              <input [readonly]="this.button==false"  matInput type="text" placeholder="English Name" [(ngModel)]="this.branchArr.Enname"
+                formControlName="Enname" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>اسم الفرع</mat-label>
+              <input [readonly]="this.button==false" matInput type="text" placeholder="Arabic Name" [(ngModel)]="this.branchArr.Arname"
+                formControlName="Arname" required>
+            </mat-form-field>
+          </mat-card-content>
+          
+          <mat-card-actions *ngIf="this.button==null">
+            <button   mat-raised-button color="primary" [disabled]="!branchForm.valid"
+              (click)="createOrEditBranch()">حفظ</button>
+            <button mat-raised-button color="warn" (click)="clear()">Clear</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
   </div>
+</div>

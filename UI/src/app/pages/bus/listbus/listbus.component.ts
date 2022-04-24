@@ -40,6 +40,10 @@ export class ListbusComponent implements OnInit {
     this.delete=JSON.parse(this.activateRout.snapshot.paramMap.get('delete'));
 
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditbus/'+id+'/'+button])
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

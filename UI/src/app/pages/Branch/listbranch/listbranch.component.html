@@ -4,30 +4,29 @@
         <div class="example-form">
             <mat-card>
                 <mat-card-header>
-        <mat-card-title>
-            قائمة الفروع
-        </mat-card-title>
+                    <mat-card-title>
+                        قائمة الفروع
+                    </mat-card-title>
                 </mat-card-header>
-              
+
             </mat-card>
-        
+
             <section fxLayout fxLayoutAlign="space-between ">
                 <div>
-            <mat-form-field>
-                <mat-label>بحث</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Search">
-            </mat-form-field>
-                 </div>
-                 <button *ngIf="this.New==true" mat-raised-button color="primary" [routerLink]="['/defaultPage/addOrEditbranch/0']"
-                 matTooltip=" Add New Branch"
-                 matTooltipClass="example-tooltip-red"
-                 aria-label="Button that shows a red tooltip"
-                 class="example-button">
-                 <mat-icon>add_box</mat-icon>اضافة فرع جديد
-         </button>
-             </section>
-        
-         
+                    <mat-form-field>
+                        <mat-label>بحث</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+                    </mat-form-field>
+                </div>
+                <button *ngIf="this.New==true" mat-raised-button color="primary"
+                    [routerLink]="['/defaultPage/addOrEditbranch/0']" matTooltip=" Add New Branch"
+                    matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                    class="example-button">
+                    <mat-icon>add_box</mat-icon>اضافة فرع جديد
+                </button>
+            </section>
+
+
             <table mat-table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="Id">
                     <th hidden mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -52,23 +51,18 @@
                         actions
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        <mat-icon *ngIf="this.edit" class="green-icon" (click)="addOrEditBranch(element.Id)" >edit</mat-icon>
-                        <mat-icon *ngIf="this.delete" class="red-icon" (click)="Delete(element)">delete</mat-icon>
+                        <mat-icon   class="mat-icon blue-icon" (click)="view(element.Id,false)" >visibility</mat-icon>
+                        <mat-icon  *ngIf="this.edit" class="mat-icon green-icon" (click)="addOrEditBranch(element.Id)">edit</mat-icon>
+                        <mat-icon *ngIf="this.delete" class="mat-icon red-icon" (click)="Delete(element)">delete</mat-icon>
                     </td>
-        
+
                 </ng-container>
-        
+
                 <tr mat-header-row *matHeaderRowDef="colums"></tr>
                 <tr mat-row *matRowDef="let row; columns: colums;"></tr>
             </table>
             <mat-paginator [length]="branches.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
         </div>
-    </div>
-  </div>
-
-  <div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2">الفروع</div>
-    <div class="page__content shadow p-3 position-relative">
     </div>
 </div>

@@ -45,6 +45,7 @@ export class ListworktimeComponent implements OnInit {
   getListOfempwork() {
     this.empWorkService.GetAllEmpWork().subscribe((res: any) => {
       this.empworks = res;
+      console.log(res);
       this.dataSource = new MatTableDataSource(this.empworks);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

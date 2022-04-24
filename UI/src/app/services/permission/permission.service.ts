@@ -17,6 +17,10 @@ export class PermissionService {
   {
     return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPage/${id}`);
   }
+  getuserpermissionbypageid(userid:number,pageid:number)
+  {
+    return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPageById/${userid}/${pageid}`);
+  }
   edituserpermission(Id:number,data:any)
   {
     return this.http.put(`${environment.apiUrl}userrole/UpdateUserPermission/${Id}`,data);

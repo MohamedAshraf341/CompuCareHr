@@ -61,6 +61,11 @@ export class CompanyListComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditCompany',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditCompany/'+id+'/'+button])
+  }
+
 
   Delete(element:any)
   {

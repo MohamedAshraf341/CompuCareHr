@@ -59,6 +59,10 @@ export class LeavesListComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditLeaves',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditLeaves/'+id+'/'+button])
+  }
   Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

@@ -66,6 +66,8 @@ const routes: Routes = [
     {path: 'edituserpermission',component:EditUserPermissionComponent},
     {path: 'edituserpermission/:id',component:EditUserPermissionComponent},
     {path: 'adduserpermission/:id',component:AddUserPermissionComponent},
+    {path: 'adduserpermission/:id/:button',component:AddUserPermissionComponent},
+
 
     //
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -74,15 +76,23 @@ const routes: Routes = [
     //company
     { path: 'companylist/:New/:edit/:delete', component: CompanyListComponent },
     { path: 'addOrEditCompany/:id', component: AddEditCompanyComponent },
+    { path: 'addOrEditCompany/:id/:button', component: AddEditCompanyComponent },
+
     //employee
     { path: 'employeelist/:New/:edit/:delete', component: ListemployeeComponent },
     { path: 'addOrEditemployee', component: AddOrEditEmployeeComponent },
+    { path: 'addOrEditemployee/:id:/button', component: AddOrEditEmployeeComponent },
+
     //empwork
     {path:'worktime/:New/:edit/:delete',component:ListworktimeComponent},
     {path:'addOrEditworktime',component:AddOrEditworktimeComponent},
+    {path:'addOrEditworktime/:id/:button',component:AddOrEditworktimeComponent},
+
     //client
     { path: 'clientlist/:New/:edit/:delete', component: ListClientComponent },
     { path: 'addOrEditclient', component: AddOrEditClientComponent },
+    { path: 'addOrEditclient/:id/:button', component: AddOrEditClientComponent },
+
 
     //location
     { path: 'locationlist', component: ListlocationComponent },
@@ -93,46 +103,65 @@ const routes: Routes = [
     // //branch
     {path:'branchlist/:New/:edit/:delete',component:ListbranchComponent},
     {path:'addOrEditbranch/:id',component:AddOrEditbranchComponent},
+    {path:'addOrEditbranch/:id/:button',component:AddOrEditbranchComponent},
+
 
         //bus
      {path:'buslist/:New/:edit/:delete',component:ListbusComponent},
     {path:'addOrEditbus/:id',component:AddOrEditbusComponent},
+    {path:'addOrEditbus/:id/:button',component:AddOrEditbusComponent},
+
 
 
     //department
 
     {path:'departmentlist/:New/:edit/:delete',component:ListDepartmentComponent},
     {path:'addOrEditdepartment/:id',component:AddOrEditDepartmentComponent},
+    {path:'addOrEditdepartment/:id/:button',component:AddOrEditDepartmentComponent},
+
 
     
     //cost
 
     {path:'costlist/:New/:edit/:delete',component:ListcostComponent},
     {path:'addOrEditcost/:id',component:AddOrEditcostComponent},
+    {path:'addOrEditcost/:id/:button',component:AddOrEditcostComponent},
+
 
      //job
 
      {path:'joblist/:New/:edit/:delete',component:ListjobComponent},
      {path:'addOrEditjob/:id',component:AddOrEditjobComponent},
+     {path:'addOrEditjob/:id/:button',component:AddOrEditjobComponent},
+
       //joblevel
 
     {path:'joblevellist/:New/:edit/:delete',component:ListjobLevelComponent},
     {path:'addOrEditjoblevel/:id',component:AddOrEditjobLevelComponent},
+    {path:'addOrEditjoblevel/:id/:button',component:AddOrEditjobLevelComponent},
+
     
      //section
 
      {path:'sectionlist/:New/:edit/:delete',component:ListsectionComponent},
      {path:'addOrEditsection/:id',component:AddOrEditsectionComponent},
+     {path:'addOrEditsection/:id/:button',component:AddOrEditsectionComponent},
+
 
 
      // PublicHoliday
 
      {path:'PublicHolidaylist/:New/:edit/:delete',component:PublicHolidayListComponent},
      {path:'addOrEditPublicHoliday/:id',component:AddOrEditPublicHolidayComponent},
+     {path:'addOrEditPublicHoliday/:id/:button',component:AddOrEditPublicHolidayComponent},
+
          // employee
 
       {path:'employeelist/:New/:edit/:delete',component:ListemployeeComponent},
       {path:'addOrEditemployee/:id',component:AddOrEditEmployeeComponent},
+      {path:'addOrEditemployee/:id/:button',component:AddOrEditEmployeeComponent},
+
+
 
       //empwork
       {path:'worktime/:New/:edit/:delete',component:ListworktimeComponent},
@@ -143,13 +172,17 @@ const routes: Routes = [
 
       {path:'shiftlist/:New/:edit/:delete',component:ShiftListComponent},
       {path:'addOrEditshift/:id',component:AddOrEditshiftComponent},
+      {path:'addOrEditshift/:id/:button',component:AddOrEditshiftComponent},
+
       //report
-      {path:'report',component:ReportComponent},
+      {path:'report/:New/:edit/:delete',component:ReportComponent},
          //Leaves Types
       {path:'leavesTypes',component:LeavesTypesListComponent},
         //Leaves
         {path:'leaves/:New/:edit/:delete',component:LeavesListComponent},
         {path:'addOrEditLeaves/:id',component:AddOrEditleavesComponent},
+        {path:'addOrEditLeaves/:id/:button',component:AddOrEditleavesComponent},
+
               /// leaves rules
 
         {path:'leavesRules',component:LeavesRulesListComponent},
@@ -164,12 +197,18 @@ const routes: Routes = [
         //transaction
         {path:'addtransactionholiday',component:AddholidayComponent},
         {path:'addtransactionholiday/:id',component:AddholidayComponent},
+        {path:'addtransactionholiday/:id/:button',component:AddholidayComponent},
+
         {path:"listtransactionholiday/:New/:edit/:delete",component:ListholidayComponent},
         {path:'addtransactionerrned',component:AdderrandsComponent},
         {path:'addtransactionerrned/:id',component:AdderrandsComponent},
+        {path:'addtransactionerrned/:id/:button',component:AdderrandsComponent},
+
         {path:'listtransactionerrned/:New/:edit/:delete',component:ListerrandsComponent},
         {path:'addtransactionpermission',component:AddpermissionsComponent},
         {path:'addtransactionpermission/:id',component:AddpermissionsComponent},
+        {path:'addtransactionpermission/:id/:button',component:AddpermissionsComponent},
+
         {path:'listtransactionpermission/:New/:edit/:delete',component:ListpermissionsComponent}
         
   ]

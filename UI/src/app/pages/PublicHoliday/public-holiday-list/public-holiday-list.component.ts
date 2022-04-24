@@ -58,6 +58,10 @@ export class PublicHolidayListComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditPublicHoliday',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditPublicHoliday/'+id+'/'+button])
+  }
   Delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

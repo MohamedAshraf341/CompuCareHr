@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 
 
 import { CompanyService } from 'src/app/services/company/company.service';
@@ -15,11 +16,12 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./add-edit-company.component.css']
 })
 export class AddEditCompanyComponent implements OnInit {
- 
+  button:boolean;
   companyId:any;
   companyArr:any=[];
   companyForm:FormGroup;
-  constructor(private _formBuilder:FormBuilder,
+  constructor(private location: Location,
+    private _formBuilder:FormBuilder,
               private companyService:CompanyService,
             private route:Router,
             private activateRout:ActivatedRoute,
@@ -119,7 +121,9 @@ export class AddEditCompanyComponent implements OnInit {
         if(res!=null)
         {
       this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/companylist'])
+          // this.route.navigate(['/defaultPage/companylist'])
+          this.location.back()
+
         }
         else{
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -133,7 +137,8 @@ export class AddEditCompanyComponent implements OnInit {
     {
       this.companyService.editCompany(this.companyId,this.companyForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/companylist'])
+          // this.route.navigate(['/defaultPage/companylist'])
+          this.location.back()
        
         });
 
@@ -182,6 +187,10 @@ export class AddEditCompanyComponent implements OnInit {
   //        });
   //    }
    
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear()
   {

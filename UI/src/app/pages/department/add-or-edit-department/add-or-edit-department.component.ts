@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-edit-department',
@@ -11,11 +12,12 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddOrEditDepartmentComponent implements OnInit {
 
- 
+  button:boolean;
  departmentForm!:FormGroup;
  departmentId:any;
  departmentArr:any=[];
-constructor(private _formBuilder:FormBuilder,
+constructor(private location: Location,
+  private _formBuilder:FormBuilder,
             private departmentService:DepartmentService,
           private route:Router,
           private activateRoute:ActivatedRoute,
@@ -33,6 +35,8 @@ get Enname() {
   return this.departmentForm.get('Enname');
 } 
 ngOnInit(): void {
+  this.button=JSON.parse(this.activateRoute.snapshot.paramMap.get('button'));
+
   this.departmentId=this.activateRoute.snapshot.paramMap.get('id');
   console.log(this.activateRoute.snapshot.paramMap)
     if(this.departmentId!=0)
@@ -52,7 +56,9 @@ createOrEditDepartment()
   if(res!=null)
   {
     this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-    this.route.navigate(['/defaultPage/departmentlist'])
+    // this.route.navigate(['/defaultPage/departmentlist'])
+    this.location.back()
+
   }
   else{
     this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -65,7 +71,9 @@ createOrEditDepartment()
 else{
   this.departmentService.editDepartment(this.departmentId,this.departmentForm.value).subscribe((res: any) => {
     this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-      this.route.navigate(['/defaultPage/departmentlist'])
+      // this.route.navigate(['/defaultPage/departmentlist'])
+      this.location.back()
+
    
     });
 }
@@ -74,5 +82,9 @@ else{
 clear()
 {
   this.departmentForm.reset();
+}
+Backtolist()
+{
+  this.location.back()
 }
 }

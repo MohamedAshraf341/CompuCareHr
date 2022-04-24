@@ -9,6 +9,7 @@ import { LeavesRulesService } from 'src/app/services/LeavesRules/leaves-rules.se
 import { LeavesTypesService } from 'src/app/services/leavesTypes/leaves-types.service';
 import { LeavesVacsService } from 'src/app/services/LeavesVacs/leaves-vacs.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-editleaves',
@@ -17,14 +18,15 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddOrEditleavesComponent implements OnInit {
 
-
+  button:boolean;
   leavesForm!: FormGroup;
   leaveId: any;
   leaveIdArr: any = [];
   leavesTypes: leavesType[] = [];
   LeavesRules: LeavesRule[] = [];
   LeavesVacs: LeavesVac[] = [];
-  constructor(private _formBuilder: FormBuilder,
+  constructor(private location: Location,
+    private _formBuilder: FormBuilder,
     private LeavesService: LeavesService,
     private route: Router,
     private activateRout: ActivatedRoute,
@@ -48,6 +50,7 @@ export class AddOrEditleavesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.leaveId = this.activateRout.snapshot.paramMap.get('id');
     console.log('  this.leaveId',  this.leaveId)
 
@@ -82,7 +85,9 @@ export class AddOrEditleavesComponent implements OnInit {
         console.log('addd',res)
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/leaves'])
+          // this.route.navigate(['/defaultPage/leaves'])
+          this.location.back()
+
         }
         else {
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -96,13 +101,17 @@ export class AddOrEditleavesComponent implements OnInit {
         console.log('resaedit',res)
 
         this.snackBar.openSnackBar('sucessfully edited ', 'Close', 'green-snackbar');
-        this.route.navigate(['/defaultPage/leaves'])
-
+        // this.route.navigate(['/defaultPage/leaves'])
+        this.location.back()
 
       });
     }
 
 
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear() {
     this.leavesForm.reset();

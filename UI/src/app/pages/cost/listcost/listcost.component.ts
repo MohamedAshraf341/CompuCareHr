@@ -55,6 +55,10 @@ export class ListcostComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditcost',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditcost/'+id+'/'+button])
+  }
   delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

@@ -1,4 +1,7 @@
-<div class="example-form">
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">الورديات</div>
+  <div class="page__content shadow p-3 position-relative">
+      <div class="example-form">
     <form [formGroup]="transactionForm">
       <mat-card>
         <mat-card-header>
@@ -11,55 +14,58 @@
             </span>transaction          
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <button type="button" class="btn btn-primary" (click)="Backtolist()"> <mat-icon>fast_rewind</mat-icon> </button>
+        <mat-card-content >
           <div class="flex">
             <mat-form-field>
               <mat-label>Employee</mat-label>
-              <mat-select [(ngModel)]="this.holidayArr.EmpCode" formControlName="EmpCode">
-                <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+              <mat-select [disabled]="this.button==false" [(ngModel)]="this.holidayArr.EmpCode" formControlName="EmpCode">
+                <mat-option [disabled]="this.button==false" *ngFor="let employee of employees" [value]="employee.Id">
                   {{employee.EmpName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
               <mat-label>From date</mat-label>
-              <input matInput [matDatepicker]="picker1" [(ngModel)]="this.holidayArr.From" formControlName="From"
+              <input [readonly]="this.button==false" matInput [matDatepicker]="picker1" [(ngModel)]="this.holidayArr.From" formControlName="From"
                 required>
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker-toggle [disabled]="this.button==false" matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field >
               <mat-label>To date</mat-label>
-              <input matInput [matDatepicker]="picker2" [(ngModel)]="this.holidayArr.To" formControlName="To" required>
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <input [readonly]="this.button==false" matInput [matDatepicker]="picker2" [(ngModel)]="this.holidayArr.To" formControlName="To" required>
+              <mat-datepicker-toggle [disabled]="this.button==false" matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="flex">
             <mat-form-field>
               <mat-label>Leaves Types</mat-label>
-              <mat-select [(ngModel)]="this.holidayArr.LeaveId" formControlName="LeaveId">
-                <mat-option *ngFor="let Type of leavesTypes" [value]="Type.Id">
+              <mat-select [disabled]="this.button==false" [(ngModel)]="this.holidayArr.LeaveId" formControlName="LeaveId">
+                <mat-option  [disabled]="this.button==false" *ngFor="let Type of leavesTypes" [value]="Type.Id">
                   {{Type.Name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Value</mat-label>
-              <input matInput type="number" [(ngModel)]="this.holidayArr.Value" placeholder="Value"
+              <input [readonly]="this.button==false" matInput type="number" [(ngModel)]="this.holidayArr.Value" placeholder="Value"
                 formControlName="Value">
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Leave a note</mat-label>
-              <textarea matInput placeholder="note..." formControlName="Note"
+              <textarea [readonly]="this.button==false" matInput placeholder="note..." formControlName="Note"
                 [(ngModel)]="this.holidayArr.Note"></textarea>
             </mat-form-field>
           </div>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions *ngIf="this.button==null">
           <button mat-raised-button color="primary" [disabled]="!transactionForm.valid" (click)="addorEditTransaction()">save</button>
           <button mat-raised-button color="warn" (click)="clear()">Clear</button>
         </mat-card-actions>
       </mat-card>
     </form>
   </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { WorktimeService } from 'src/app/services/worktime/worktime.service';
 import { ShiftService } from 'src/app/services/shift/shift.service';
 import { shift } from 'src/app/models/shift.model';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-add-or-editworktime',
   templateUrl: './add-or-editworktime.component.html',
@@ -19,7 +21,7 @@ export class AddOrEditworktimeComponent implements OnInit {
   empArr:any=[];
   employeeworkForm:FormGroup;
 
-  constructor(
+  constructor(private location: Location,
     private ShiftService :ShiftService,
     private EmpWorkService:WorktimeService,
     private activateRout:ActivatedRoute,
@@ -198,7 +200,8 @@ this.employeeworkForm.value.isDayOff=false;
           if(res!=null)
           {
         this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-            this.route.navigate(['/defaultPage/worktime'])
+            // this.route.navigate(['/defaultPage/worktime'])
+            this.location.back()
           }
           else{
             this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -212,7 +215,8 @@ this.employeeworkForm.value.isDayOff=false;
       {
         this.EmpWorkService.UpdateEmpWork(this.empworkid,this.employeeworkForm.value).subscribe((res: any) => {
           this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-            this.route.navigate(['/defaultPage/worktime'])
+            // this.route.navigate(['/defaultPage/worktime'])
+            this.location.back()
          
           });
   

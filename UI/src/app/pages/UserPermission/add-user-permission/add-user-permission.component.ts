@@ -13,6 +13,8 @@ import { pages } from 'src/app/models/pages';
 import { usersystempage } from 'src/app/models/usersystempage';
 import { ItemStatus } from 'src/app/models/ItemStatus';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-add-user-permission',
   templateUrl: './add-user-permission.component.html',
@@ -26,6 +28,8 @@ export class AddUserPermissionComponent implements OnInit {
   pages: pages[] = [];
   items: ItemStatus[] = [];
   userpage :usersystempage[]=[];
+  selected = [];
+
 
   dataSource!: MatTableDataSource<usersystempage>;
   colums: string[] = [ "select","PaageName", "New", "edit", "delete","login"];
@@ -34,7 +38,8 @@ export class AddUserPermissionComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
   row1: number;
-  constructor(private employeeService: EmployeeService,
+  constructor(private location: Location,
+    private employeeService: EmployeeService,
     private Permission: PermissionService,
     private router: Router,
     private snackBar: MatSnackBarComponent, private dialog: MatDialog, private _formBuilder: FormBuilder,private activateRout: ActivatedRoute,) {
@@ -185,6 +190,11 @@ export class AddUserPermissionComponent implements OnInit {
         chk.login=ob.checked;
     })
   }
+  onSelect({ selected }) {
+    console.log('Select Event', selected, this.selected);
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
+  }
   changeChkState(elment:number,id:number) {
      
   //  this.userpage.forEach(chk => {
@@ -212,6 +222,7 @@ export class AddUserPermissionComponent implements OnInit {
     this.Permission.addpermission1(this.userpage ).subscribe((res: any) => {
       if (res != null && this.row1==this.userpage.length) {
         this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
+        this.location.back()
       } 
   })
     

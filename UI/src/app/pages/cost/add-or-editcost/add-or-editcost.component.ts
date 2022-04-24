@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CostService } from 'src/app/services/cost/cost.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-editcost',
@@ -10,12 +11,13 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./add-or-editcost.component.css']
 })
 export class AddOrEditcostComponent implements OnInit {
-
+  button:boolean;
   costForm!: FormGroup;
 
   costId: any;
   costArr: any = [];
-  constructor(private _formBuilder: FormBuilder,
+  constructor(private location: Location,
+    private _formBuilder: FormBuilder,
     private costService: CostService,
 
     private route: Router, private activateRout: ActivatedRoute,
@@ -33,6 +35,8 @@ export class AddOrEditcostComponent implements OnInit {
     return this.costForm.get('Enname');
   }
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
+
     this.costId = this.activateRout.snapshot.paramMap.get('id');
     if (this.costId != 0) {
       this.costService.getCostIdUrl(this.costId).subscribe((res: any) => {
@@ -45,7 +49,9 @@ export class AddOrEditcostComponent implements OnInit {
       this.costService.addCost(this.costForm.value).subscribe((res: any) => {
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/costlist'])
+          // this.route.navigate(['/defaultPage/costlist'])
+          this.location.back()
+
         }
         else {
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -57,13 +63,19 @@ export class AddOrEditcostComponent implements OnInit {
     else {
       this.costService.editCost(this.costId, this.costForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-        this.route.navigate(['/defaultPage/costlist'])
+        // this.route.navigate(['/defaultPage/costlist'])
+        this.location.back()
+
 
       });
 
     }
 
 
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear() {
     this.costForm.reset();

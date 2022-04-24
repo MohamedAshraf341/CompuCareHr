@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobLevelService } from 'src/app/services/jobLevel/job-level.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-editjob-level',
@@ -11,11 +12,11 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
 })
 export class AddOrEditjobLevelComponent implements OnInit {
 
- 
+  button:boolean;
   jobLevelForm!:FormGroup;
   jobLevelId:any;
   jobLevelArr:any=[];
-  constructor(private _formBuilder:FormBuilder,
+  constructor(private location: Location,private _formBuilder:FormBuilder,
               private jobLevelService:JobLevelService,
             private route:Router,
             private activateRout: ActivatedRoute,
@@ -33,6 +34,7 @@ export class AddOrEditjobLevelComponent implements OnInit {
     return this.jobLevelForm.get('Enname');
   } 
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.jobLevelId = this.activateRout.snapshot.paramMap.get('id');
     if (this.jobLevelId != 0) {
       this.jobLevelService.getJobLevelIdUrl(this.jobLevelId).subscribe((res: any) => {
@@ -47,7 +49,8 @@ export class AddOrEditjobLevelComponent implements OnInit {
         if(res!=null)
         {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/joblevellist'])
+          // this.route.navigate(['/defaultPage/joblevellist'])
+          this.location.back()
         }
         else{
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -60,13 +63,18 @@ export class AddOrEditjobLevelComponent implements OnInit {
       this.jobLevelService.editJobLevel(this.jobLevelId,this.jobLevelForm.value).subscribe((res: any) => {
      
           this.snackBar.openSnackBar('sucessfully edited ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/joblevellist'])
+          // this.route.navigate(['/defaultPage/joblevellist'])
+          this.location.back()
        
         
         });
     }
     
    
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear()
   {

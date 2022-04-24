@@ -55,7 +55,10 @@ export class ListClientComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }
-  
+    view(id:number,button:boolean)
+  {
+    // this.router.navigate(['/defaultPage/addOrEditbranch/'+id+'/'+button])
+  }
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -16,6 +16,7 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { JobService } from 'src/app/services/job/job.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-edit-employee',
@@ -30,8 +31,10 @@ export class AddOrEditEmployeeComponent implements OnInit {
   empid:any;
   empArr:any=[];
   employeeForm:FormGroup;
+  button:boolean;
 
-  constructor( private busService:BusService,
+
+  constructor(private location: Location, private busService:BusService,
     private CostSerives:CostService,
     private departmentService:DepartmentService,
     private jobService:JobService,
@@ -103,6 +106,7 @@ get EmpCode() {
   return this.employeeForm.get('IS5Work');
 } 
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.empid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.empid)
     if (this.empid != 0) {
@@ -216,10 +220,12 @@ get EmpCode() {
         if(res!=null)
         {
           this.snackBar.openSnackBar(res, 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/employeelist'])
+          // this.route.navigate(['/defaultPage/employeelist'])
+          this.location.back()
         }
         else{
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
+          
         }
         });
     }
@@ -228,12 +234,17 @@ get EmpCode() {
         `${environment.apiUrl}EmpDatas/${this.empid}`,formData, { responseType: 'text' }
        ).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/employeelist'])
+          // this.route.navigate(['/defaultPage/employeelist'])
+          this.location.back()
         });
     }     
   }
   clear()
   {
     this.employeeForm.reset();
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
 }

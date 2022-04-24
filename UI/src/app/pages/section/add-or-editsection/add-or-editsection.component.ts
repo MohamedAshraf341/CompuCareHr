@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { SectionService } from 'src/app/services/section/section.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-or-editsection',
@@ -11,13 +11,15 @@ import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/m
   styleUrls: ['./add-or-editsection.component.css']
 })
 export class AddOrEditsectionComponent implements OnInit {
+  button:boolean;
 
   sectionForm!: FormGroup;
   SectionId: any;
   sectionArr: any = [];
 
 
-  constructor(private _formBuilder: FormBuilder,
+  constructor(private location: Location,
+    private _formBuilder: FormBuilder,
     private sectionService: SectionService,
     private route: Router, private snackBar: MatSnackBarComponent,
 
@@ -36,6 +38,7 @@ export class AddOrEditsectionComponent implements OnInit {
     return this.sectionForm.get('Enname');
   }
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.SectionId = this.activateRout.snapshot.paramMap.get('id');
     if (this.SectionId != 0) {
       this.sectionService.getSectionIdUrl(this.SectionId).subscribe((res: any) => {
@@ -48,7 +51,9 @@ export class AddOrEditsectionComponent implements OnInit {
       this.sectionService.addSection(this.sectionForm.value).subscribe((res: any) => {
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.route.navigate(['/defaultPage/sectionlist'])
+          // this.route.navigate(['/defaultPage/sectionlist'])
+          this.location.back()
+
         }
         else {
           this.snackBar.openSnackBar('faild Added ', 'Close', 'red-snackbar');
@@ -60,13 +65,19 @@ export class AddOrEditsectionComponent implements OnInit {
     else {
       this.sectionService.editSection(this.SectionId, this.sectionForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-        this.route.navigate(['/defaultPage/sectionlist'])
+        // this.route.navigate(['/defaultPage/sectionlist'])
+        this.location.back()
+
 
       });
     }
 
 
   }
+  Backtolist()
+{
+  this.location.back()
+}
   clear() {
     this.sectionForm.reset();
   }

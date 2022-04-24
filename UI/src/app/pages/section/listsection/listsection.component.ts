@@ -52,6 +52,10 @@ export class ListsectionComponent implements OnInit {
   {
     this.router.navigate(['/defaultPage/addOrEditsection',id])
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditsection/'+id+'/'+button])
+  }
   delete(element:any)
   {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {

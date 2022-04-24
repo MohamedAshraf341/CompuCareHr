@@ -8,12 +8,15 @@ import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { LeavesTypesService } from 'src/app/services/leavesTypes/leaves-types.service';
 import { TransactionService } from 'src/app/services/Transaction/transaction.service';
 import { MatSnackBarComponent } from 'src/app/shared/MatSnackBar/mat-snack-bar/mat-snack-bar.component';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-adderrands',
   templateUrl: './adderrands.component.html',
   styleUrls: ['./adderrands.component.css']
 })
 export class AdderrandsComponent implements OnInit {
+  button:boolean;
   transactionForm: FormGroup;
   UserCode!:number;
   TransacrtionCode!:number;
@@ -21,7 +24,8 @@ export class AdderrandsComponent implements OnInit {
   holidayArr: any = [];
   employees: employee[] = [];
   leavesTypes: leavesType[] = [];
-  constructor(private employeeService: EmployeeService,
+  constructor(private location: Location,
+    private employeeService: EmployeeService,
     private _formBuilder: FormBuilder,
     private LeavesTypesService: LeavesTypesService,
     private transactionServices: TransactionService, private snackBar: MatSnackBarComponent,
@@ -59,6 +63,7 @@ export class AdderrandsComponent implements OnInit {
     return this.transactionForm.get('Value');
   }
   ngOnInit(): void {
+    this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.UserCode = JSON.parse(localStorage.getItem('UserId') as any) ;
     this.transactionid = this.activateRout.snapshot.paramMap.get('id');
     console.log('id', this.transactionid)
@@ -94,7 +99,9 @@ export class AdderrandsComponent implements OnInit {
       this.transactionServices.addTransaction(this.transactionForm.value).subscribe((res: any) => {
         if (res != null) {
           this.snackBar.openSnackBar('sucessfully Added ', 'Close', 'green-snackbar');
-          this.router.navigate(['/defaultPage/listtransactionerrned'])
+          // this.router.navigate(['/defaultPage/listtransactionerrned'])
+          this.location.back()
+
         }
         else {
           this.snackBar.openSnackBar('Falidd Added ', 'Close', 'red-snackbar');
@@ -106,9 +113,15 @@ export class AdderrandsComponent implements OnInit {
     else {
       this.transactionServices.updateTransaction(this.transactionid, this.transactionForm.value).subscribe((res: any) => {
         this.snackBar.openSnackBar('sucessfully Edited ', 'Close', 'green-snackbar');
-        this.router.navigate(['/defaultPage/listtransactionerrned'])
+        // this.router.navigate(['/defaultPage/listtransactionerrned'])
+        this.location.back()
+
       });
     }
+  }
+  Backtolist()
+  {
+    this.location.back()
   }
   clear() {
     this.transactionForm.reset();

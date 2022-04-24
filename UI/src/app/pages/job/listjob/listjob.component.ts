@@ -55,6 +55,10 @@ export class ListjobComponent implements OnInit {
 
     });
   }
+  view(id:number,button:boolean)
+  {
+    this.router.navigate(['/defaultPage/addOrEditjob/'+id+'/'+button])
+  }
   addOrEditjob(id:number)
   {
     this.router.navigate(['/defaultPage/addOrEditjob',id])
