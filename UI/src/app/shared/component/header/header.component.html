@@ -6,9 +6,8 @@
     </button>
     <span>My App</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon class="notification">notifications_active</mat-icon>
-    </button>
+
+
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
       <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-1" />
@@ -23,6 +22,34 @@
       </button>
     </mat-menu>
    </button>
+   <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon class="notification">notifications_active</mat-icon>
+  </button> -->
+   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-button [matMenuTriggerFor]="setting" class="user mt-2 d-flex align-items-center">
+    <mat-icon style="color: grey;" >settings</mat-icon>
+  </button>
+  <mat-menu  #setting="matMenu">
+    <p style="text-align: center;">Choose theme color</p>
+    <button  mat-menu-item>
+      <mat-icon style="color: black;" (click)="changeTheme('black')">album</mat-icon>
+      Black
+    </button>
+    <button  mat-menu-item>
+      <mat-icon style="color: brown;" (click)="changeTheme('brown')">album</mat-icon>
+      Brown
+    </button>
+    <button mat-menu-item>
+      <mat-icon style="color: orange;" (click)="changeTheme('orange')">album</mat-icon>
+      Orange
+    </button>
+    <button mat-menu-item>
+      <mat-icon style="color: blue;" (click)="changeTheme('blue')">album</mat-icon>
+      Blue
+    </button>
+  </mat-menu>
+  
+ </button>
   </mat-toolbar>
   </p>
 
