@@ -101,7 +101,6 @@ export class AddEditCompanyComponent implements OnInit {
        this.companyArr=res
       })
 
-     
     }
   }
   createOrEditCompany()

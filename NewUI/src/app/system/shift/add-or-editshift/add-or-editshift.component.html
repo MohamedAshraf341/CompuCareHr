@@ -1,0 +1,98 @@
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add shift  -->
+<div class="row" *ngIf="this.shiftId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="shiftForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">shift Code</label>
+                                <input type="text" class="form-control" formControlName="Arname" id="Arname"
+                                    placeholder="shift Name">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">shift Code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">shift Name</label>
+                                <input type="text" class="form-control" formControlName="Enname" id="Enname"
+                                    placeholder="shift Code">
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">shift Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!shiftForm.valid"
+                            (click)="SubmitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.shiftId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="shiftForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">shift code</label>
+                                <input [(ngModel)]="this.shifts.Arname" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Arname" id="Arname">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">shift code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">shift Name</label>
+                                <input [(ngModel)]="this.shifts.Enname" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Enname" id="Enname">
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">shift Nmae is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!shiftForm.valid"
+                            (click)="SubmitEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<p>listshift works!</p>
+<div class="row mb-1">
+    <div class="col">
+        <div class="input-group mb-3 box-shadow"> 
+            <div class="input-group-prepend">
+                <span class="input-group-text border-top-0 border-left-0 border-bottom-0"><i class="fa fa-search"></i></span>
+            </div>                   
+            <input type="text" [(ngModel)]="searchText" placeholder="Search user by name..." class="form-control border-0">
+            <div class="input-group-append">
+                <span class="input-group-text border-top-0 border-right-0 border-bottom-0" [routerLink]="['/addOrEditshift/0']"><i class="fa fa-user-plus"></i></span>
+                <span (click)="toggle('grid')" class="input-group-text border-top-0 border-right-0 border-bottom-0"><i class="fa fa-th"></i></span>
+                <span (click)="toggle('list')" class="input-group-text border-top-0 border-right-0 border-bottom-0"><i class="fa fa-list"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="type=='grid'" class="row">
+    <div *ngFor="let shift of shifts | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;" class="col-xl-4 col-lg-6 mb-4">
+        <div class="flip">
+            <div class="content">
+                <div class="front">
+                    <div class="card border-0 box-shadow rounded-0">
+                        <div class="card-header border-0 rounded-0 text-muted">
+                            <div class="widget-controls"> 
+                                <a  href="javascript:void(0);" class="transition" (click)="view(shift.Id,false)"><i class="fa fa-eye"></i></a>             
+                                <a  href="javascript:void(0);" class="transition" (click)="addOrEdit(shift.Id)"><i class="fa fa-pencil"></i></a>             
+                                <a href="javascript:void(0);" class="transition" (click)="openModal( modalContent,shift)"><i class="fa fa-trash"></i></a> 
+                                
+                            </div>        
+                        </div>
+                        <div class="card-body pt-3">
+                            
+                            <div class="media">
+                                                   
+                                <div class="media-body ml-3">
+                                    <div class="row">  
+                                        <div class="col-4 text-gray text-right pr-0 font-italic text-truncate">Code:</div>
+                                        <div class="col-8 pl-2 text-truncate">{{shift.Arname}}</div>                          
+                                        <div class="col-4 text-gray text-right pr-0 font-italic text-truncate">Name:</div>
+                                        <div class="col-8 pl-2 text-truncate">{{shift.Enname}}</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="type=='list'" class="row">
+    <div class="col-12">
+        <div class="table-responsive bg-white box-shadow">
+            <table class="table table-hover">
+                <thead>
+                    <tr> 
+                        <th>shift Code</th> 
+                        <th>shift Name</th> 
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let shift of shifts | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }">                        
+
+                        <td class="align-middle text-truncate">{{shift.Arname}}</td>
+                        <td class="align-middle text-truncate">{{shift.Enname}}</td>                        
+
+                        <td class="align-middle">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-secondary btn-sm" (click)="view(shift.Id,false)"><i class="fa fa-eye"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="addOrEdit(shift.Id)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="openModal( modalContent,shift)"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="bg-white text-center">
+            <pagination-controls autoHide="true" (pageChange)="p = $event" maxSize="3"></pagination-controls>
+        </div>        
+    </div>
+</div>
+
+<ng-template #modalContent let-c="close" let-d="dismiss">    
+    <div class="modal-header">    
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>    
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">    
+            <span aria-hidden="true">×</span>    
+        </button>    
+    </div>    
+    <div class="modal-body">    
+        <p>Are you sure to delete this?</p>    
+    </div>    
+    <div class="modal-footer">    
+        <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancel</button>    
+        <button type="button" class="btn btn-outline-danger" (click)="c('yes')">Yes</button>    
+    </div>    
+</ng-template> 

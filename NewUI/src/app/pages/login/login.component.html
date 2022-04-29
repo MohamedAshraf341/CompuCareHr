@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100 login-container">
+    <div class="col-xl-4 col-md-6 col-10">
+        <div class="card border-0 box-shadow rounded-0">
+            
+            <div class="card-header d-flex justify-content-center align-items-center border-0 box-shadow">
+                 
+                
+            </div>
+            <div class="card-body text-center pb-1">
+                <h2>Member login</h2>
+               
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left mt-4">
+                    <div class="form-group">
+                        <input [formControl]="username" class="form-control validation-field" placeholder="username" type="text">                      
+                        <small class="text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">username is required</small>                              
+     
+                    </div>
+                    <div class="form-group">
+                        <input [formControl]="password" class="form-control validation-field" placeholder="Password" type="password">
+                        <small class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">Password is required</small>                              
+                       
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="login-checkbox">
+                            
+                        </div>
+                                         
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="!form.valid" class="btn btn-block" type="submit">Sign in</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center bg-transparent">
+                <ul class="list-inline mb-0">
+                  
+ 
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+       

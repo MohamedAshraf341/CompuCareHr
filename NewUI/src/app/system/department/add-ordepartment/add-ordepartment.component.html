@@ -1,0 +1,98 @@
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add department  -->
+<div class="row" *ngIf="this.departmentId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="departmentForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">department Code</label>
+                                <input type="text" class="form-control" formControlName="Arname" id="Arname"
+                                    placeholder="department Name">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">department Code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">department Name</label>
+                                <input type="text" class="form-control" formControlName="Enname" id="Enname"
+                                    placeholder="department Code">
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">department Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!departmentForm.valid"
+                            (click)="SubmitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.departmentId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="departmentForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">department code</label>
+                                <input [(ngModel)]="this.departments.Arname" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Arname" id="Arname">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">department code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">department Name</label>
+                                <input [(ngModel)]="this.departments.Enname" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Enname" id="Enname">
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">department Nmae is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!departmentForm.valid"
+                            (click)="SubmitEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,420 @@
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add company  -->
+<div class="row" *ngIf="this.companyId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="companyForm" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">Company Code</label>
+                                <input type="text" class="form-control" formControlName="Arname" id="Arname"
+                                    placeholder="Company Name">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">Company Code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">Company Name</label>
+                                <input type="text" class="form-control" formControlName="Enname" id="Enname"
+                                    placeholder="Company Code">
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">Company Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Owner">Owner Name</label>
+                                <input type="text" class="form-control" formControlName="Owner" id="Owner"
+                                    placeholder="Owner Name">
+                                <div *ngIf="f['Owner'].touched && f['Owner'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Owner'].errors && f['Owner'].errors['required']">Owner Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Person">responsible person</label>
+                                <input type="text" class="form-control" formControlName="Person" id="Person"
+                                    placeholder="responsible person">
+                                <div *ngIf="f['Person'].touched && f['Person'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Person'].errors && f['Person'].errors['required']">responsible person
+                                        is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="PerJob">responsible Job</label>
+                                <input type="text" class="form-control" formControlName="PerJob" id="PerJob"
+                                    placeholder="responsible Job">
+                                <div *ngIf="f['PerJob'].touched && f['PerJob'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['PerJob'].errors && f['PerJob'].errors['required']">responsible Job is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="City">Government</label>
+                                <input type="text" class="form-control" formControlName="City" id="City"
+                                    placeholder="Government">
+                                <div *ngIf="f['City'].touched && f['City'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['City'].errors && f['City'].errors['required']">Government is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Twon">Twon</label>
+                                <input type="text" class="form-control" formControlName="Twon" id="Twon"
+                                    placeholder="Twon">
+                                <div *ngIf="f['Twon'].touched && f['Twon'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Twon'].errors && f['Twon'].errors['required']">Twon is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Add">Address</label>
+                                <input type="text" class="form-control" formControlName="Add" id="Add"
+                                    placeholder="Address">
+                                <div *ngIf="f['Add'].touched && f['Add'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Add'].errors && f['Add'].errors['required']">responsible Job is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Law">Law</label>
+                                <input type="text" class="form-control" formControlName="Law" id="Law"
+                                    placeholder="Law">
+                                <div *ngIf="f['Law'].touched && f['Law'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Law'].errors && f['Law'].errors['required']">Law is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Insno">Insno</label>
+                                <input type="text" class="form-control" formControlName="Insno" id="Insno"
+                                    placeholder="Insno">
+                                <div *ngIf="f['Insno'].touched && f['Insno'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Insno'].errors && f['Insno'].errors['required']">Insno is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="office">office</label>
+                                <input type="text" class="form-control" formControlName="office" id="office"
+                                    placeholder="office">
+                                <div *ngIf="f['office'].touched && f['office'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['office'].errors && f['office'].errors['required']">office is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="office">Date</label>
+                                <input  type="text" class="form-control" formControlName="Date" id="Date"
+                                placeholder="yyyy-mm-dd" >
+                                <div *ngIf="f['Date'].touched && f['Date'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Date'].errors && f['Date'].errors['required']">Date is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Date">Date </label>
+                                <div class="input-group">
+                                    <input  class="form-control" formControlName="Date" placeholder="yyyy-mm-dd" name="dp"
+                                        [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="customDay"
+                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #customDay let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> -->
+                        <div class="col-lg-3 mb-3">
+                            <!-- <div class="form-group">
+                            <label for="exampleSelect1">Government select</label>
+                            <select class="form-control" id="exampleSelect1" >
+                                <option>Cairo</option>
+                                <option>Giza</option>
+                                <option>Portsaid</option>
+                                <option>Alexandria</option>
+                                <option>suize</option>
+                            </select>
+                        </div> -->
+                                <div class="form-groupmt-3">
+                                    <div class="row">
+                                        <label for="isActive" class="col-lg-4 ">Closed</label>
+                                        <div class="col-lg-3">
+                                            <input class="form-control" formControlName="isActive" type="checkbox" > 
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <div class="row justify-content-center mt-5">
+                                <button type="submit" class="btn btn-success mr-3" [disabled]="!companyForm.valid" (click)="SubmitAdd()">Save</button>
+                                <button  class="btn btn-danger" (click)="clear()">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.companyId>0" >
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="companyForm" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">Company code</label>
+                                <input [(ngModel)]="this.companies.Arname" [readonly]="this.button" type="text" class="form-control" formControlName="Arname" id="Arname"
+                                    >
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">Company code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Enname">Company Name</label>
+                                <input [(ngModel)]="this.companies.Enname" [readonly]="this.button" type="text" class="form-control" formControlName="Enname" id="Enname"
+                                    >
+                                <div *ngIf="f['Enname'].touched && f['Enname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Enname'].errors && f['Enname'].errors['required']">Company Nmae is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Owner">Owner Name</label>
+                                <input [(ngModel)]="this.companies.Owner" [readonly]="this.button" type="text" class="form-control" formControlName="Owner" id="Owner"
+                                    >
+                                <div *ngIf="f['Owner'].touched && f['Owner'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Owner'].errors && f['Owner'].errors['required']">Owner Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Person">responsible person</label>
+                                <input [(ngModel)]="this.companies.Person" [readonly]="this.button" type="text" class="form-control" formControlName="Person" id="Person"
+                                    >
+                                <div *ngIf="f['Person'].touched && f['Person'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Person'].errors && f['Person'].errors['required']">responsible person
+                                        is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="PerJob">responsible Job</label>
+                                <input [(ngModel)]="this.companies.PerJob" [readonly]="this.button" type="text" class="form-control" formControlName="PerJob" id="PerJob"
+                                    >
+                                <div *ngIf="f['PerJob'].touched && f['PerJob'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['PerJob'].errors && f['PerJob'].errors['required']">responsible Job is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="City">Government</label>
+                                <input [(ngModel)]="this.companies.City" [readonly]="this.button" type="text" class="form-control" formControlName="City" id="City"
+                                    >
+                                <div *ngIf="f['City'].touched && f['City'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['City'].errors && f['City'].errors['required']">Government is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Twon">Twon</label>
+                                <input [(ngModel)]="this.companies.Twon" [readonly]="this.button" type="text" class="form-control" formControlName="Twon" id="Twon"
+                                    >
+                                <div *ngIf="f['Twon'].touched && f['Twon'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Twon'].errors && f['Twon'].errors['required']">Twon is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Add">Address</label>
+                                <input [(ngModel)]="this.companies.Add" [readonly]="this.button" type="text" class="form-control" formControlName="Add" id="Add"
+                                    >
+                                <div *ngIf="f['Add'].touched && f['Add'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Add'].errors && f['Add'].errors['required']">responsible Job is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Law">Law</label>
+                                <input [(ngModel)]="this.companies.Law" [readonly]="this.button" type="text" class="form-control" formControlName="Law" id="Law"
+                                    >
+                                <div *ngIf="f['Law'].touched && f['Law'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Law'].errors && f['Law'].errors['required']">Law is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Insno">Insno</label>
+                                <input [(ngModel)]="this.companies.Insno" [readonly]="this.button" type="text" class="form-control" formControlName="Insno" id="Insno"
+                                    >
+                                <div *ngIf="f['Insno'].touched && f['Insno'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Insno'].errors && f['Insno'].errors['required']">Insno is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="office">office</label>
+                                <input [(ngModel)]="this.companies.office" [readonly]="this.button" type="text" class="form-control" formControlName="office" id="office"
+                                    >
+                                <div *ngIf="f['office'].touched && f['office'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['office'].errors && f['office'].errors['required']">office is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="office">Date</label>
+                                <input [(ngModel)]="this.companies.Date" [readonly]="this.button" type="text" class="form-control" formControlName="Date" id="Date"
+                                    >
+                                <div *ngIf="f['Date'].touched && f['Date'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Date'].errors && f['Date'].errors['required']">Date is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Date">Date </label>
+                                <div class="input-group">
+                                    <input [(ngModel)]="this.companies.Date" [readonly]="this.button"  class="form-control" formControlName="Date"  name="dp"
+                                        [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="customDay"
+                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()" *ngIf="!this.button">
+                                        <span class="input-group-text"><i class="fa fa-calendar" ></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #customDay let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> -->
+                        <div class="col-sm-6">
+                            <!-- <div class="form-group">
+                            <label for="exampleSelect1">Government select</label>
+                            <select class="form-control" id="exampleSelect1" >
+                                <option>Cairo</option>
+                                <option>Giza</option>
+                                <option>Portsaid</option>
+                                <option>Alexandria</option>
+                                <option>suize</option>
+                            </select>
+                        </div> -->
+                                <div class="form-groupmt-4">
+                                    <div class="row">
+                                        <label for="isActive" class="col-lg-2 ">Closed</label>
+                                        <div class="col-lg-2" >
+                                            <input  [readonly]="this.button" class="form-control" formControlName="isActive" type="checkbox" > 
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button  type="submit" class="btn btn-success mr-3" [disabled]="!companyForm.valid" (click)="SubmitEdit()">Save</button>
+                        <button  class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
