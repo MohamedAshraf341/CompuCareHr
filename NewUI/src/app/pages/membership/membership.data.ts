@@ -6,6 +6,7 @@ export class MembershipData implements InMemoryDbService {
             id: 1,
             username: "pretty",
             password: "pretty123",
+            birthday1: { day: 29, month: 3, year: 2020 },
             profile: {
                 name: "Ashley",
                 surname: "Ahlberg",

@@ -70,7 +70,9 @@ export class MembershipComponent implements OnInit {
     this.form = this.fb.group({
         id: null,
         username: [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-        password: [null, Validators.compose([Validators.required, Validators.minLength(6)])],       
+        password: [null, Validators.compose([Validators.required, Validators.minLength(6)])], 
+        birthday1: null,
+  
         profile: this.fb.group({
           name: null,
           surname: null,  
@@ -106,6 +108,7 @@ export class MembershipComponent implements OnInit {
   public getUsers(): void {
     this.membershipService.getUsers().subscribe( users => 
       this.users = users
+      
     );    
   }
 

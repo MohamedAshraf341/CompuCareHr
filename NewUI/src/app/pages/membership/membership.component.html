@@ -248,6 +248,16 @@
                                     *ngIf="form.controls.password.touched && form.controls.password.errors?.minlength">Password
                                     isn't long enough, minimum of 6 characters</small>
                             </div>
+                            <div class="form-group">
+                                <label class="text-gray">Birthday1</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2"
+                                        formControlName="birthday1" ngbDatepicker #birthdayDp2="ngbDatepicker">
+                                    <div class="input-group-append" (click)="birthdayDp2.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane" id="personal" formGroupName="profile">
                             <div class="form-group">

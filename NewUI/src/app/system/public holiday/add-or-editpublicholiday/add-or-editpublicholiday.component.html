@@ -1,0 +1,162 @@
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add publicholiday  -->
+<div class="row" *ngIf="this.publicholidayId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="publicholidayForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">publicholiday Name</label>
+                                <input type="text" class="form-control" formControlName="Arname" id="Arname"
+                                    placeholder="publicholiday Name">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">publicholiday Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- fdate -->
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Fdate">From </label>
+                                <div class="input-group">
+                                    <input  class="form-control" formControlName="Fdate" placeholder="yyyy-mm-dd" name="dp1"
+                                        [(ngModel)]="modelCustom1" ngbDatepicker [dayTemplate]="From"
+                                        [markDisabled]="isDisabled" #dc1="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc1.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #From let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> 
+                        <!-- todate -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Tdate">to </label>
+                                <div class="input-group">
+                                    <input  class="form-control" formControlName="Tdate" placeholder="yyyy-mm-dd" name="dp2"
+                                        [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="to"
+                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> 
+                    </div> 
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!publicholidayForm.valid"
+                            (click)="SubmitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.publicholidayId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="publicholidayForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Arname">publicholiday Name</label>
+                                <input [(ngModel)]="this.publicholidays.Arname" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Arname" id="Arname">
+                                <div *ngIf="f['Arname'].touched && f['Arname'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Arname'].errors && f['Arname'].errors['required']">publicholiday Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- fdate -->
+                         <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Fdate">From </label>
+                                <div class="input-group">
+                                    <input  class="form-control" formControlName="Fdate" name="dp1" placeholder="yyyy-mm-dd"
+                                        [(ngModel)]="this.publicholidays.Fdate" ngbDatepicker [dayTemplate]="From"
+                                        [markDisabled]="isDisabled" #dc1="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc1.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #From let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> 
+                        <!-- todate -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Tdate">to </label>
+                                <div class="input-group">
+                                    <input  class="form-control" formControlName="Tdate"  name="dp2" placeholder="yyyy-mm-dd" [(ngModel)]="this.publicholidays.Tdate" ngbDatepicker [dayTemplate]="to"[markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div> 
+                    </div> 
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!publicholidayForm.valid"
+                            (click)="SubmitEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

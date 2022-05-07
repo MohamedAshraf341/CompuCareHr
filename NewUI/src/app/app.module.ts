@@ -91,6 +91,8 @@ import { ListjobComponent } from 'src/app/system/job/listjob/listjob.component';
 import { AddOrEditjobComponent } from 'src/app/system/job/add-or-editjob/add-or-editjob.component';
 import { AddOrEditshiftComponent } from 'src/app/system/shift/add-or-editshift/add-or-editshift.component';
 import { ListshiftComponent } from 'src/app/system/shift/listshift/listshift.component';
+import { ListpublicholidayComponent } from 'src/app/system/public holiday/listpublicholiday/listpublicholiday.component';
+import { AddOrEditpublicholidayComponent } from 'src/app/system/public holiday/add-or-editpublicholiday/add-or-editpublicholiday.component';
 
 
  
@@ -182,6 +184,8 @@ import { ListshiftComponent } from 'src/app/system/shift/listshift/listshift.com
     AddOrEditjobComponent,
     AddOrEditshiftComponent,
     ListshiftComponent,
+    ListpublicholidayComponent,
+    AddOrEditpublicholidayComponent,
   ],
   entryComponents: [
     ConfirmDeleteComponent

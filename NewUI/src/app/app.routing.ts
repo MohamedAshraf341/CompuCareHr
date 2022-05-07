@@ -17,6 +17,8 @@ import { ListjobComponent } from 'src/app/system/job/listjob/listjob.component';
 import { AddOrEditjobComponent } from 'src/app/system/job/add-or-editjob/add-or-editjob.component';
 import { AddOrEditshiftComponent } from 'src/app/system/shift/add-or-editshift/add-or-editshift.component';
 import { ListshiftComponent } from 'src/app/system/shift/listshift/listshift.component';
+import { ListpublicholidayComponent } from 'src/app/system/public holiday/listpublicholiday/listpublicholiday.component';
+import { AddOrEditpublicholidayComponent } from 'src/app/system/public holiday/add-or-editpublicholiday/add-or-editpublicholiday.component';
 
 export const routes: Routes = [
   // {path:'',loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
@@ -62,6 +64,10 @@ export const routes: Routes = [
       {path:'shift',component:ListshiftComponent, data: { breadcrumb: 'shift' }},
       {path:'addOrEditshift/:id',component:AddOrEditshiftComponent, data: { breadcrumb: 'addOrEditshift' }},
       {path:'addOrEditshift/:id/:button',component:AddOrEditshiftComponent, data: { breadcrumb: 'addOrEditshift' }},
+      //public holiday
+      {path:'publicholihday',component:ListpublicholidayComponent, data: { breadcrumb: 'publicholihday' }},
+      {path:'addOrEditpublicholihday/:id',component:AddOrEditpublicholidayComponent, data: { breadcrumb: 'addOrEditpublicholihday' }},
+      {path:'addOrEditpublicholihday/:id/:button',component:AddOrEditpublicholidayComponent, data: { breadcrumb: 'addOrEditpublicholihday' }},
 
 
 
