@@ -93,6 +93,22 @@ import { AddOrEditshiftComponent } from 'src/app/system/shift/add-or-editshift/a
 import { ListshiftComponent } from 'src/app/system/shift/listshift/listshift.component';
 import { ListpublicholidayComponent } from 'src/app/system/public holiday/listpublicholiday/listpublicholiday.component';
 import { AddOrEditpublicholidayComponent } from 'src/app/system/public holiday/add-or-editpublicholiday/add-or-editpublicholiday.component';
+import { AddOrEditemployeeComponent } from 'src/app/system/employee/add-or-editemployee/add-or-editemployee.component';
+import { ListemployeeComponent } from 'src/app/system/employee/listemployee/listemployee.component';
+import { ListleavesComponent } from 'src/app/system/leaves/listleaves/listleaves.component';
+import { AddOrEditleavesComponent } from 'src/app/system/leaves/add-or-editleaves/add-or-editleaves.component';
+import { AddOrEditworktimeComponent } from 'src/app/system/WorkTime/add-or-editworktime/add-or-editworktime.component';
+import { ListworktimeComponent } from 'src/app/system/WorkTime/listworktime/listworktime.component';
+import { ListjoblevelComponent } from 'src/app/system/JobLevel/listjoblevel/listjoblevel.component';
+import { AddOrEditjoblevelComponent } from 'src/app/system/JobLevel/add-or-editjoblevel/add-or-editjoblevel.component';
+import { AddOrEdituserroleComponent } from 'src/app/system/UserRole/add-or-edituserrole/add-or-edituserrole.component';
+import { ListuserroleComponent } from 'src/app/system/UserRole/listuserrole/listuserrole.component';
+import { AddOrEditerrandComponent } from 'src/app/system/TransactionErrand/add-or-editerrand/add-or-editerrand.component';
+import { ListerrandComponent } from 'src/app/system/TransactionErrand/listerrand/listerrand.component';
+import { ListholidayComponent } from 'src/app/system/TransactionHoliday/listholiday/listholiday.component';
+import { AddOrEditholidayComponent } from 'src/app/system/TransactionHoliday/add-or-editholiday/add-or-editholiday.component';
+import { ListpermissionComponent } from 'src/app/system/TransactionPermission/listpermission/listpermission.component';
+import { AddOrEditpermissionComponent } from 'src/app/system/TransactionPermission/add-or-editpermission/add-or-editpermission.component';
 
 
  
@@ -186,6 +202,22 @@ import { AddOrEditpublicholidayComponent } from 'src/app/system/public holiday/a
     ListshiftComponent,
     ListpublicholidayComponent,
     AddOrEditpublicholidayComponent,
+    AddOrEditemployeeComponent,
+    ListemployeeComponent,
+    ListleavesComponent,
+    AddOrEditleavesComponent,
+    AddOrEditworktimeComponent,
+    ListworktimeComponent,
+    ListjoblevelComponent,
+    AddOrEditjoblevelComponent,
+    AddOrEdituserroleComponent,
+    ListuserroleComponent,
+    AddOrEditerrandComponent,
+    ListerrandComponent,
+    ListholidayComponent,
+    AddOrEditholidayComponent,
+    ListpermissionComponent,
+    AddOrEditpermissionComponent,
   ],
   entryComponents: [
     ConfirmDeleteComponent

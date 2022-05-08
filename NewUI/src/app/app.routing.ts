@@ -5,6 +5,7 @@ import { BlankComponent } from 'src/app/pages/blank/blank.component';
 import { SearchComponent } from 'src/app/pages/search/search.component';
 import { NotFoundComponent } from 'src/app/pages/errors/not-found/not-found.component';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
+// system component
 import { CompanyListComponent } from 'src/app/system/company/company-list/company-list.component'; 
 import { AddOrEditCompanyComponent } from 'src/app/system/company/add-or-edit-company/add-or-edit-company.component';
 import { AddOrEditbranchComponent } from 'src/app/system/branch/add-or-editbranch/add-or-editbranch.component';
@@ -19,6 +20,23 @@ import { AddOrEditshiftComponent } from 'src/app/system/shift/add-or-editshift/a
 import { ListshiftComponent } from 'src/app/system/shift/listshift/listshift.component';
 import { ListpublicholidayComponent } from 'src/app/system/public holiday/listpublicholiday/listpublicholiday.component';
 import { AddOrEditpublicholidayComponent } from 'src/app/system/public holiday/add-or-editpublicholiday/add-or-editpublicholiday.component';
+import { AddOrEditemployeeComponent } from 'src/app/system/employee/add-or-editemployee/add-or-editemployee.component';
+import { ListemployeeComponent } from 'src/app/system/employee/listemployee/listemployee.component';
+import { ListleavesComponent } from 'src/app/system/leaves/listleaves/listleaves.component';
+import { AddOrEditleavesComponent } from 'src/app/system/leaves/add-or-editleaves/add-or-editleaves.component';
+import { AddOrEditworktimeComponent } from 'src/app/system/WorkTime/add-or-editworktime/add-or-editworktime.component';
+import { ListworktimeComponent } from 'src/app/system/WorkTime/listworktime/listworktime.component';
+import { ListjoblevelComponent } from 'src/app/system/JobLevel/listjoblevel/listjoblevel.component';
+import { AddOrEditjoblevelComponent } from 'src/app/system/JobLevel/add-or-editjoblevel/add-or-editjoblevel.component';
+import { AddOrEdituserroleComponent } from 'src/app/system/UserRole/add-or-edituserrole/add-or-edituserrole.component';
+import { ListuserroleComponent } from 'src/app/system/UserRole/listuserrole/listuserrole.component';
+import { AddOrEditerrandComponent } from 'src/app/system/TransactionErrand/add-or-editerrand/add-or-editerrand.component';
+import { ListerrandComponent } from 'src/app/system/TransactionErrand/listerrand/listerrand.component';
+import { ListholidayComponent } from 'src/app/system/TransactionHoliday/listholiday/listholiday.component';
+import { AddOrEditholidayComponent } from 'src/app/system/TransactionHoliday/add-or-editholiday/add-or-editholiday.component';
+import { ListpermissionComponent } from 'src/app/system/TransactionPermission/listpermission/listpermission.component';
+import { AddOrEditpermissionComponent } from 'src/app/system/TransactionPermission/add-or-editpermission/add-or-editpermission.component';
+
 
 export const routes: Routes = [
   // {path:'',loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
@@ -68,6 +86,38 @@ export const routes: Routes = [
       {path:'publicholihday',component:ListpublicholidayComponent, data: { breadcrumb: 'publicholihday' }},
       {path:'addOrEditpublicholihday/:id',component:AddOrEditpublicholidayComponent, data: { breadcrumb: 'addOrEditpublicholihday' }},
       {path:'addOrEditpublicholihday/:id/:button',component:AddOrEditpublicholidayComponent, data: { breadcrumb: 'addOrEditpublicholihday' }},
+      //employee
+      {path:'employee',component:ListemployeeComponent, data: { breadcrumb: 'employee' }},
+      {path:'addOrEditemployee/:id',component:AddOrEditemployeeComponent, data: { breadcrumb: 'addOrEditemployee' }},
+      {path:'addOrEditemployee/:id/:button',component:AddOrEditemployeeComponent, data: { breadcrumb: 'addOrEditemployee' }},
+      //leaves
+      {path:'leaves',component:ListleavesComponent, data: { breadcrumb: 'leaves' }},
+      {path:'addOrEditleaves/:id',component:AddOrEditleavesComponent, data: { breadcrumb: 'addOrEditleaves' }},
+      {path:'addOrEditleaves/:id/:button',component:AddOrEditleavesComponent, data: { breadcrumb: 'addOrEditleaves' }},
+      //worktime
+      {path:'worktime',component:ListworktimeComponent, data: { breadcrumb: 'worktime' }},
+      {path:'addOrEditworktime/:id',component:AddOrEditworktimeComponent, data: { breadcrumb: 'addOrEditworktime' }},
+      {path:'addOrEditworktime/:id/:button',component:AddOrEditworktimeComponent, data: { breadcrumb: 'addOrEditworktime' }},
+      //joblevel
+      {path:'joblevel',component:ListjoblevelComponent, data: { breadcrumb: 'joblevel' }},
+      {path:'addOrEditjoblevel/:id',component:AddOrEditjoblevelComponent, data: { breadcrumb: 'addOrEditjoblevel' }},
+      {path:'addOrEditjoblevel/:id/:button',component:AddOrEditjoblevelComponent, data: { breadcrumb: 'addOrEditjoblevel' }},
+      //userrole
+      {path:'userrole',component:ListuserroleComponent, data: { breadcrumb: 'userrole' }},
+      {path:'addOrEdituserrole/:id',component:AddOrEdituserroleComponent, data: { breadcrumb: 'addOrEdituserrole' }},
+      {path:'addOrEdituserrole/:id/:button',component:AddOrEdituserroleComponent, data: { breadcrumb: 'addOrEdituserrole' }},
+      //errand
+      {path:'errand',component:ListerrandComponent, data: { breadcrumb: 'errand' }},
+      {path:'addOrEditerrand/:id',component:AddOrEditerrandComponent, data: { breadcrumb: 'addOrEditerrand' }},
+      {path:'addOrEditerrand/:id/:button',component:AddOrEditerrandComponent, data: { breadcrumb: 'addOrEditerrand' }},
+      //holiday
+      {path:'holiday',component:ListholidayComponent, data: { breadcrumb: 'holiday' }},
+      {path:'addOrEditholihday/:id',component:AddOrEditholidayComponent, data: { breadcrumb: 'addOrEditholihday' }},
+      {path:'addOrEditholihday/:id/:button',component:AddOrEditholidayComponent, data: { breadcrumb: 'addOrEditholihday' }},
+      //permission
+      {path:'permission',component:ListpermissionComponent, data: { breadcrumb: 'permission' }},
+      {path:'addOrEditpermission/:id',component:AddOrEditpermissionComponent, data: { breadcrumb: 'addOrEditpermission' }},
+      {path:'addOrEditpermission/:id/:button',component:AddOrEditpermissionComponent, data: { breadcrumb: 'addOrEditpermission' }},
 
 
 

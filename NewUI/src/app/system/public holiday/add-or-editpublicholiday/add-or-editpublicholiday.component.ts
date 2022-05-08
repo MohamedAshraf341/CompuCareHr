@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { publicHoliday } from 'src/app/models/publicholiday.model';
 import { PublicHolidayService } from 'src/app/services/publicHoliday/public-holiday.service';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { DatePipe, formatDate } from '@angular/common';
+import { analyzeAndValidateNgModules, analyzeFileForInjectables } from '@angular/compiler';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { DatePipe, formatDate } from '@angular/common';
 })
 export class AddOrEditpublicholidayComponent implements OnInit {
   alert:boolean=false;
-  publicholidays!: publicHoliday;
+  publicholidays!: any;
   publicholidayForm:FormGroup;
   publicholidayId:any;
   button:any;
@@ -29,7 +29,7 @@ export class AddOrEditpublicholidayComponent implements OnInit {
     public publicholidayservices:PublicHolidayService,
     private router: Router,
     private activateRout:ActivatedRoute,
-    private datePipe: DatePipe,) { }
+    ) { }
     public modelCustom: NgbDateStruct;
     public modelCustom1: NgbDateStruct;
 
@@ -41,8 +41,9 @@ export class AddOrEditpublicholidayComponent implements OnInit {
     {
       this.publicholidayservices.getPublicHolidayIdUrl(this.publicholidayId).subscribe((res:publicHoliday)=>{
         this.publicholidays = res;
-       // this.publicholidays.Fdate = { day: 29, month: 3, year: 1981 };
-      })
+        this.publicholidays.Fdate={ day: Number(res.Fdate.toString().substring(8,10)) ,month: Number(res.Fdate.toString().substring(5,7)), year: Number( res.Fdate.toString().substring(0,4)) };
+        this.publicholidays.Tdate={ day: Number(res.Tdate.toString().substring(8,10)) ,month: Number(res.Tdate.toString().substring(5,7)), year: Number( res.Tdate.toString().substring(0,4)) };
+      });
 
     }
     this.publicholidayForm = new FormGroup({
@@ -58,23 +59,43 @@ export class AddOrEditpublicholidayComponent implements OnInit {
   }
   SubmitAdd(){
     console.log(this.publicholidayForm.value);
-    this.publicholidayForm.value.Fdate=this.modelCustom1.year+"-"+this.modelCustom1.month+"-"+this.modelCustom1.day;
-    this.publicholidayForm.value.Tdate=this.modelCustom.year+"-"+this.modelCustom.month+"-"+this.modelCustom.day;
+    
+    this.publicholidayForm.value.Fdate=this.returndate(this.modelCustom1.year,this.modelCustom1.month,this.modelCustom1.day);
+    this.publicholidayForm.value.Tdate=this.returndate(this.modelCustom.year,this.modelCustom.month,this.modelCustom.day);
+    
     this.publicholidayservices.addPublicHoliday( this.publicholidayForm.value).subscribe((res:any) => {
          console.log('company Added successfully!');
          this.alert=true;
         //  this.location.back();
     })
   }
+  result:any;
+  returndate(year:number,month:number,day:number){
+   
+    if (month<10)
+    this.result=year.toString()+"-"+ "0"+month.toString();
+    else
+    this.result=year.toString()+"-"+month.toString();
+
+      if (day<10)
+       this.result= this.result+"-"+"0"+day.toString();
+       else
+       this.result= this.result+"-"+day.toString();
+
+       return this.result;
+  }
   SubmitEdit(){
     console.log(this.publicholidayForm.value);
-    this.publicholidayForm.value.Fdate=this.modelCustom1.year+"-"+this.modelCustom1.month+"-"+this.modelCustom1.day;
-    this.publicholidayForm.value.Tdate=this.modelCustom.year+"-"+this.modelCustom.month+"-"+this.modelCustom.day;
+   
+    this.publicholidayForm.value.Fdate=this.returndate(this.publicholidays.Fdate.year,this.publicholidays.Fdate.month,this.publicholidays.Fdate.day);
+    this.publicholidayForm.value.Tdate=this.returndate(this.publicholidays.Tdate.year,this.publicholidays.Tdate.month,this.publicholidays.Tdate.day);
     this.publicholidayservices.editPublicHoliday( this.publicholidayId,this.publicholidayForm.value).subscribe((res:any) => {
          console.log('company Updated successfully!');
-         this.location.back();
+         this.alert=true;
+        //  this.location.back();
     })
   }
+
   Backtolist()
   {
     this.location.back();
