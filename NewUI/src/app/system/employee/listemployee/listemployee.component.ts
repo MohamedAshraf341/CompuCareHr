@@ -27,9 +27,11 @@ public modalRef: NgbModalRef;
   public toggle(type) {
     this.type = type;
   }
+  
   getListOftable() {
     this.employeeService.getEmployeeUrl().subscribe((res: any) => {
       this.employees = res;
+      
       console.log(res);
     });
 

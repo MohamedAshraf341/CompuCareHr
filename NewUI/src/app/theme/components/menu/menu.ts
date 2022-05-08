@@ -9,6 +9,7 @@ export const verticalMenuItems = [
     new Menu(5, 'Department', 'department', null, 'group', null, false, 11),
     new Menu(6, 'Shift', 'shift', null, 'cubes', null, false, 11),
     new Menu(7, 'Job', 'job', null, 'suitcase', null, false, 11),
+    new Menu(14, 'job level', 'joblevel', null, 'suitcase', null, false, 11),
     new Menu(8, 'Bank', 'bus', null, 'dollar', null, false, 11),
     new Menu(9, 'Publich Holiday', 'publicholihday', null, 'angellist', null, false, 11),
     new Menu(10, 'Leaves', 'leaves', null, 'leaf', null, false, 11),
@@ -16,11 +17,11 @@ export const verticalMenuItems = [
     new Menu(13, 'Employees', 'employee', null, 'user', null, false, 11),
 
     new Menu(111, 'Transactions', null, null, 'exchange', null, true, 0),
-    new Menu(13, 'Permission', 'permission', null, 'lock', null, false, 111),
-    new Menu(14, 'Holiday', 'holiday', null, 'anchor', null, false, 111),
-    new Menu(15, 'Errand', 'errand', null, 'folder-open-o', null, false, 111),
+    new Menu(15, 'Permission', 'permission', null, 'lock', null, false, 111),
+    new Menu(16, 'Holiday', 'holiday', null, 'anchor', null, false, 111),
+    new Menu(17, 'Errand', 'errand', null, 'folder-open-o', null, false, 111),
 
-    new Menu(22, 'User Role', 'userrole', null, 'lock', null, false, 0),
+    new Menu(1111, 'User Role', 'userrole', null, 'lock', null, false, 0),
 
     // new Menu (2, 'ADMIN_NAV.MEMBERSHIP', '/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'ADMIN_NAV.UI_FEATURES', null, null, 'laptop', null, true, 0),   

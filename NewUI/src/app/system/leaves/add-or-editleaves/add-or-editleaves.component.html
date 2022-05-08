@@ -1,1 +1,172 @@
-<p>add-or-editleaves works!</p>
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add leave  -->
+<div class="row" *ngIf="this.leaveId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="leaveForm">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <input type="text" class="form-control" formControlName="Name" id="Name"
+                                    placeholder="Name">
+                                <div *ngIf="f['Name'].touched && f['Name'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Name'].errors && f['Name'].errors['required']">leave Code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Alis">Alis</label>
+                                <input type="text" class="form-control" formControlName="Alis" id="Alis"
+                                    placeholder="Alis">
+                                <div *ngIf="f['Alis'].touched && f['Alis'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Alis'].errors && f['Alis'].errors['required']">leave Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="CutVal">leave CutVal</label>
+                                <input type="text" class="form-control" formControlName="CutVal" id="CutVal"
+                                    placeholder="CutVal">
+                                <div *ngIf="f['CutVal'].touched && f['CutVal'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['CutVal'].errors && f['CutVal'].errors['required']">leave Name is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Type">Type select</label>
+                                <select class="form-control" formControlName="Type" id="Type">
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.id">{{Type.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Rule">Rule select</label>
+                                <select class="form-control" formControlName="LeavesRuleID" id="Rule">
+                                    <option *ngFor="let Rule of LeavesRules" [value]="Rule.Id">{{Rule.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="LeavesVac">Government select</label>
+                                <select class="form-control" formControlName="leavesVacId" id="LeavesVac">
+                                    <option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
+                                        C{{LeavesVac.VacName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!leaveForm.valid"
+                            (click)="SubmitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.leaveId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="leaveForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <input [(ngModel)]="this.leaves.Name" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Name" id="Name">
+                                <div *ngIf="f['Name'].touched && f['Name'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Name'].errors && f['Name'].errors['required']">leave code is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="Alis">Alis</label>
+                                <input [(ngModel)]="this.leaves.Alis" [readonly]="this.button" type="text"
+                                    class="form-control" formControlName="Alis" id="Alis">
+                                <div *ngIf="f['Alis'].touched && f['Alis'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['Alis'].errors && f['Alis'].errors['required']">leave Nmae is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Type">Type select</label>
+                                <select [(ngModel)]="this.leaves.Type" [disabled]="this.button" class="form-control"
+                                    formControlName="Type">
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.id">{{Type.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Rule">Rule select</label>
+                                <select [(ngModel)]="this.leaves.LeavesRuleID" [disabled]="this.button"
+                                    class="form-control" formControlName="LeavesRuleID">
+                                    <option *ngFor="let Rule of LeavesRules" [value]="Rule.Id">{{Rule.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="LeavesVac">LeavesVac select</label>
+                                <select [(ngModel)]="this.leaves.leavesVacId" [disabled]="this.button"
+                                    class="form-control" formControlName="leavesVacId">
+                                    <option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
+                                        C{{LeavesVac.VacName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+
+                    </div>
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!leaveForm.valid"
+                            (click)="SubmitEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

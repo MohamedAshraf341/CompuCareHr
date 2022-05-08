@@ -21,7 +21,7 @@ namespace Site4Check.Models
         public string Person { get; set; }
         public string Date { get; set; }
         public string PerJob { get; set; }
-        public bool IsActive { get; set; }
+        public bool isActive { get; set; }
 
 
     }

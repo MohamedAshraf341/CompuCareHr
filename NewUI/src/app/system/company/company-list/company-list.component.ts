@@ -38,6 +38,7 @@ export class CompanyListComponent implements OnInit {
   getListOfComanies() {
     this.companyService.getCompanyUrl().subscribe((res: any) => {
       this.companies = res;
+       
     });
 
   }

@@ -20,6 +20,6 @@ namespace Site4Check.VM
         public string Person { get; set; }
         public string Date { get; set; }
         public string PerJob { get; set; }
-        public bool IsActive { get; set; }
+        public bool isActive { get; set; }
     }
 }

@@ -12,7 +12,7 @@ export interface company{
     Person:string;
     Date :string;
     PerJob:string;
-    IsActive: boolean;
+    isActive: boolean;
     Fdate:string;
     Tdate:string;
 }

@@ -60,7 +60,7 @@ namespace Site4Check.Controllers
             Attcomp.Person= company.Person;
             Attcomp.Date= company.Date;
             Attcomp.PerJob= company.PerJob;
-            Attcomp.IsActive= company.IsActive;
+            Attcomp.isActive = company.isActive;
 
             _context.Entry(Attcomp).State = EntityState.Modified;
 

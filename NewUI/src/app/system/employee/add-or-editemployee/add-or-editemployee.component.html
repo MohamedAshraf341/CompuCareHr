@@ -1,1 +1,96 @@
-<p>add-or-editemployee works!</p>
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add leave  -->
+<div class="row">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="employeeForm">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpName">Employee Name</label>
+                                <input [readonly]="this.button==false" [(ngModel)]="this.empArr.EmpName"
+                                    formControlName="EmpName" type="text" class="form-control" id="EmpName">
+                                <div *ngIf="f['EmpName'].touched && f['EmpName'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['EmpName'].errors && f['EmpName'].errors['required']">
+                                        Employee Nameis required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpCode">Employee Code</label>
+                                <input [readonly]="this.button==false" [(ngModel)]="this.empArr.EmpCode"
+                                    formControlName="EmpCode" type="text" class="form-control" id="EmpCode">
+                                <div *ngIf="f['EmpCode'].touched && f['EmpCode'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['EmpCode'].errors && f['EmpCode'].errors['required']">
+                                        Employee Code is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                        
+                            <div class="form-group">
+                                <label for="Tdate">to </label>
+                                <div class="input-group">
+                                    <input [readonly]="this.button==false" [(ngModel)]="this.empArr.Birth"
+                                        formControlName="Birth" class="form-control" name="dp" ngbDatepicker
+                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4"></div>
+                    </div>
+
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!employeeForm.valid"
+                            (click)="submitAddorEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

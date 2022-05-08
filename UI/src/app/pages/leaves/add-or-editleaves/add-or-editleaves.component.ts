@@ -33,7 +33,8 @@ export class AddOrEditleavesComponent implements OnInit {
     private snackBar: MatSnackBarComponent,
     private LeavesTypesService: LeavesTypesService,
     private LeavesRulesService: LeavesRulesService,
-    private LeavesVacsService: LeavesVacsService) {
+    private LeavesVacsService: LeavesVacsService
+    ) {
 
     this.leavesForm = this._formBuilder.group({
       Name: [this.leaveIdArr.Name, [Validators.required]],
