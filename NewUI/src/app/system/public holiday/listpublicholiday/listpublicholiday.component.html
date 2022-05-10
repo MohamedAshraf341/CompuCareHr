@@ -14,7 +14,7 @@
     </div>
 </div>
 <div *ngIf="type=='grid'" class="row">
-    <div *ngFor="let publichlioday of publichliodays | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;" class="col-xl-4 col-lg-6 mb-4">
+    <div *ngFor="let publichlioday of publichliodays | publicHoliday :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;" class="col-xl-4 col-lg-6 mb-4">
         <div class="flip">
             <div class="content">
                 <div class="front">
@@ -65,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let publichlioday of publichliodays | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }">                        
+                    <tr *ngFor="let publichlioday of publichliodays | publicHoliday :searchText | paginate: { itemsPerPage: 6, currentPage: p }">                        
 
                         <td class="align-middle text-truncate">{{publichlioday.Arname}}</td>
                         <td class="align-middle text-truncate">{{publichlioday.Fdate}}</td>  

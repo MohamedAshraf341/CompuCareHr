@@ -114,11 +114,11 @@
                             <div class="form-group">
                                 <label for="Fdate">From </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.publicholidays.Fdate"   class="form-control"  formControlName="Fdate" name="dp1" 
+                                    <input [readonly]="this.button" [(ngModel)]="this.publicholidays.Fdate"   class="form-control"  formControlName="Fdate" name="dp1" 
                                          ngbDatepicker [dayTemplate]="From"
                                         [markDisabled]="isDisabled" #dc1="ngbDatepicker">
                                     <div class="input-group-append" (click)="dc1.toggle()">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        <span *ngIf="!this.button" class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -135,9 +135,9 @@
                             <div class="form-group">
                                 <label for="Tdate">to </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.publicholidays.Tdate"  class="form-control" formControlName="Tdate"  name="dp2"   ngbDatepicker [dayTemplate]="to"[markDisabled]="isDisabled" #dc="ngbDatepicker">
-                                    <div class="input-group-append" (click)="dc.toggle()">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    <input [readonly]="this.button" [(ngModel)]="this.publicholidays.Tdate"  class="form-control" formControlName="Tdate"  name="dp2"   ngbDatepicker [dayTemplate]="to"[markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div  class="input-group-append" (click)="dc.toggle()">
+                                        <span *ngIf="!this.button" class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>

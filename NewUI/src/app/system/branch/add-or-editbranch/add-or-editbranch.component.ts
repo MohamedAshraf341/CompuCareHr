@@ -32,6 +32,7 @@ export class AddOrEditbranchComponent implements OnInit {
       })
 
     }
+    
     this.branchForm = new FormGroup({
       Arname: new FormControl('', [Validators.required]),
       Enname: new FormControl('', Validators.required),

@@ -156,37 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Date">Date </label>
-                                <div class="input-group">
-                                    <input  class="form-control" formControlName="Date" placeholder="yyyy-mm-dd" name="dp"
-                                        [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="customDay"
-                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
-                                    <div class="input-group-append" (click)="dc.toggle()">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <ng-template #customDay let-date="date" let-currentMonth="currentMonth"
-                                let-selected="selected" let-disabled="disabled">
-                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
-                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
-                                    {{ date.day }}
-                                </span>
-                            </ng-template>
-                        </div> -->
                         <div class="col-lg-3 mb-3">
-                            <!-- <div class="form-group">
-                            <label for="exampleSelect1">Government select</label>
-                            <select class="form-control" id="exampleSelect1" >
-                                <option>Cairo</option>
-                                <option>Giza</option>
-                                <option>Portsaid</option>
-                                <option>Alexandria</option>
-                                <option>suize</option>
-                            </select>
-                        </div> -->
                                 <div class="form-groupmt-3">
                                     <div class="custom-control custom-checkbox">
                                         <input [(ngModel)]="this.companies.isActive" type="checkbox" class="custom-control-input checkbox-dark-gray"
@@ -210,7 +180,6 @@
 
     </div>
 </div>
-
 
 <!-- edit and view -->
 <div class="row" *ngIf="this.companyId>0" >
@@ -364,40 +333,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Date">Date </label>
-                                <div class="input-group">
-                                    <input [(ngModel)]="this.companies.Date" [readonly]="this.button"  class="form-control" formControlName="Date"  name="dp"
-                                        [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="customDay"
-                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
-                                    <div class="input-group-append" (click)="dc.toggle()" *ngIf="!this.button">
-                                        <span class="input-group-text"><i class="fa fa-calendar" ></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <ng-template #customDay let-date="date" let-currentMonth="currentMonth"
-                                let-selected="selected" let-disabled="disabled">
-                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
-                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
-                                    {{ date.day }}
-                                </span>
-                            </ng-template>
-                        </div> -->
                         <div class="col-sm-6">
-                            <!-- <div class="form-group">
-                            <label for="exampleSelect1">Government select</label>
-                            <select class="form-control" id="exampleSelect1" >
-                                <option>Cairo</option>
-                                <option>Giza</option>
-                                <option>Portsaid</option>
-                                <option>Alexandria</option>
-                                <option>suize</option>
-                            </select>
-                        </div> -->
                                 <div class="form-groupmt-4">
                                     <div class="custom-control custom-checkbox">
-                                        <input [(ngModel)]="this.companies.isActive" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        <input  [(ngModel)]="this.companies.isActive" type="checkbox" class="custom-control-input checkbox-dark-gray"
                                             id="checkboxActive" formControlName="isActive">
                                         <label class="custom-control-label" for="checkboxActive">Closed</label>
                                     </div>
@@ -415,4 +354,3 @@
 
     </div>
 </div>
-

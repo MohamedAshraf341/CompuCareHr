@@ -1,3 +1,4 @@
+import { shift } from "./shift.model";
 export interface worktime{
     FromDate:string;
     ToDate:string;
@@ -11,5 +12,6 @@ export interface worktime{
     isDayOff:boolean;
     OverTimeStart:number;
     ShiftId:number;
+    Shift:shift;
     
 }

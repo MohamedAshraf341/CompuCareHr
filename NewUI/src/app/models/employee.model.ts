@@ -14,7 +14,7 @@ export interface employee{
     IS5Work:boolean;
     Isover:boolean;
     Stop:boolean;
-    note:string;
+    Note:string;
     Quli:string;
     Hourv:number;
 

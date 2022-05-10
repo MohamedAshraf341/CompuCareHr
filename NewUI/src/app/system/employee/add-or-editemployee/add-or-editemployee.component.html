@@ -4,8 +4,8 @@
     </button>
     <strong>Success!</strong> You successfully Save changed this important alert message.
 </div>
-<!-- add leave  -->
-<div class="row">
+<!-- add employee  -->
+<div class="row" *ngIf="this.empid==0">
     <div class="col">
         <div widget class="card border-0 box-shadow">
             <div class="card-body widget-body">
@@ -14,13 +14,13 @@
                         <i class="fa fa-arrow-left mr-2"></i>
                     </a>
                 </div>
+
                 <form [formGroup]="employeeForm">
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
                                 <label for="EmpName">Employee Name</label>
-                                <input [readonly]="this.button==false" [(ngModel)]="this.empArr.EmpName"
-                                    formControlName="EmpName" type="text" class="form-control" id="EmpName">
+                                <input formControlName="EmpName" type="text" class="form-control" id="EmpName">
                                 <div *ngIf="f['EmpName'].touched && f['EmpName'].invalid" class="alert alert-danger">
                                     <div *ngIf="f['EmpName'].errors && f['EmpName'].errors['required']">
                                         Employee Nameis required.</div>
@@ -30,8 +30,7 @@
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
                                 <label for="EmpCode">Employee Code</label>
-                                <input [readonly]="this.button==false" [(ngModel)]="this.empArr.EmpCode"
-                                    formControlName="EmpCode" type="text" class="form-control" id="EmpCode">
+                                <input formControlName="EmpCode" type="text" class="form-control" id="EmpCode">
                                 <div *ngIf="f['EmpCode'].touched && f['EmpCode'].invalid" class="alert alert-danger">
                                     <div *ngIf="f['EmpCode'].errors && f['EmpCode'].errors['required']">
                                         Employee Code is required.</div>
@@ -39,14 +38,79 @@
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
-                        
                             <div class="form-group">
-                                <label for="Tdate">to </label>
+                                <label for="CardId">Card ID</label>
+                                <input formControlName="CardId" type="text" class="form-control" id="CardId">
+                                <div *ngIf="f['CardId'].touched && f['CardId'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['CardId'].errors && f['CardId'].errors['required']">
+                                        Card ID is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Comp">Job select</label>
+                                <select class="form-control" formControlName="Comp" id="Comp">
+                                    <option *ngFor="let company of companies" [value]="company.Id">{{company.Enname}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Dep">Type select</label>
+                                <select class="form-control" formControlName="Dep" id="Dep">
+                                    <option *ngFor="let department of departments" [value]="department.Id">
+                                        {{department.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Job">Type select</label>
+                                <select class="form-control" formControlName="Job" id="Job">
+                                    <option *ngFor="let job of jobs" [value]="job.Id"> {{job.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Cost">cost select</label>
+                                <select class="form-control" formControlName="Cost" id="Cost">
+                                    <option *ngFor="let cost of costs" [value]="cost.Id">{{cost.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Tdate">Birth </label>
                                 <div class="input-group">
-                                    <input [readonly]="this.button==false" [(ngModel)]="this.empArr.Birth"
-                                        formControlName="Birth" class="form-control" name="dp" ngbDatepicker
-                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dc="ngbDatepicker">
-                                    <div class="input-group-append" (click)="dc.toggle()">
+                                    <input formControlName="Birth" class="form-control" name="dpBirth" ngbDatepicker
+                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dcBirth="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dcBirth.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Tdate">Hiring </label>
+                                <div class="input-group">
+                                    <input formControlName="Hiring" class="form-control" name="dpHiring" ngbDatepicker
+                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dcHiring="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dcHiring.toggle()">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
@@ -61,31 +125,275 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea class="form-control" formControlName="Add" placeholder="Address ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea class="form-control" formControlName="Quli" placeholder="Qualification ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea class="form-control" formControlName="Note" placeholder="Leave a note ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
-                        <div class="col-lg-4 mb-4"></div>
+                    <div class="row  ">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Hourv">Hourv</label>
+                                <input formControlName="Hourv" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.Isover" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="Isover">
+                                    <label class="custom-control-label" for="Isover">Isover</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.Stop" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="Stop" >
+                                    <label class="custom-control-label" for="Stop" >Stop</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.IS5" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IS5">
+                                    <label class="custom-control-label" for="IS5">IS5</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.IS5Work" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IS5Work">
+                                    <label class="custom-control-label" for="IS5Work">IS5Work</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row justify-content-center mt-5">
                         <button type="submit" class="btn btn-success mr-3" [disabled]="!employeeForm.valid"
-                            (click)="submitAddorEdit()">Save</button>
+                            (click)="submitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Edit employee  -->
+<div class="row" *ngIf="this.empid>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+
+                <form [formGroup]="employeeForm">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpName">Employee Name</label>
+                                <input [(ngModel)]="this.empArr.EmpName" [readonly]="!this.button" formControlName="EmpName" type="text" class="form-control" id="EmpName">
+                                <div *ngIf="f['EmpName'].touched && f['EmpName'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['EmpName'].errors && f['EmpName'].errors['required']">
+                                        Employee Nameis required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpCode">Employee Code</label>
+                                <input [(ngModel)]="this.empArr.EmpCode" [readonly]="!this.button" formControlName="EmpCode" type="text" class="form-control" id="EmpCode">
+                                <div *ngIf="f['EmpCode'].touched && f['EmpCode'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['EmpCode'].errors && f['EmpCode'].errors['required']">
+                                        Employee Code is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="CardId">Card ID</label>
+                                <input [(ngModel)]="this.empArr.CardId" [readonly]="!this.button" formControlName="CardId" type="text" class="form-control" id="CardId">
+                                <div *ngIf="f['CardId'].touched && f['CardId'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['CardId'].errors && f['CardId'].errors['required']">
+                                        Card ID is required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Comp">company select</label>
+                                <select [(ngModel)]="this.empArr.Comp"  class="form-control" formControlName="Comp" id="Comp">
+                                    <option   *ngFor="let company of companies" [value]="company.Id">{{company.Enname}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Dep">Department select</label>
+                                <select [(ngModel)]="this.empArr.Dep"   class="form-control" formControlName="Dep" id="Dep">
+                                    <option  *ngFor="let department of departments" [value]="department.Id">
+                                        {{department.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Job">Job select</label>
+                                <select [(ngModel)]="this.empArr.Job"  class="form-control" formControlName="Job" id="Job">
+                                    <option  *ngFor="let job of jobs" [value]="job.Id"> {{job.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Cost">cost select</label>
+                                <select [(ngModel)]="this.empArr.Cost" [disabled]="!this.button" class="form-control" formControlName="Cost" id="Cost">
+                                    <option  *ngFor="let cost of costs" [value]="cost.Id">{{cost.Enname}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Tdate">Birth </label>
+                                <div class="input-group">
+                                    <input [(ngModel)]="this.empArr.Birth" [readonly]="!this.button" formControlName="Birth" class="form-control" name="dpBirth" ngbDatepicker
+                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dcBirth="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dcBirth.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Tdate">Hiring </label>
+                                <div class="input-group">
+                                    <input [(ngModel)]="this.empArr.Hiring" [readonly]="!this.button" formControlName="Hiring" class="form-control" name="dpHiring" ngbDatepicker
+                                        [dayTemplate]="to" [markDisabled]="isDisabled" #dcHiring="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dcHiring.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea [(ngModel)]="this.empArr.Add" [readonly]="!this.button" class="form-control" formControlName="Add" placeholder="Address ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea [(ngModel)]="this.empArr.Quli" [readonly]="!this.button" class="form-control" formControlName="Quli" placeholder="Qualification ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea [(ngModel)]="this.empArr.Note" [readonly]="!this.button" class="form-control" formControlName="Note" placeholder="Leave a note ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Hourv">Hourv</label>
+                                <input [(ngModel)]="this.empArr.Hourv" [readonly]="!this.button" formControlName="Hourv" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.Isover" [readonly]="!this.button" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="Isover">
+                                    <label class="custom-control-label" for="Isover">Isover</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.Stop" [readonly]="!this.button" [(ngModel)]="this.empArr.Stop" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="Stop" >
+                                    <label class="custom-control-label" for="Stop" >Stop</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.IS5" [readonly]="!this.button" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IS5">
+                                    <label class="custom-control-label" for="IS5">IS5</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.empArr.IS5Work" [readonly]="!this.button" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IS5Work">
+                                    <label class="custom-control-label" for="IS5Work">IS5Work</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!employeeForm.valid"
+                            (click)="submitAdd()">Save</button>
                         <button class="btn btn-danger" (click)="clear()">Clear</button>
                     </div>
                 </form>

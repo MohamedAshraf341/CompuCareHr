@@ -8,6 +8,12 @@ import { TruncatePipe } from './truncate/truncate.pipe';
 import { MailSearchPipe } from './search/mail-search.pipe';
 import { TableSearchPipe } from './search/table-search.pipe';
 import { CompanySearchPipe } from './search/company-search.pipe';
+import { LeaveSearchPipe } from './search/leave-search.pipe';
+import { PublicHolidayPipe } from './search/public-holiday.pipe';
+import { WorktimeSearchPipe } from './search/worktime-search.pipe';
+import { EmployeeSearchPipe } from './search/employee-search.pipe';
+import { TransactionSearchPipe } from './search/transaction-search.pipe';
+import { UserroleSearchPipe } from './search/userrole-search.pipe';
 
 
 @NgModule({
@@ -21,7 +27,13 @@ import { CompanySearchPipe } from './search/company-search.pipe';
         TruncatePipe,
         MailSearchPipe,
         TableSearchPipe,
-        CompanySearchPipe
+        CompanySearchPipe,
+        LeaveSearchPipe,
+        PublicHolidayPipe,
+        WorktimeSearchPipe,
+        EmployeeSearchPipe,
+        TransactionSearchPipe,
+        UserroleSearchPipe
     ],
     exports: [
         ProfilePicturePipe,
@@ -30,7 +42,13 @@ import { CompanySearchPipe } from './search/company-search.pipe';
         TruncatePipe,
         MailSearchPipe,
         TableSearchPipe,
-        CompanySearchPipe
+        CompanySearchPipe,
+        LeaveSearchPipe,
+        PublicHolidayPipe,
+        WorktimeSearchPipe,
+        EmployeeSearchPipe,
+        TransactionSearchPipe,
+        UserroleSearchPipe
     ]
 })
 export class PipesModule { }

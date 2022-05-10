@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { branch } from 'src/app/models/branch.model';
-import { BranchService } from 'src/app/services/branch/branch.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { branch } from 'src/app/models/branch.model';
+import { BranchService } from 'src/app/services/branch/branch.service';
 @Component({
   selector: 'app-listbranch',
   templateUrl: './listbranch.component.html',

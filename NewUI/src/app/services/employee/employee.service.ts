@@ -19,6 +19,18 @@ export class EmployeeService {
       `${environment.apiUrl}EmpDatas/${Id}`
     );
   }
+  addemployee(data:any)
+  {
+    return this.http.post(
+      `${environment.apiUrl}EmpDatas`,data
+    );
+  }
+  editDepartment(Id:number,data:any)
+  {
+    return this.http.put(
+      `${environment.apiUrl}EmpDatas/${Id}`,data
+    );
+  }
 
   deleteEmployee(Id:Number)
   {

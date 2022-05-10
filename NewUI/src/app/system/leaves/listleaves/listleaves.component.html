@@ -19,7 +19,7 @@
     </div>
 </div>
 <div *ngIf="type=='grid'" class="row">
-    <div *ngFor="let leave of leaves | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;"
+    <div *ngFor="let leave of leaves | leaveSearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;"
         class="col-xl-4 col-lg-6 mb-4">
         <div class="flip">
             <div class="content">
@@ -83,7 +83,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let leave of leaves | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }">
+                        *ngFor="let leave of leaves | leaveSearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }">
 
                         <td class="align-middle text-truncate">{{leave.Name}}</td>
                         <td class="align-middle text-truncate">{{leave.Alis}}</td>

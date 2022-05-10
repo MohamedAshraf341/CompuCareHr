@@ -31,6 +31,7 @@ export class ListworktimeComponent implements OnInit {
   getListOftable() {
     this.worktimeService.GetAllEmpWork().subscribe((res: any) => {
       this.worktimes = res;
+      console.log(res);
     });
 
   }

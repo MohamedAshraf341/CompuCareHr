@@ -1,1 +1,196 @@
-<p>add-or-editpermission works!</p>
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add branch  -->
+<div class="row" *ngIf="this.transactionId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="transactionForm">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpCode">employee select</label>
+                                <select class="form-control" formControlName="EmpCode" id="EmpCode">
+                                    <option *ngFor="let employee of employees" [value]="employee.Id">{{employee.EmpName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="From">From </label>
+                                <div class="input-group">
+                                    <input class="form-control" formControlName="From" placeholder="yyyy-mm-dd"
+                                        name="dp1" [(ngModel)]="modelCustom1" ngbDatepicker [dayTemplate]="From"
+                                        [markDisabled]="isDisabled" #dc1="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc1.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #From let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="To">to </label>
+                                <div class="input-group">
+                                    <input class="form-control" formControlName="To" placeholder="yyyy-mm-dd"
+                                        name="dp2" [(ngModel)]="modelCustom" ngbDatepicker [dayTemplate]="to"
+                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="LeaveId">Leave select</label>
+                                <select class="form-control" formControlName="LeaveId" id="LeaveId">
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.Id">{{Type.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Value">Value</label>
+                                <input formControlName="Value" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea  class="form-control" formControlName="Note" placeholder="Note ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!transactionForm.valid"
+                            (click)="SubmitAdd()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- edit and view -->
+<div class="row" *ngIf="this.transactionId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="transactionForm">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EmpCode">employee select</label>
+                                <select [(ngModel)]="this.transactions.EmpCode" class="form-control" formControlName="EmpCode" id="EmpCode">
+                                    <option *ngFor="let employee of employees" [value]="employee.Id">{{employee.EmpName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="From">From </label>
+                                <div class="input-group">
+                                    <input [(ngModel)]="this.transactions.From" [readonly]="this.button" class="form-control" formControlName="From" placeholder="yyyy-mm-dd"
+                                        name="dp1"  ngbDatepicker [dayTemplate]="From"
+                                        [markDisabled]="isDisabled" #dc1="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc1.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #From let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="To">to </label>
+                                <div class="input-group">
+                                    <input [(ngModel)]="this.transactions.To" [readonly]="this.button" class="form-control" formControlName="To" placeholder="yyyy-mm-dd"
+                                        name="dp2"  ngbDatepicker [dayTemplate]="to"
+                                        [markDisabled]="isDisabled" #dc="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                                let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="LeaveId">Leave select</label>
+                                <select [(ngModel)]="this.transactions.LeaveId" class="form-control" formControlName="LeaveId" id="LeaveId">
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.Id">{{Type.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="Value">Value</label>
+                                <input [(ngModel)]="this.transactions.Value" [readonly]="this.button" formControlName="Value" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+
+                                <textarea [(ngModel)]="this.transactions.Note" [readonly]="this.button"  class="form-control" formControlName="Note" placeholder="Note ..."
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5" *ngIf="!this.button">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!transactionForm.valid"
+                            (click)="SubmitEdit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

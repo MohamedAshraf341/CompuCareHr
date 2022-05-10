@@ -13,6 +13,7 @@ import { CostService } from 'src/app/services/cost/cost.service';
 import { DepartmentService } from 'src/app/services/department/department.service';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import { JobService } from 'src/app/services/job/job.service';
+import { employee } from 'src/app/models/employee.model';
 
 @Component({
   selector: 'app-add-or-editemployee',
@@ -27,7 +28,7 @@ export class AddOrEditemployeeComponent implements OnInit {
   jobs:job[]=[];
   companies:company[]=[];
   empid:any;
-  empArr:any=[];
+  empArr!:any;
   employeeForm:FormGroup;
   button:boolean;
   alert:boolean=false;
@@ -40,12 +41,9 @@ export class AddOrEditemployeeComponent implements OnInit {
     private employeeService:EmployeeService,
     private companyService:CompanyService,
     private activateRout:ActivatedRoute,
-    private _formBuilder:FormBuilder,
-    private route:Router,
   ) { 
 
   }
-
   ngOnInit(): void {
     this.button=JSON.parse(this.activateRout.snapshot.paramMap.get('button'));
     this.empid = this.activateRout.snapshot.paramMap.get('id');
@@ -70,7 +68,7 @@ export class AddOrEditemployeeComponent implements OnInit {
       CardId:new FormControl('', [Validators.required]) ,
       Cost:new FormControl('', [Validators.required]) ,
       Dep:new FormControl('', [Validators.required]) ,
-      note:new FormControl('', [Validators.required]) ,
+      Note:new FormControl('', [Validators.required]) ,
       Add:new FormControl('', [Validators.required]) ,
       Quli:new FormControl('', [Validators.required]) ,
       Hourv:new FormControl() ,
@@ -78,6 +76,7 @@ export class AddOrEditemployeeComponent implements OnInit {
       Stop:new FormControl(),
       IS5:new FormControl() ,
       IS5Work:new FormControl() 
+
     });
   }
   // get dropdown cost
@@ -86,7 +85,6 @@ export class AddOrEditemployeeComponent implements OnInit {
    this.costs = res;
     });
   }
-
     // get dropdown department
     getdropdownDepartment() {
       this.departmentService.getDepartmentUrl().subscribe((res: any) => {
@@ -112,9 +110,19 @@ export class AddOrEditemployeeComponent implements OnInit {
   get f(){
     return this.employeeForm.controls;
   }
-  submitAddorEdit()
+  submitAdd()
   {
-
+    console.log(this.employeeForm.value);
+    this.employeeService.addemployee( this.employeeForm.value).subscribe((res:any) => {
+         console.log('company Added successfully!');
+         this.alert=true;});
+  }
+  submitEdit()
+  {
+    console.log(this.employeeForm.value);
+    this.employeeService.editDepartment( this.empid,this.employeeForm.value).subscribe((res:any) => {
+         console.log('company Added successfully!');
+         this.alert=true;});
   }
   public isWeekend(date: NgbDateStruct) {
     const d = new Date(date.year, date.month - 1, date.day);
