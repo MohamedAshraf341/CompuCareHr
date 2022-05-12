@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <label for="From">From </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.transactions.From" [readonly]="this.button" class="form-control" formControlName="From" placeholder="yyyy-mm-dd"
+                                    <input [readonly]="this.button" [(ngModel)]="this.transactions.From"  class="form-control" formControlName="From" 
                                         name="dp1"  ngbDatepicker [dayTemplate]="From"
                                         [markDisabled]="isDisabled" #dc1="ngbDatepicker">
                                     <div class="input-group-append" (click)="dc1.toggle()">
@@ -144,15 +144,15 @@
                             <div class="form-group">
                                 <label for="To">to </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.transactions.To" [readonly]="this.button" class="form-control" formControlName="To" placeholder="yyyy-mm-dd"
-                                        name="dp2"  ngbDatepicker [dayTemplate]="to"
+                                    <input [readonly]="this.button" [(ngModel)]="this.transactions.To"  class="form-control" formControlName="To" 
+                                        name="dp2"  ngbDatepicker [dayTemplate]="To"
                                         [markDisabled]="isDisabled" #dc="ngbDatepicker">
                                     <div class="input-group-append" (click)="dc.toggle()">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
                             </div>
-                            <ng-template #to let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                            <ng-template #To let-date="date" let-currentMonth="currentMonth" let-selected="selected"
                                 let-disabled="disabled">
                                 <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
                                     [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">

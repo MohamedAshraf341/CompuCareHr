@@ -36,18 +36,22 @@ export class AddOrEditpermissionComponent implements OnInit {
     console.log(this.button);
     if(this.transactionId>0)
     {
+
       this.transactionServices.gettransactionbyiud(this.transactionId).subscribe((res:any)=>{
         this.transactions = res;
+        this.transactions.From = { day: Number(res.From.toString().substring(8, 10)), month: Number(res.From.toString().substring(5, 7)), year: Number(res.From.toString().substring(0, 4)) };
+        this.transactions.To = { day: Number(res.To.toString().substring(8, 10)), month: Number(res.To.toString().substring(5, 7)), year: Number(res.To.toString().substring(0, 4)) };
+
       })
     }
     this.getListOfemployees();
     this.getListOfleavesTypes();
     this.transactionForm = new FormGroup({
-      UserCode: new FormControl(),
+      UserCode: new FormControl('1'),
       EmpCode: new FormControl(),
       From: new FormControl('', [Validators.required]),
       To: new FormControl('', Validators.required),
-      TransacrtionCode: new FormControl(),
+      TransacrtionCode: new FormControl('1'),
       Note: new FormControl(),
       LeaveId: new FormControl(),
       Value: new FormControl(),
@@ -67,8 +71,8 @@ export class AddOrEditpermissionComponent implements OnInit {
     return this.transactionForm.controls;
   }
   SubmitAdd(){
-    this.transactionForm.value.Fdate = this.returndate(this.modelCustom1.year, this.modelCustom1.month, this.modelCustom1.day);
-    this.transactionForm.value.Tdate = this.returndate(this.modelCustom.year, this.modelCustom.month, this.modelCustom.day);
+    this.transactionForm.value.From = this.returndate(this.modelCustom1.year, this.modelCustom1.month, this.modelCustom1.day);
+    this.transactionForm.value.To = this.returndate(this.modelCustom.year, this.modelCustom.month, this.modelCustom.day);
 
     console.log(this.transactionForm.value);
     this.transactionServices.addTransaction( this.transactionForm.value).subscribe((res:any) => {
@@ -78,8 +82,8 @@ export class AddOrEditpermissionComponent implements OnInit {
     })
   }
   SubmitEdit(){
-    this.transactionForm.value.Fdate = this.returndate(this.transactions.From.year, this.transactions.From.month, this.transactions.From.day);
-    this.transactionForm.value.Tdate = this.returndate(this.transactions.To.year, this.transactions.To.month, this.transactions.To.day);
+    this.transactionForm.value.From = this.returndate(this.transactions.From.year, this.transactions.From.month, this.transactions.From.day);
+    this.transactionForm.value.To = this.returndate(this.transactions.To.year, this.transactions.To.month, this.transactions.To.day);
     console.log(this.transactionForm.value);
     this.transactionServices.updateTransaction( this.transactionId,this.transactionForm.value).subscribe((res:any) => {
          console.log('company Updated successfully!');

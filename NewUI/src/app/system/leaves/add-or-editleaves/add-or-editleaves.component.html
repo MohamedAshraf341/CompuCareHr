@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label for="Type">Type select</label>
                                 <select class="form-control" formControlName="Type" id="Type">
-                                    <option *ngFor="let Type of leavesTypes" [value]="Type.id">{{Type.Name}}</option>
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.Id">{{Type.Name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -147,15 +147,15 @@
                                 <label for="Type">Type select</label>
                                 <select [(ngModel)]="this.leaves.Type" [disabled]="this.button" class="form-control"
                                     formControlName="Type">
-                                    <option *ngFor="let Type of leavesTypes" [value]="Type.id">{{Type.Name}}</option>
+                                    <option *ngFor="let Type of leavesTypes" [value]="Type.Id">{{Type.Name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
                                 <label for="Rule">Rule select</label>
-                                <select [(ngModel)]="this.leaves.LeavesRuleID" [disabled]="this.button"
-                                    class="form-control" formControlName="LeavesRuleID">
+                                <select [(ngModel)]="this.leaves.LeavesRuleId" [disabled]="this.button"
+                                    class="form-control" formControlName="LeavesRuleId">
                                     <option *ngFor="let Rule of LeavesRules" [value]="Rule.Id">{{Rule.Name}}</option>
                                 </select>
                             </div>
@@ -164,9 +164,9 @@
                             <div class="form-group">
                                 <label for="LeavesVac">LeavesVac select</label>
                                 <select [(ngModel)]="this.leaves.leavesVacId" [disabled]="this.button"
-                                    class="form-control" formControlName="leavesVacId">
+                                    class="form-control" formControlName="LeavesRuleID">
                                     <option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
-                                        C{{LeavesVac.VacName}}</option>
+                                        {{LeavesVac.VacName}}</option>
                                 </select>
                             </div>
                         </div>
@@ -175,14 +175,14 @@
                         <div class="form-groupmt-4 mr-5">
                             <div class="custom-control custom-checkbox">
                                 <input [(ngModel)]="this.leaves.ISsub" type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                    id="checkboxActive" formControlName="ISsub">
+                                    id="ISsub" formControlName="ISsub">
                                 <label class="custom-control-label" for="ISsub">ISsub</label>
                             </div>
                         </div>
                         <div class="form-groupmt-4 mr-5">
                             <div class="custom-control custom-checkbox">
                                 <input [(ngModel)]="this.leaves.AcceptVac" type="checkbox" class="custom-control-input checkbox-dark-gray "
-                                    id="checkboxActive" formControlName="AcceptVac">
+                                    id="ISsub" formControlName="AcceptVac">
                                 <label class="custom-control-label" for="AcceptVac">AcceptVac</label>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                     </div>
                     <div class="row justify-content-center mt-5" *ngIf="!this.button">
                         <button type="submit" class="btn btn-success mr-3" [disabled]="!leaveForm.valid"
-                            (click)="SubmitEdit()">Save</button>
+                            (click)="SubmitEdit()">Update</button>
                         <button class="btn btn-danger" (click)="clear()">Clear</button>
                     </div>
                 </form>

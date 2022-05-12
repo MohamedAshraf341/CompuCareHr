@@ -9,11 +9,16 @@ export class LeavesService {
 
  
   constructor(private http: HttpClient) { }
+  
   getLeavesUrl()
   {
     return this.http.get(
       `${environment.apiUrl}ar/leaves`
     );
+  }
+  getleavebyid(Id:number)
+  {
+    return this.http.get(`${environment.apiUrl}ar/leaves/byid/${Id}`);
   }
   getLeavesIdUrl(Id:number)
   {

@@ -10,6 +10,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { leave } from 'src/app/models/Leave.model';
 
 @Component({
   selector: 'app-add-or-editleaves',
@@ -36,25 +37,25 @@ export class AddOrEditleavesComponent implements OnInit {
   ngOnInit(): void {
     this.leaveId=this.activateRout.snapshot.paramMap.get('id');
     this.button=this.activateRout.snapshot.paramMap.get('button');
-    console.log(this.button);
     if(this.leaveId>0)
     {
-      this.LeavesService.getLeavesIdUrl(this.leaveId).subscribe((res:any)=>{
+      this.LeavesService.getleavebyid(this.leaveId).subscribe((res:any)=>{
         this.leaves = res;
-        console.log(this.leaves);
+        console.log(res);
       })
 
     }
     this.leaveForm = new FormGroup({
       Name: new FormControl('', [Validators.required]),
-      Alis: new FormControl('', Validators.required),
+      Alis: new FormControl(''),
       Type: new FormControl('', [Validators.required]),
-      ISsub: new FormControl('', Validators.required),
-      AcceptVac: new FormControl('', [Validators.required]),
-      leavesVacId: new FormControl('', Validators.required),
-      CutVal: new FormControl('', [Validators.required]),
-      LeavesRuleID: new FormControl('', Validators.required),
+      ISsub: new FormControl(),
+      AcceptVac: new FormControl(),
+      leavesVacId: new FormControl(''),
+      CutVal: new FormControl(''),
+      LeavesRuleID: new FormControl(''),
     });
+
     this.getListOfleavesTypes();
     this.getListOfleavesRules();
     this.getListOfleavesVacations();

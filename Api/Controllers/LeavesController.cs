@@ -46,6 +46,38 @@ namespace Site4Check.Controllers
                     }
                     return Ok(listVm);
         }
+        [HttpGet("byid/{id}")]
+        public IActionResult GetLeaveById([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var vm = new List<LeavesVm>();
+            var leaves = _context.Leaves.Where(t => t.Id == id);
+            foreach (var item in leaves)
+            {
+                var leav = new LeavesVm();
+                leav.Id = item.Id;
+                leav.Name = item.Name;
+                leav.Type = item.Type;
+                leav.Alis = item.Alis;
+                leav.CutVal = item.CutVal;
+                leav.Issub = item.Issub;
+                leav.AcceptVac = item.AcceptVac;
+                leav.LeavesRuleId = item.LeavesRuleId;
+                leav.LeavesVacId = item.LeavesVacId;
+
+                vm.Add(leav);
+            }
+
+            if (leaves == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vm);
+        }
 
         // GET: api/Leaves/5
         [HttpGet("{id}")]
@@ -55,7 +87,7 @@ namespace Site4Check.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var vm = new List<LeavesVm>();   
+            var vm = new List<LeavesVm>();
             var leaves = _context.Leaves.Where(t => t.Type == id);
             foreach (var item in leaves)
             {
@@ -71,7 +103,7 @@ namespace Site4Check.Controllers
 
                 vm.Add(leav);
             }
-           
+
             if (leaves == null)
             {
                 return NotFound();
@@ -79,6 +111,7 @@ namespace Site4Check.Controllers
 
             return Ok(vm);
         }
+
 
         // GET: api/Leaves/type
         [HttpGet("bytype/{type}")]
