@@ -35,9 +35,9 @@
                                 <div class="media-body ml-3">
                                     <div class="row">  
                                         <div class="col-4 text-gray text-right pr-0 font-italic text-truncate">Code:</div>
-                                        <div class="col-8 pl-2 text-truncate">{{shift.Arname}}</div>                          
+                                        <div class="col-8 pl-2 text-truncate">{{shift.Enname}}</div>                          
                                         <div class="col-4 text-gray text-right pr-0 font-italic text-truncate">Name:</div>
-                                        <div class="col-8 pl-2 text-truncate">{{shift.Enname}}</div>
+                                        <div class="col-8 pl-2 text-truncate">{{shift.Arname}}</div>
                                         
                                     </div>
                                 </div>
@@ -65,8 +65,8 @@
                 <tbody>
                     <tr *ngFor="let shift of shifts | companySearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }">                        
 
-                        <td class="align-middle text-truncate">{{shift.Arname}}</td>
-                        <td class="align-middle text-truncate">{{shift.Enname}}</td>                        
+                        <td class="align-middle text-truncate">{{shift.Enname}}</td>
+                        <td class="align-middle text-truncate">{{shift.Arname}}</td>                        
 
                         <td class="align-middle">
                             <div class="btn-group" role="group">

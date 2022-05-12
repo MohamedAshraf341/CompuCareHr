@@ -18,7 +18,7 @@ namespace Site4Check.Models
         public string EndShift { get; set; }
         public string EarlyPermission { get; set; }
         public string LatePermission { get; set; }
-        public int? OverTimeStart { get; set; }
+        public string? OverTimeStart { get; set; }
         public int? ShiftId { get; set; }
         public virtual AttShift Shift { get; set; }
     }

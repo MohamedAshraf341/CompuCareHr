@@ -72,7 +72,7 @@
                                 <label for="LeavesVac">Government select</label>
                                 <select class="form-control" formControlName="leavesVacId" id="LeavesVac">
                                     <option *ngFor="let LeavesVac of LeavesVacs" [value]="LeavesVac.Id">
-                                        C{{LeavesVac.VacName}}</option>
+                                        {{LeavesVac.VacName}}</option>
                                 </select>
                             </div>
                         </div>
@@ -81,14 +81,14 @@
                         <div class="form-groupmt-4 mr-5">
                             <div class="custom-control custom-checkbox">
                                 <input  type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                    id="checkboxActive" formControlName="ISsub">
+                                    id="ISsub" formControlName="ISsub">
                                 <label class="custom-control-label" for="ISsub">ISsub</label>
                             </div>
                         </div>
                         <div class="form-groupmt-4 mr-5">
                             <div class="custom-control custom-checkbox">
                                 <input  type="checkbox" class="custom-control-input checkbox-dark-gray "
-                                    id="checkboxActive" formControlName="AcceptVac">
+                                    id="AcceptVac" formControlName="AcceptVac">
                                 <label class="custom-control-label" for="AcceptVac">AcceptVac</label>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                         <div class="form-groupmt-4 mr-5">
                             <div class="custom-control custom-checkbox">
                                 <input [(ngModel)]="this.leaves.AcceptVac" type="checkbox" class="custom-control-input checkbox-dark-gray "
-                                    id="ISsub" formControlName="AcceptVac">
+                                    id="AcceptVac" formControlName="AcceptVac">
                                 <label class="custom-control-label" for="AcceptVac">AcceptVac</label>
                             </div>
                         </div>

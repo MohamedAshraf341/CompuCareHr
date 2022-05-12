@@ -10,6 +10,6 @@ export interface EmpWorkModel{
     latePermission:string;
     isHour:boolean;
     isDayOff:boolean;
-    overTimeStart:number;
+    overTimeStart:string;
     shiftId:number;
 }

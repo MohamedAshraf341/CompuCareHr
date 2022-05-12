@@ -22,6 +22,8 @@ import { employee } from 'src/app/models/employee.model';
 })
 export class AddOrEditemployeeComponent implements OnInit {
   public modelCustom: NgbDateStruct;
+  public modelCustom1: NgbDateStruct;
+
 
   costs:cost[]=[];
   departments:department[]=[];
@@ -52,6 +54,8 @@ export class AddOrEditemployeeComponent implements OnInit {
       this.employeeService.getEmployeeIdUrl(this.empid).subscribe((res: any) => {
         console.log(res)
         this.empArr = res
+        this.empArr.Birth = { day: Number(res.Birth.toString().substring(8, 10)), month: Number(res.Birth.toString().substring(5, 7)), year: Number(res.Birth.toString().substring(0, 4)) };
+        this.empArr.Hiring = { day: Number(res.Hiring.toString().substring(8, 10)), month: Number(res.Hiring.toString().substring(5, 7)), year: Number(res.Hiring.toString().substring(0, 4)) };
       })
     }
     this.getdropdownCost();
@@ -112,6 +116,8 @@ export class AddOrEditemployeeComponent implements OnInit {
   }
   submitAdd()
   {
+    this.employeeForm.value.Birth = this.returndate(this.modelCustom1.year, this.modelCustom1.month, this.modelCustom1.day);
+    this.employeeForm.value.Hiring = this.returndate(this.modelCustom.year, this.modelCustom.month, this.modelCustom.day);
     console.log(this.employeeForm.value);
     this.employeeService.addemployee( this.employeeForm.value).subscribe((res:any) => {
          console.log('company Added successfully!');
@@ -119,6 +125,9 @@ export class AddOrEditemployeeComponent implements OnInit {
   }
   submitEdit()
   {
+    this.employeeForm.value.Birth = this.returndate(this.empArr.Birth.year, this.empArr.Birth.month, this.empArr.Birth.day);
+    this.employeeForm.value.Hiring = this.returndate(this.empArr.Hiring.year, this.empArr.Hiring.month, this.empArr.Hiring.day);
+    this.employeeForm.value.EmpCode=20;
     console.log(this.employeeForm.value);
     this.employeeService.editDepartment( this.empid,this.employeeForm.value).subscribe((res:any) => {
          console.log('company Added successfully!');
@@ -140,5 +149,26 @@ export class AddOrEditemployeeComponent implements OnInit {
     this.employeeForm.reset();
     this.alert=false;
 
+  }
+  result: any;
+  returndate(year: number, month: number, day: number) {
+
+    if (month < 10) {
+      this.result = year.toString() + "-" + "0" + month.toString();
+    }
+    else {
+      this.result = year.toString() + "-" + month.toString();
+    }
+
+    if (day < 10) {
+      this.result = this.result + "-" + "0" + day.toString();
+
+    }
+    else {
+      this.result = this.result + "-" + day.toString();
+
+    }
+
+    return this.result;
   } 
 }

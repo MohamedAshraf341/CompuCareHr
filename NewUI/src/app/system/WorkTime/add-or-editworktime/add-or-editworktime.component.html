@@ -68,69 +68,77 @@
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
-                                <label for="StartSign">StartSign</label>
-                                <input formControlName="StartSign" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
-                                <label for="EndSign">EndSign</label>
-                                <input formControlName="EndSign" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
                                 <label for="OverTimeStart">OverTimeStart</label>
-                                <input formControlName="OverTimeStart" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="time3" formControlName="OverTimeStart"></ngb-timepicker>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IsHour" id="IsHour"> 
+                                    <label class="custom-control-label" for="IsHour">isHour</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IsDayOff" id="IsDayOff">
+                                    <label class="custom-control-label" for="IsDayOff">isDayOff</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
+                                <label for="StartSign">StartSign</label>
+                                <ngb-timepicker [(ngModel)]="time1" formControlName="StartSign" ></ngb-timepicker>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EndSign">EndSign</label>
+                                <ngb-timepicker [(ngModel)]="time2" formControlName="EndSign" ></ngb-timepicker>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
                                 <label for="StartShift">StartShift</label>
-                                <input formControlName="StartShift" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="time4" formControlName="StartShift"></ngb-timepicker>
+                                
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
+                                <label for="LatePermission">LatePermission</label>
+                                <ngb-timepicker [(ngModel)]="time7" formControlName="LatePermission"></ngb-timepicker>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row  ">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
                                 <label for="EndShift">EndShift</label>
-                                <input formControlName="EndShift" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="time5" formControlName="EndShift"></ngb-timepicker>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
                                 <label for="EarlyPermission">EarlyPermission</label>
-                                <input formControlName="EarlyPermission" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row  ">
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
-                                <label for="LatePermission">LatePermission</label>
-                                <input formControlName="LatePermission" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="time6" formControlName="EarlyPermission"></ngb-timepicker>
                             </div>
                         </div>
 
-                        <div class="col">
-                            <div class="form-groupmt-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                        formControlName="isHour">
-                                    <label class="custom-control-label" for="isHour">isHour</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-groupmt-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                        formControlName="isDayOff">
-                                    <label class="custom-control-label" for="isDayOff">isDayOff</label>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row justify-content-center mt-5">
                         <button type="submit" class="btn btn-success mr-3" [disabled]="!worktimeForm.valid"
@@ -168,7 +176,7 @@
                             <div class="form-group">
                                 <label for="Fdate">From </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.worktimes.FromDate"  [readonly]="this.button" class="form-control" formControlName="FromDate" placeholder="yyyy-mm-dd"
+                                    <input [(ngModel)]="this.worktimes.FromDate"  [readonly]="this.button" class="form-control" formControlName="FromDate" 
                                         name="dp1"  ngbDatepicker [dayTemplate]="From"
                                         [markDisabled]="isDisabled" #dc1="ngbDatepicker">
                                     <div class="input-group-append" (click)="dc1.toggle()">
@@ -188,7 +196,7 @@
                             <div class="form-group">
                                 <label for="Tdate">to </label>
                                 <div class="input-group">
-                                    <input [(ngModel)]="this.worktimes.ToDate"  [readonly]="this.button" class="form-control" formControlName="ToDate" placeholder="yyyy-mm-dd"
+                                    <input [(ngModel)]="this.worktimes.ToDate"  [readonly]="this.button" class="form-control" formControlName="ToDate" 
                                         name="dp2"  ngbDatepicker [dayTemplate]="to"
                                         [markDisabled]="isDisabled" #dc="ngbDatepicker">
                                     <div class="input-group-append" (click)="dc.toggle()">
@@ -208,69 +216,79 @@
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
-                                <label for="StartSign">StartSign</label>
-                                <input [(ngModel)]="this.worktimes.StartSign"  [readonly]="this.button" formControlName="StartSign" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
-                                <label for="EndSign">EndSign</label>
-                                <input [(ngModel)]="this.worktimes.EndSign"  [readonly]="this.button" formControlName="EndSign" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
                                 <label for="OverTimeStart">OverTimeStart</label>
-                                <input [(ngModel)]="this.worktimes.OverTimeStart"  [readonly]="this.button" formControlName="OverTimeStart" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="this.worktimes.OverTimeStart"  formControlName="OverTimeStart"></ngb-timepicker>
+
+                                
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.worktimes.IsHour" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IsHour" id="IsHour">
+                                    <label class="custom-control-label" for="IsHour">isHour</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input [(ngModel)]="this.worktimes.IsDayOff" type="checkbox" class="custom-control-input checkbox-dark-gray"
+                                        formControlName="IsDayOff" id="IsDayOff">
+                                    <label class="custom-control-label" for="IsDayOff">isDayOff</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
+                                <label for="StartSign">StartSign</label>
+                                <ngb-timepicker [(ngModel)]="this.worktimes.StartSign" formControlName="StartSign" ></ngb-timepicker>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
+                                <label for="EndSign">EndSign</label>
+                                <ngb-timepicker  [(ngModel)]="this.worktimes.EndSign" formControlName="EndSign" ></ngb-timepicker>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
                                 <label for="StartShift">StartShift</label>
-                                <input [(ngModel)]="this.worktimes.StartShift"  [readonly]="this.button" formControlName="StartShift" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="this.worktimes.StartShift" formControlName="StartShift"></ngb-timepicker>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
+                                <label for="LatePermission">LatePermission</label>
+                                <ngb-timepicker [(ngModel)]="this.worktimes.LatePermission" formControlName="LatePermission"></ngb-timepicker>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row  ">
+                        
+                        <div class="col-lg-4 mb-4">
+                            <div class="form-group">
                                 <label for="EndShift">EndShift</label>
-                                <input [(ngModel)]="this.worktimes.EndShift"  [readonly]="this.button" formControlName="EndShift" type="text" class="form-control">
+                                <ngb-timepicker [(ngModel)]="this.worktimes.EndShift" formControlName="EndShift"></ngb-timepicker>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <div class="form-group">
                                 <label for="EarlyPermission">EarlyPermission</label>
-                                <input [(ngModel)]="this.worktimes.EarlyPermission"  [readonly]="this.button" formControlName="EarlyPermission" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row  ">
-                        <div class="col-lg-4 mb-4">
-                            <div class="form-group">
-                                <label for="LatePermission">LatePermission</label>
-                                <input [(ngModel)]="this.worktimes.LatePermission"  [readonly]="this.button" formControlName="LatePermission" type="text" class="form-control">
-                            </div>
-                        </div>
+                                <ngb-timepicker [(ngModel)]="this.worktimes.EarlyPermission" formControlName="EarlyPermission"></ngb-timepicker>
 
-                        <div class="col">
-                            <div class="form-groupmt-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input [(ngModel)]="this.worktimes.isHour" type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                        formControlName="isHour">
-                                    <label class="custom-control-label" for="isHour">isHour</label>
-                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-groupmt-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input [(ngModel)]="this.worktimes.isDayOff" type="checkbox" class="custom-control-input checkbox-dark-gray"
-                                        formControlName="isDayOff">
-                                    <label class="custom-control-label" for="isDayOff">isDayOff</label>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="row justify-content-center mt-5" *ngIf="!this.button">
                         <button type="submit" class="btn btn-success mr-3" [disabled]="!worktimeForm.valid"
