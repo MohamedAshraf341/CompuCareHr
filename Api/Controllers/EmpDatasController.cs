@@ -55,7 +55,7 @@ namespace Site4Check.Controllers
 
         // PUT: api/EmpDatas/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmpData([FromRoute] int id, [FromForm] EmpDateVm empDateVm)
+        public async Task<IActionResult> PutEmpData( int id,  EmpDateVm empDateVm)
         {
             if (!ModelState.IsValid)
             {
@@ -153,7 +153,7 @@ namespace Site4Check.Controllers
         #region NewEmpDate 
         // POST: api/EmpDatas
         [HttpPost]
-        public IActionResult PostEmpData([FromForm] EmpDateVm empDateVm)
+        public IActionResult PostEmpData( EmpDateVm empDateVm)
         {
 
             var dbPath = "";

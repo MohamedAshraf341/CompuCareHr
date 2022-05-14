@@ -30,6 +30,7 @@ export class ListuserroleComponent implements OnInit {
   getListOftable() {
     this.UserSystemService.getusers().subscribe((res: any) => {
       this.UserSystems = res;
+      console.log(this.UserSystems);
     });
 
   }

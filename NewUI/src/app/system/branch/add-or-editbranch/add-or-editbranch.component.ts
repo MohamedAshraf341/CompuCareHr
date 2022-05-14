@@ -66,5 +66,4 @@ export class AddOrEditbranchComponent implements OnInit {
     this.alert=false;
 
   }
-
 }

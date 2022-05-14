@@ -1,1 +1,179 @@
-<p>add-or-edituserrole works!</p>
+<div *ngIf="this.alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You successfully Save changed this important alert message.
+</div>
+<!-- add userrole  -->
+<div class="row" *ngIf="this.userroleId==0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="userroleForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="username">User Name</label>
+                                <input type="text" class="form-control" formControlName="username" id="username"
+                                    >
+                                <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['username'].errors && f['username'].errors['required']">username is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" formControlName="password" id="password"
+                                   >
+                                <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['password'].errors && f['password'].errors['required']">password is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="row">
+                        <div class="col-12">
+                            <div class="table-responsive bg-white box-shadow">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr> 
+                                            
+                                            <th>Name</th> 
+                                            <th><input  (change)="checkAllCheckBox('New',$event)" type="checkbox" class="mr-2"  id="selectallNew" >Create</th>
+                                            <th><input (change)="checkAllCheckBox('edit',$event)" type="checkbox" class="mr-2" id="selectalledit">Edit</th> 
+                                            <th><input (change)="checkAllCheckBox('delete',$event)" type="checkbox" class="mr-2" id="selectalldelete">Delete</th>
+                                            <th><input (change)="checkAllCheckBox('login',$event)" type="checkbox" class="mr-2" id="selectalllogin">View</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let userpage of userpages ">                       
+                                            <td class="align-middle text-truncate">{{userpage.PaageName}}</td>
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.New" type="checkbox" formControlName="New" id="{{userpage.PaageName}}New">
+                                            </td>
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.edit"  type="checkbox" formControlName="edit" id="{{userpage.PaageName}}edit">
+                                            </td> 
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.delete" type="checkbox" formControlName="delete" id="{{userpage.PaageName}}delete">
+                                            </td> 
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.login" type="checkbox" formControlName="login" id="{{userpage.PaageName}}login">
+                                            </td> 
+                                           
+
+
+                    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!userroleForm.valid"
+                            (click)="SubmitAddoredit()">Save</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Edit userrole  -->
+<div class="row" *ngIf="this.userroleId>0">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <a class="btn btn-info add-new" (click)="Backtolist()">
+                        <i class="fa fa-arrow-left mr-2"></i>
+                    </a>
+                </div>
+                <form [formGroup]="userroleForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="username">User Name</label>
+                                <input  type="text" class="form-control" formControlName="username" id="username"
+                                    >
+                                <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['username'].errors && f['username'].errors['required']">username is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" formControlName="password" id="password"
+                                   >
+                                <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['password'].errors && f['password'].errors['required']">password is
+                                        required.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="row">
+                        <div class="col-12">
+                            <div class="table-responsive bg-white box-shadow">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr> 
+                                            
+                                            <th>Name</th> 
+                                            <th> <input  (change)="checkAllCheckBox('New',$event)" type="checkbox" class="mr-2"  id="selectallNew" >Create</th>
+                                            <th><input (change)="checkAllCheckBox('edit',$event)" type="checkbox" class="mr-2" id="selectalledit">Edit</th> 
+                                            <th> <input (change)="checkAllCheckBox('delete',$event)" type="checkbox" class="mr-2" id="selectalldelete">Delete</th>
+                                            <th> <input (change)="checkAllCheckBox('login',$event)" type="checkbox" class="mr-2" id="selectalllogin">View</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let userpage of userpages ">                       
+                                            <td class="align-middle text-truncate">{{userpage.PaageName}}</td>
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.New" type="checkbox" formControlName="New" id="{{userpage.PaageName}}New">
+                                            </td>
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.edit" type="checkbox" formControlName="edit" id="{{userpage.PaageName}}edit">
+                                            </td> 
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.delete" type="checkbox" formControlName="delete" id="{{userpage.PaageName}}delete">
+                                            </td> 
+                                            <td class="align-middle text-truncate">
+                                                <input [(ngModel)]="this.userpage.login" type="checkbox" formControlName="login" id="{{userpage.PaageName}}login">
+                                            </td> 
+                                           
+
+
+                    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" [disabled]="!userroleForm.valid"
+                            (click)="SubmitAddoredit()">Update</button>
+                        <button class="btn btn-danger" (click)="clear()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -13,6 +13,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="type=='grid'" class="row">
     <div *ngFor="let UserSystem of UserSystems | userroleSearch :searchText | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;" class="col-xl-4 col-lg-6 mb-4">
         <div class="flip">
@@ -21,8 +22,8 @@
                     <div class="card border-0 box-shadow rounded-0">
                         <div class="card-header border-0 rounded-0 text-muted">
                             <div class="widget-controls"> 
-                                <a  href="javascript:void(0);" class="transition" (click)="view(UserSystem.Id,false)"><i class="fa fa-eye"></i></a>             
-                                <a  href="javascript:void(0);" class="transition" (click)="addOrEdit(UserSystem.Id)"><i class="fa fa-pencil"></i></a>             
+                                <a  href="javascript:void(0);" class="transition" (click)="view(UserSystem.id,false)"><i class="fa fa-eye"></i></a>             
+                                <a  href="javascript:void(0);" class="transition" (click)="addOrEdit(UserSystem.id)"><i class="fa fa-pencil"></i></a>             
                                 <a href="javascript:void(0);" class="transition" (click)="openModal( modalContent,UserSystem)"><i class="fa fa-trash"></i></a> 
                                 
                             </div>        
@@ -56,8 +57,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr> 
-                        <th>Id</th> 
-                        <th>Name</th> 
+                        <th>Id </th> 
+                        <th>Name </th> 
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -69,8 +70,8 @@
 
                         <td class="align-middle">
                             <div class="btn-group" role="group">
-                                <button class="btn btn-secondary btn-sm" (click)="view(UserSystem.Id,false)"><i class="fa fa-eye"></i></button>
-                                <button class="btn btn-secondary btn-sm" (click)="addOrEdit(UserSystem.Id)"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="view(UserSystem.id,false)"><i class="fa fa-eye"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="addOrEdit(UserSystem.id)"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-secondary btn-sm" (click)="openModal( modalContent,UserSystem)"><i class="fa fa-trash"></i></button>
                             </div>
                         </td>
