@@ -36,6 +36,7 @@ import { ListholidayComponent } from 'src/app/system/TransactionHoliday/listholi
 import { AddOrEditholidayComponent } from 'src/app/system/TransactionHoliday/add-or-editholiday/add-or-editholiday.component';
 import { ListpermissionComponent } from 'src/app/system/TransactionPermission/listpermission/listpermission.component';
 import { AddOrEditpermissionComponent } from 'src/app/system/TransactionPermission/add-or-editpermission/add-or-editpermission.component';
+import { ReportComponent } from 'src/app/system/report/report.component';
 
 
 export const routes: Routes = [
@@ -118,13 +119,16 @@ export const routes: Routes = [
       {path:'permission',component:ListpermissionComponent, data: { breadcrumb: 'permission' }},
       {path:'addOrEditpermission/:id',component:AddOrEditpermissionComponent, data: { breadcrumb: 'addOrEditpermission' }},
       {path:'addOrEditpermission/:id/:button',component:AddOrEditpermissionComponent, data: { breadcrumb: 'addOrEditpermission' }},
+      //Report
+      {path:'Report',component:ReportComponent, data: { breadcrumb: 'Report' }},
+
 
 
 
     ]
   },
-  { path: 'login', loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'register', loadChildren: () => import('src/app/pages/register/register.module').then(m => m.RegisterModule) },
+  // { path: 'login', loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
+  // { path: 'register', loadChildren: () => import('src/app/pages/register/register.module').then(m => m.RegisterModule) },
   { path: '**', component: NotFoundComponent }
 ]; 
 

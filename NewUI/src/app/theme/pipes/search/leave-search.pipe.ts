@@ -8,12 +8,11 @@ export class LeaveSearchPipe implements PipeTransform {
   transform(value, args?): Array<any> {
     let searchText = new RegExp(args, 'ig');
     if (value) {
-      return value.filter(Leave => {
-        if (Leave.Name || Leave.Alis || Leave.Issub || Leave.AcceptVac) {
-          if (Leave.Name.search(searchText) !== -1 || Leave.Alis.search(searchText) !== -1 || Leave.Issub.search(searchText) !== -1 || Leave.AcceptVac.search(searchText) !== -1) {
+      return value.filter(leaves => {
+        if(leaves.Name || leaves.Alis || leaves.Issub || leaves.AcceptVac ){
+          if(leaves.Name.search(searchText) !== -1 || leaves.Alis.search(searchText) !== -1||leaves.Issub.search(searchText) !== -1 || leaves.AcceptVac.search(searchText) !== -1 ){
             return true;
           }
-
         }
       });
     }

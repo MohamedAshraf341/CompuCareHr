@@ -41,10 +41,13 @@ export class AddOrEditleavesComponent implements OnInit {
     {
       this.LeavesService.getleavebyid(this.leaveId).subscribe((res:any)=>{
         this.leaves = res;
-        console.log(res);
+        console.log(this.leaves);
       })
 
     }
+    this.getListOfleavesTypes();
+    this.getListOfleavesRules();
+    this.getListOfleavesVacations();
     this.leaveForm = new FormGroup({
       Name: new FormControl('', [Validators.required]),
       Alis: new FormControl(''),
@@ -56,9 +59,7 @@ export class AddOrEditleavesComponent implements OnInit {
       LeavesRuleID: new FormControl(''),
     });
 
-    this.getListOfleavesTypes();
-    this.getListOfleavesRules();
-    this.getListOfleavesVacations();
+
   }
   get f(){
     return this.leaveForm.controls;

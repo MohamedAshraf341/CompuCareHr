@@ -42,6 +42,7 @@ export class ReportComponent implements OnInit {
     });
   }
 
+  
   ngOnInit(): void {
     this.userid = JSON.parse(localStorage.getItem('UserId') as any) ;
     this.getListOfemployees();

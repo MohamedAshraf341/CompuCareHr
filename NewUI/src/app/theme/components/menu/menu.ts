@@ -1,7 +1,23 @@
 import { Menu } from './menu.model';
-
-export const verticalMenuItems = [ 
-    new Menu (1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
+import { PermissionService } from 'src/app/services/permission/permission.service';
+import { usersystempage } from 'src/app/models/usersystempage';
+let userpage: usersystempage[] = [];
+let permission: PermissionService;
+let userid: any;
+userid = JSON.parse(localStorage.getItem('UserId') as any);
+function callmenu(): Menu[] {
+    var pages: Menu[];
+    permission.getuserpermissionbyid(userid).subscribe((res: any) => {
+        userpage = res;
+        pages.length=userpage.length;
+        for (let i = 0; i < userpage.length; i++) {
+         pages[i]=new Menu(userpage[i].UserId, userpage[i].PaageName, userpage[i].url, null, userpage[i].icon, null, false, 11)           
+        }
+    });
+    return pages;
+}
+export const verticalMenuItems =[
+    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
     new Menu(11, 'Master Data', null, null, 'folder-open-o', null, true, 0),
     new Menu(2, 'Company', 'company', null, 'university', null, false, 11),
     // new Menu(3, 'Government', null, null, 'fort-awesome', null, false, 11),
@@ -15,13 +31,13 @@ export const verticalMenuItems = [
     new Menu(10, 'Leaves', 'leaves', null, 'leaf', null, false, 11),
     new Menu(12, 'Work Time', 'worktime', null, 'clock-o', null, false, 11),
     new Menu(13, 'Employees', 'employee', null, 'user', null, false, 11),
-
     new Menu(111, 'Transactions', null, null, 'exchange', null, true, 0),
     new Menu(15, 'Permission', 'permission', null, 'lock', null, false, 111),
     new Menu(16, 'Holiday', 'holiday', null, 'anchor', null, false, 111),
     new Menu(17, 'Errand', 'errand', null, 'folder-open-o', null, false, 111),
-
     new Menu(1111, 'User Role', 'userrole', null, 'lock', null, false, 0),
+    new Menu(11111, 'Report', 'Report', null, 'file', null, false, 0),
+
 
     // new Menu (2, 'ADMIN_NAV.MEMBERSHIP', '/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'ADMIN_NAV.UI_FEATURES', null, null, 'laptop', null, true, 0),   
@@ -74,8 +90,8 @@ export const verticalMenuItems = [
     // new Menu (200, 'ADMIN_NAV.EXTERNAL_LINK', null, 'http://themeseason.com', 'external-link', '_blank', false, 0)
 ]
 
-export const horizontalMenuItems = [ 
-    new Menu (1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
+export const horizontalMenuItems =[
+    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
     new Menu(11, 'Pages', null, null, 'folder-open-o', null, true, 0),
     new Menu(2, 'Company', 'company', null, 'university', null, false, 11),
     new Menu(3, 'Government', null, null, 'fort-awesome', null, false, 11),
@@ -87,13 +103,11 @@ export const horizontalMenuItems = [
     new Menu(9, 'Publich Holiday', null, null, 'angellist', null, false, 11),
     new Menu(10, 'Leaves', null, null, 'leaf', null, false, 11),
     new Menu(12, 'Time Work', null, null, 'clock-o', null, false, 11),
-
     new Menu(111, 'Transactions', null, null, 'exchange', null, true, 0),
     new Menu(13, 'Permission', null, null, 'lock', null, false, 111),
     new Menu(14, 'Holiday', null, null, 'anchor', null, false, 111),
     new Menu(15, 'Errand', null, null, 'folder-open-o', null, false, 111),
-
-    new Menu(1111, 'User Role', null, null, 'lock', null, false, 0),
+    new Menu(11111, 'Report', 'Report', null, 'file', null, false, 0),
 
     // new Menu (2, 'ADMIN_NAV.MEMBERSHIP', '/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'ADMIN_NAV.UI_FEATURES', null, null, 'laptop', null, true, 0),   

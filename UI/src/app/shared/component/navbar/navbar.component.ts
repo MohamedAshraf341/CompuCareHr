@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit {
     this.Permission.getuserpermissionbyid(id).subscribe((res: any) => {
       this.userpage = res;
       console.log(res);
+      
        
     });
   }
