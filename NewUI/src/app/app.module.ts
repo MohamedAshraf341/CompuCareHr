@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 //angular material
 import {ReactiveFormsModule} from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -110,6 +111,8 @@ import { AddOrEditholidayComponent } from 'src/app/system/TransactionHoliday/add
 import { ListpermissionComponent } from 'src/app/system/TransactionPermission/listpermission/listpermission.component';
 import { AddOrEditpermissionComponent } from 'src/app/system/TransactionPermission/add-or-editpermission/add-or-editpermission.component';
 import { ReportComponent } from 'src/app/system/report/report.component';
+import { PageErrorComponent } from 'src/app/system/page-error/page-error.component';
+import { WorkSchedulesComponent } from 'src/app/system/work-schedules/work-schedules.component';
 
 
  
@@ -220,6 +223,8 @@ import { ReportComponent } from 'src/app/system/report/report.component';
     ListpermissionComponent,
     AddOrEditpermissionComponent,
     ReportComponent,
+    PageErrorComponent,
+    WorkSchedulesComponent,
   ],
   entryComponents: [
     ConfirmDeleteComponent

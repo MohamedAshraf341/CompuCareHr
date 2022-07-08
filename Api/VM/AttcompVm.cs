@@ -21,5 +21,7 @@ namespace Site4Check.VM
         public string Date { get; set; }
         public string PerJob { get; set; }
         public bool isActive { get; set; }
+        public string status { get; set; }
+
     }
 }

@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { Menu } from './menu.model';
 import { verticalMenuItems } from './menu';
 import { horizontalMenuItems } from './menu';
+// import { menu } from './menu';
+
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
@@ -12,15 +14,20 @@ export class MenuService {
   constructor(private location:Location, 
               private renderer2:Renderer2,
               private router:Router,
-              public translateService: TranslateService){ } 
+              public translateService: TranslateService,
+             ){ } 
 
 
   public getVerticalMenuItems():Array<Menu> {
-    return verticalMenuItems;
+    // return this.menuee.verticalMenuItems;
+        return verticalMenuItems;
+
   }
 
   public getHorizontalMenuItems():Array<Menu> {
-    return horizontalMenuItems;
+    // return this.menuee.horizontalMenuItems;
+        return horizontalMenuItems;
+
   }
 
   public createMenu(menu:Array<Menu>, nativeElement, type){    

@@ -7,7 +7,7 @@
             </div>                   
             <input type="text" [(ngModel)]="searchText" placeholder="Search user by name..." class="form-control border-0">
             <div class="input-group-append">
-                <span class="input-group-text border-top-0 border-right-0 border-bottom-0" [routerLink]="['/addOrEditshift/0']"><i class="fa fa-user-plus"></i></span>
+                <span class="input-group-text border-top-0 border-right-0 border-bottom-0" [routerLink]="['/addOrEditshift/0']" *ngIf="this.userpage[0]?.New==true"><i class="fa fa-user-plus"></i></span>
                 <span (click)="toggle('grid')" class="input-group-text border-top-0 border-right-0 border-bottom-0"><i class="fa fa-th"></i></span>
                 <span (click)="toggle('list')" class="input-group-text border-top-0 border-right-0 border-bottom-0"><i class="fa fa-list"></i></span>
             </div>
@@ -22,9 +22,9 @@
                     <div class="card border-0 box-shadow rounded-0">
                         <div class="card-header border-0 rounded-0 text-muted">
                             <div class="widget-controls"> 
-                                <a  href="javascript:void(0);" class="transition" (click)="view(shift.Id,false)"><i class="fa fa-eye"></i></a>             
-                                <a  href="javascript:void(0);" class="transition" (click)="addOrEdit(shift.Id)"><i class="fa fa-pencil"></i></a>             
-                                <a href="javascript:void(0);" class="transition" (click)="openModal( modalContent,shift)"><i class="fa fa-trash"></i></a> 
+                                <a  href="javascript:void(0);" class="transition" (click)="view(shift.Id,false)" *ngIf="this.userpage[0]?.login==true"><i class="fa fa-eye"></i></a>             
+                                <a  href="javascript:void(0);" class="transition" (click)="addOrEdit(shift.Id)" *ngIf="this.userpage[0]?.edit==true"><i class="fa fa-pencil"></i></a>             
+                                <a href="javascript:void(0);" class="transition" (click)="openModal( modalContent,shift)" *ngIf="this.userpage[0]?.delete==true"><i class="fa fa-trash"></i></a> 
                                 
                             </div>        
                         </div>
@@ -70,9 +70,9 @@
 
                         <td class="align-middle">
                             <div class="btn-group" role="group">
-                                <button class="btn btn-secondary btn-sm" (click)="view(shift.Id,false)"><i class="fa fa-eye"></i></button>
-                                <button class="btn btn-secondary btn-sm" (click)="addOrEdit(shift.Id)"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-secondary btn-sm" (click)="openModal( modalContent,shift)"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="view(shift.Id,false)" *ngIf="this.userpage[0]?.login==true"><i class="fa fa-eye"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="addOrEdit(shift.Id)" *ngIf="this.userpage[0]?.edit==true"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-secondary btn-sm" (click)="openModal( modalContent,shift)" *ngIf="this.userpage[0]?.delete==true"><i class="fa fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>

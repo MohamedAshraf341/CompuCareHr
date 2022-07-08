@@ -17,6 +17,7 @@
     "PAGES": "Pages",
     "BLANK": "Blank",
     "ERROR": "Error", 
-    "EXTERNAL_LINK": "External Link" 
+    "EXTERNAL_LINK": "External Link",
+    "Company":"Company"
   } 
 }

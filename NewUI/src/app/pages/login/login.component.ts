@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { LoginService } from 'src/app/services/login/login.service';
-
+import { NotificationService } from 'src/app/services/notfication/notification.service'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +14,7 @@ export class LoginComponent {
   public form:FormGroup;
   public username:AbstractControl;
   public password:AbstractControl;
-  constructor(router:Router, private loginService:LoginService, fb:FormBuilder) {
+  constructor(router:Router, private loginService:LoginService, fb:FormBuilder,private notifyService : NotificationService) {
       this.router = router;
       this.form = fb.group({
           'username': ['', Validators.compose([Validators.required, Validators.minLength(1)])],
@@ -37,12 +37,11 @@ export class LoginComponent {
           if(res.status=="Success")
           {
             this.router.navigate(['defaultPage'])
-          //  this.snackBar.openSnackBar('Welcome', res.Name, 'green-snackbar');
-    
+            return this.notifyService.showSuccess("Login successfully !!", res.username)    
           }
           else
           {
-           // this.snackBar.openSnackBar('UserNamme or Password is wrong', 'Close', 'red-snackbar');
+           return this.notifyService.showError( "login failed","UserNamme or Password is wrong")
     
           }
          })

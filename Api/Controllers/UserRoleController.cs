@@ -257,6 +257,7 @@ namespace Site4Check.Controllers
 
 
         }
+        
         [HttpPut("UpdateUserPermission/{id}")]
         public async Task<IActionResult> UpdateUserPermission([FromRoute] int id, [FromBody] UserSystempageVm userrole)
         {

@@ -23,6 +23,8 @@ export class AddOrEdituserroleComponent implements OnInit {
   employees: employee[] = [];
   userpages :usersystempage[]=[];
 
+  userupdate:usersystempage[]=[];
+
 
   constructor(private location: Location,
     private employeeService: EmployeeService,
@@ -78,9 +80,17 @@ export class AddOrEdituserroleComponent implements OnInit {
   get f(){
     return this.userroleForm.controls;
   }
-  SubmitAddoredit(){
+  SubmitAdd(){
     this.userpages[0].username=this.userroleForm.value.username;
     this.userpages[0].password=this.userroleForm.value.password;
+    console.log(this.userpages);
+    this.Permission.addpermission1( this.userpages).subscribe((res:any) => {
+         console.log('company Added successfully!');
+         this.alert=true;
+        //  this.location.back();
+    })
+  }
+  Submitedit(){
     console.log(this.userpages);
     this.Permission.addpermission1( this.userpages).subscribe((res:any) => {
          console.log('company Added successfully!');
@@ -114,6 +124,9 @@ export class AddOrEdituserroleComponent implements OnInit {
 	}
   isAllChecked() {
     return this.userpages.every(_ => _.New);
+  }
+  trackByIdx(index: number, obj: any): any {
+    return index;
   }
   
 

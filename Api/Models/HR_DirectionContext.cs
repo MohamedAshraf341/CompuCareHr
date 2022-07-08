@@ -14,6 +14,10 @@ namespace Site4Check.Models
             : base(options)
         {
         }
+        public virtual DbSet<timeTableD> timeTableD { get; set; }
+        public virtual DbSet<timeTableH> timeTableH { get; set; }
+
+
         public virtual DbSet<AccountStatement> AccountStatement { get; set; }
         public virtual DbSet<AggregatedCounter> AggregatedCounter { get; set; }
         public virtual DbSet<Systempage> Systempage { get; set; }

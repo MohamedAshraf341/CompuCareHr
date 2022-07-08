@@ -43,6 +43,7 @@ export class ToasterComponent implements OnInit {
   private lastInserted: number[] = [];
   constructor(public toastrService: ToastrService) { 
     this.options = this.toastrService.toastrConfig;
+    
   }
 
   ngOnInit() {

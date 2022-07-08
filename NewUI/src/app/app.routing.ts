@@ -37,15 +37,18 @@ import { AddOrEditholidayComponent } from 'src/app/system/TransactionHoliday/add
 import { ListpermissionComponent } from 'src/app/system/TransactionPermission/listpermission/listpermission.component';
 import { AddOrEditpermissionComponent } from 'src/app/system/TransactionPermission/add-or-editpermission/add-or-editpermission.component';
 import { ReportComponent } from 'src/app/system/report/report.component';
+import { PageErrorComponent } from 'src/app/system/page-error/page-error.component';
+import { WorkSchedulesComponent } from 'src/app/system/work-schedules/work-schedules.component';
+
 
 
 export const routes: Routes = [
-  // {path:'',loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
+  {path:'',loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule) },
   {
     path: '', component: PagesComponent,
     children:[
       // {path:"defaultPage",component:DashboardComponent},
-      { path: '', loadChildren: () => import('src/app/pages/dashboard/dashboard.module').then(m => m.DashboardModule), data: { breadcrumb: 'Dashboard' }  },          
+      { path: 'defaultPage', loadChildren: () => import('src/app/pages/dashboard/dashboard.module').then(m => m.DashboardModule), data: { breadcrumb: 'Dashboard' }  },          
       { path: 'membership', loadChildren: () => import('src/app/pages/membership/membership.module').then(m => m.MembershipModule), data: { breadcrumb: 'Membership' } },
       { path: 'ui', loadChildren: () => import('src/app/pages/ui/ui.module').then(m => m.UiModule), data: { breadcrumb: 'UI' } },
       { path: 'form-elements', loadChildren: () => import('src/app/pages/form-elements/form-elements.module').then(m => m.FormElementsModule), data: { breadcrumb: 'Form Elements' } },
@@ -121,6 +124,11 @@ export const routes: Routes = [
       {path:'addOrEditpermission/:id/:button',component:AddOrEditpermissionComponent, data: { breadcrumb: 'addOrEditpermission' }},
       //Report
       {path:'Report',component:ReportComponent, data: { breadcrumb: 'Report' }},
+      //NotFound
+      {path:'NotFound',component:PageErrorComponent, data: { breadcrumb: 'NotFound' }},
+      //workschedule
+      {path:'workschedule',component:WorkSchedulesComponent, data: { breadcrumb: 'workschedule' }},
+
 
 
 

@@ -26,13 +26,9 @@ export class NavbarComponent implements OnInit {
     this.getpagesedit(87);
   }
   getpagesedit(id:number) {
-
-
     this.Permission.getuserpermissionbyid(id).subscribe((res: any) => {
       this.userpage = res;
       console.log(res);
-      
-       
     });
   }
   isExpanded = true;

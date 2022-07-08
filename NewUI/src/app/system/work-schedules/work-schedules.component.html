@@ -1,0 +1,156 @@
+<div *ngIf="this.Alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Warning!</strong> You should counter rather than 1.
+</div>
+<div class="row">
+    <div class="col">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-body widget-body">
+                <form [formGroup]="workschedulesForm" >
+                    <div class="p-2 flex-grow-1 bd-highlight">
+                        <a class="btn btn-info add-new" (click)="Backtolist()">
+                            <i class="fa fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Name </label>
+                                <input type="text" formControlName="Name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Periode">Periode </label>
+                                    <input readonly [(ngModel)]="values" type="number"
+                                        formControlName="TimePeriod" class="form-control " >
+                                        <!-- (input)="onKey($event)" -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button (click)="addNewtableH()" class="fa fa-arrow-circle-up mr-3 p-t3" style="font-size:36px"></button>
+                                <button (click)="removetableH(values)" class="fa fa-arrow-circle-down p-t3" style="font-size:36px"></button>
+
+                            </div>
+                            
+                            <!-- {{values}} -->
+                            {{values}}
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="StartDate">StartDate </label>
+                                <div class="input-group">
+                                    <input formControlName="StartDate" class="form-control" placeholder="yyyy-mm-dd"
+                                        name="dp1" [(ngModel)]="model" ngbDatepicker [dayTemplate]="StartDate"
+                                        [markDisabled]="isDisabled" #dc1="ngbDatepicker">
+                                    <div class="input-group-append" (click)="dc1.toggle()">
+                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #StartDate let-date="date" let-currentMonth="currentMonth"
+                                let-selected="selected" let-disabled="disabled">
+                                <span class="custom-day" [class.weekend]="isWeekend(date)" [class.bg-primary]="selected"
+                                    [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+                                    {{ date.day }}
+                                </span>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" formControlName="Morning"
+                                        class="custom-control-input checkbox-dark-gray" id="Morning">
+                                    <label class="custom-control-label" for="Morning">Morning</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" formControlName="Shift"
+                                        class="custom-control-input checkbox-dark-gray" id="Shift">
+                                    <label class="custom-control-label" for="Shift">Shift</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" formControlName="Driver"
+                                        class="custom-control-input checkbox-dark-gray" id="Driver">
+                                    <label class="custom-control-label" for="Driver">Driver</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-groupmt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" formControlName="shiftdriver"
+                                        class="custom-control-input checkbox-dark-gray" id="shiftdriver">
+                                    <label class="custom-control-label" for="shiftdriver">shiftdriver</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive bg-white box-shadow">
+                                <ng-container formArrayName="tableH">
+                                    <ng-container >
+                                        <div >
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>num of Day</th>
+                                                        <th>Day</th>
+                                                        <th>Is Day Off</th>
+                                                        <th>Shift</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let tableHForm of tableH.controls; let index = index">
+                                                    <tr [formGroupName]="index" >
+                                                        <td class="align-middle text-truncate">{{index+1}}</td>
+                                                        <td class="align-middle text-truncate">
+                                                            {{selectedDay}}
+                                                        </td>
+                                                        <td class="align-middle text-truncate">
+                                                            <input type="checkbox" formControlName="isdayoff"
+                                                                id="isdayoff">
+                                                        </td>
+                                                        <td class="align-middle text-truncate">
+                                                            <select formControlName="ShiftCode" class="form-control"
+                                                                id="ShiftCode">
+                                                                <option *ngFor="let shift of shifts" [value]="shift.Id">
+                                                                    {{shift.Arname}}
+                                                                </option>
+
+                                                            </select>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <button type="submit" class="btn btn-success mr-3" (click)="submitsave()">save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

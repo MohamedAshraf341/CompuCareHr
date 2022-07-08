@@ -17,6 +17,8 @@
     "PAGES": "Des pages",
     "BLANK": "Vide",
     "ERROR": "Erreur",
-    "EXTERNAL_LINK": "Lien Externe" 
+    "EXTERNAL_LINK": "Lien Externe" ,
+    "Company":"Compagnie"
+
   }
 }

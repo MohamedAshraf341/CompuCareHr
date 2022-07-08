@@ -3,6 +3,8 @@ import { employee } from 'src/app/models/employee.model';
 import {  EmployeeService} from 'src/app/services/employee/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { usersystempage } from 'src/app/models/usersystempage';
+import { PermissionService } from 'src/app/services/permission/permission.service';
 
 @Component({
   selector: 'app-listemployee',
@@ -10,6 +12,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./listemployee.component.scss']
 })
 export class ListemployeeComponent implements OnInit {
+  userpage: usersystempage[] = [];
+  userId:number;
 public modalRef: NgbModalRef;
   public searchText: string;
   public p: any;
@@ -18,11 +22,25 @@ public modalRef: NgbModalRef;
   constructor(
     public modalService: NgbModal,
     private router: Router,
-    private employeeService: EmployeeService,
+    private employeeService: EmployeeService,private Permission: PermissionService
   ) {
   }
   ngOnInit(): void {
+    this.userId = JSON.parse(localStorage.getItem('UserId') as any);
+    this.getpagepermission(this.userId,14);
     this.getListOftable();
+
+  }
+
+  getpagepermission(userid:number,pageid:number) {
+    this.Permission.getuserpermissionbypageid(userid,pageid).subscribe((res: any) => {
+      this.userpage = res;
+      console.log(res);
+      if(this.userpage[0].New===false && this.userpage[0].edit===false && this.userpage[0].delete===false && this.userpage[0].login===false )
+    {
+      return this.router.navigate(['/NotFound']);
+    }
+    });
   }
   public toggle(type) {
     this.type = type;

@@ -5,6 +5,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { branch } from 'src/app/models/branch.model';
 import { BranchService } from 'src/app/services/branch/branch.service';
+import { NotificationService } from 'src/app/services/notfication/notification.service'; 
+
 @Component({
   selector: 'app-add-or-editbranch',
   templateUrl: './add-or-editbranch.component.html',
@@ -19,7 +21,7 @@ export class AddOrEditbranchComponent implements OnInit {
   constructor(private location: Location,
     public branchservices:BranchService,
     private router: Router,
-    private activateRout:ActivatedRoute,) { }
+    private activateRout:ActivatedRoute,private notifyService : NotificationService) { }
     public modelCustom: NgbDateStruct;
   ngOnInit(): void {
     this.branchId=this.activateRout.snapshot.paramMap.get('id');
@@ -43,17 +45,33 @@ export class AddOrEditbranchComponent implements OnInit {
   }
   SubmitAdd(){
     console.log(this.branchForm.value);
-    this.branchservices.addBranch( this.branchForm.value).subscribe((res:any) => {
-         console.log('company Added successfully!');
-         this.alert=true;
-        //  this.location.back();
-    })
+    this.branchservices.addBranch( this.branchForm.value).subscribe((res:Response) => {
+      
+        if(this.branchForm.value != null)
+          this.showsuccess();
+          else
+          this.showerror();
+    });
+  }
+  showsuccess(){
+    return this.notifyService.showSuccess("Added successfully !!", "Add New branch");
+  }
+  showerror(){
+    return this.notifyService.showError("Failed Added !!","Something is wrong")
   }
   SubmitEdit(){
     console.log(this.branchForm.value);
     this.branchservices.editBranch( this.branchId,this.branchForm.value).subscribe((res:any) => {
          console.log('company Updated successfully!');
-         this.location.back();
+        if(res.statusText === 'OK')
+          {
+            return this.notifyService.showSuccess("Updated successfully !!", "Update branch")    
+          }
+          else
+          {
+           return this.notifyService.showError("Failed Update !!","Something is wrong")
+    
+          }
     })
   }
   Backtolist()

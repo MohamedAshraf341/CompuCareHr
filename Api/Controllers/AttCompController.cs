@@ -67,6 +67,8 @@ namespace Site4Check.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+                return Ok(company.status = "Success");
+
             }
             catch (DbUpdateConcurrencyException)
             {

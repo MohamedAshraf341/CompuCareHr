@@ -1,23 +1,52 @@
+import { Component, OnInit } from '@angular/core';
 import { Menu } from './menu.model';
 import { PermissionService } from 'src/app/services/permission/permission.service';
 import { usersystempage } from 'src/app/models/usersystempage';
-let userpage: usersystempage[] = [];
-let permission: PermissionService;
-let userid: any;
-userid = JSON.parse(localStorage.getItem('UserId') as any);
-function callmenu(): Menu[] {
-    var pages: Menu[];
-    permission.getuserpermissionbyid(userid).subscribe((res: any) => {
-        userpage = res;
-        pages.length=userpage.length;
-        for (let i = 0; i < userpage.length; i++) {
-         pages[i]=new Menu(userpage[i].UserId, userpage[i].PaageName, userpage[i].url, null, userpage[i].icon, null, false, 11)           
-        }
-    });
-    return pages;
-}
+// @Component({
+//     template: ''
+//   })
+// export class menu implements OnInit{
+//     userid:any;
+//     pages: Menu[]=[];
+//     userpage: usersystempage[] = [];
+// constructor(private permission: PermissionService){}
+// ngOnInit(): void {
+//     this.userid = JSON.parse(localStorage.getItem('UserId') as any);
+// }
+// callmenu(): Menu[] {
+//     this.permission.getuserpermissionbyid(this.userid).subscribe((res: any) => {
+//         this.userpage = res;
+//         for (let i = 0; i < this.userpage.length; i++) {
+//          this.pages.push(new Menu(this.userpage[i].UserId, this.userpage[i].PaageName, this.userpage[i].url, null, this.userpage[i].icon, null, false, 11))           
+//         }
+//     });
+//     return this.pages;
+// }
+// verticalMenuItems =this.callmenu();
+// horizontalMenuItems=this.callmenu();
+// }
+
+// let userpage: usersystempage[] = [];
+// let permission: PermissionService;
+// let userid: any;
+// userid = JSON.parse(localStorage.getItem('UserId') as any);
+// function callmenu(): Menu[] {
+//     var pages: Menu[]=[];
+//     // permission.getuserpermissionbyid(userid).subscribe((res: any) => {
+//     //     userpage = res;
+//     //     for (let i = 0; i < userpage.length; i++) {
+//     //      pages.push(new Menu(userpage[i].UserId, userpage[i].PaageName, userpage[i].url, null, userpage[i].icon, null, false, 11))           
+//     //     }
+//     // });
+    
+//     // pages.push(new Menu(1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0))
+//     // pages.push(new Menu(11, 'Pages', null, null, 'folder-open-o', null, true, 0))
+//     // pages.push(new Menu(2, 'Company', 'company', null, 'university', null, false, 11))
+//     return pages;
+// }
+// export const verticalMenuItems =callmenu()
 export const verticalMenuItems =[
-    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
+    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/defaultPage', null, 'tachometer', null, false, 0),
     new Menu(11, 'Master Data', null, null, 'folder-open-o', null, true, 0),
     new Menu(2, 'Company', 'company', null, 'university', null, false, 11),
     // new Menu(3, 'Government', null, null, 'fort-awesome', null, false, 11),
@@ -37,7 +66,7 @@ export const verticalMenuItems =[
     new Menu(17, 'Errand', 'errand', null, 'folder-open-o', null, false, 111),
     new Menu(1111, 'User Role', 'userrole', null, 'lock', null, false, 0),
     new Menu(11111, 'Report', 'Report', null, 'file', null, false, 0),
-
+    new Menu(111111, 'workschedule', 'workschedule', null, 'calendar', null, false, 0),
 
     // new Menu (2, 'ADMIN_NAV.MEMBERSHIP', '/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'ADMIN_NAV.UI_FEATURES', null, null, 'laptop', null, true, 0),   
@@ -91,7 +120,7 @@ export const verticalMenuItems =[
 ]
 
 export const horizontalMenuItems =[
-    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/', null, 'tachometer', null, false, 0),
+    new Menu(1, 'ADMIN_NAV.DASHBOARD', '/defaultPage', null, 'tachometer', null, false, 0),
     new Menu(11, 'Pages', null, null, 'folder-open-o', null, true, 0),
     new Menu(2, 'Company', 'company', null, 'university', null, false, 11),
     new Menu(3, 'Government', null, null, 'fort-awesome', null, false, 11),
@@ -108,6 +137,8 @@ export const horizontalMenuItems =[
     new Menu(14, 'Holiday', null, null, 'anchor', null, false, 111),
     new Menu(15, 'Errand', null, null, 'folder-open-o', null, false, 111),
     new Menu(11111, 'Report', 'Report', null, 'file', null, false, 0),
+    new Menu(111111, 'workschedule', 'workschedule', null, 'calendar', null, false, 0),
+
 
     // new Menu (2, 'ADMIN_NAV.MEMBERSHIP', '/membership', null, 'users', null, false, 0), 
     // new Menu (3, 'ADMIN_NAV.UI_FEATURES', null, null, 'laptop', null, true, 0),   

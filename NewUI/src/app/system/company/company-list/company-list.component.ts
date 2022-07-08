@@ -3,35 +3,52 @@ import { company } from 'src/app/models/company.model';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-// import { ConfirmDeleteComponent } from '../../dialog/confirm-delete/confirm-delete.component';
-// import { MatSnackBarComponent } from '../../dialog/mat-snack-bar/mat-snack-bar.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
-
+import { usersystempage } from 'src/app/models/usersystempage';
+import { PermissionService } from 'src/app/services/permission/permission.service';
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
   styleUrls: ['./company-list.component.scss']
 })
 export class CompanyListComponent implements OnInit {
+  userpage : usersystempage[] = [];
+  userId:number;
   public modalRef: NgbModalRef;
   public searchText: string;
   public p: any;
   public type: string = 'list';
   companies: company[] = [];
-  company: company
+  company: company;
+  
   constructor(
     // private snackBar: MatSnackBarComponent,
     public modalService: NgbModal,
     private router: Router,
     private companyService: CompanyService,
-    private dialog: MatDialog,) {
+    private dialog: MatDialog,private Permission: PermissionService) {
   }
   ngOnInit(): void {
+    this.userId = JSON.parse(localStorage.getItem('UserId') as any);
+    this.getpagepermission(this.userId,1); 
     this.getListOfComanies();
+   
+
+
+    
   }
+  getpagepermission(userid:number,pageid:number) {
+    this.Permission.getuserpermissionbypageid(userid,pageid).subscribe((res: any) => {
+      this.userpage = res;
+      console.log(this.userpage);
+      if(this.userpage[0].New===false && this.userpage[0].edit===false && this.userpage[0].delete===false && this.userpage[0].login===false )
+    {
+      return this.router.navigate(['/NotFound']);
+    }
+    });
+  }  
+
   public toggle(type) {
     this.type = type;
   }
@@ -52,23 +69,7 @@ export class CompanyListComponent implements OnInit {
 
     this.companyService.deleteCompany(element.Id).subscribe((res: any) => {
       this.getListOfComanies();
-    });
-    // const confirmDialog = this.dialog.open(ConfirmDeleteComponent, {
-    //   data: {
-    //     title: 'Confirm Remove Company',
-    //     message: 'Are you sure, you want to remove an Company: ' + element.Enname
-    //   }
-    // });
-    // confirmDialog.afterClosed().subscribe(result => {
-    //   if (result === true) {
-    //     this.companyService.deleteCompany(element.Id).subscribe((res: any) => {
-    //       this.snackBar.openSnackBar('sucessfully Deleted ', 'Close', 'green-snackbar');
-    //       this.getListOfComanies();
-    //     });
-    //   }
-    // }); 
-  
-  
+    });  
   }
   public openModal(modalContent, company) {
 
@@ -81,19 +82,10 @@ export class CompanyListComponent implements OnInit {
       }
     });
   }
-  // open(content, videoId) {  
-  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {  
-  //     this.closeResult = `Closed with: ${result}`;  
-  //     if (result === 'yes') {  
-  //       this.deleteHero(videoId);  
-  //     }  
-  //   }, (reason) => {  
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
-  //   });  
-  // }
   public closeModal() {
     this.modalRef.close();
   }
+
 }
 
 

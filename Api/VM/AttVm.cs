@@ -12,5 +12,6 @@ namespace Site4Check.VM
         public string Arname { get; set; }
         public string Fdate { get; set; }
         public string Tdate { get; set; }
+        public string status { get; set; }
     }
 }

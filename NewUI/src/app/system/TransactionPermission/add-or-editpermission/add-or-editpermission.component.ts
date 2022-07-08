@@ -15,6 +15,7 @@ import { TransactionService } from 'src/app/services/Transaction/transaction.ser
   styleUrls: ['./add-or-editpermission.component.scss']
 })
 export class AddOrEditpermissionComponent implements OnInit {
+  UserCode!: number;
   public modelCustom1: NgbDateStruct;
   public modelCustom: NgbDateStruct;
   alert:boolean=false;
@@ -31,6 +32,7 @@ export class AddOrEditpermissionComponent implements OnInit {
     private router: Router,
     private activateRout:ActivatedRoute,) { }
   ngOnInit(): void {
+    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any);
     this.transactionId=this.activateRout.snapshot.paramMap.get('id');
     this.button=this.activateRout.snapshot.paramMap.get('button');
     console.log(this.button);
@@ -73,7 +75,7 @@ export class AddOrEditpermissionComponent implements OnInit {
   SubmitAdd(){
     this.transactionForm.value.From = this.returndate(this.modelCustom1.year, this.modelCustom1.month, this.modelCustom1.day);
     this.transactionForm.value.To = this.returndate(this.modelCustom.year, this.modelCustom.month, this.modelCustom.day);
-
+    this.transactionForm.value.UserCode = this.UserCode
     console.log(this.transactionForm.value);
     this.transactionServices.addTransaction( this.transactionForm.value).subscribe((res:any) => {
          console.log('company Added successfully!');
@@ -84,6 +86,7 @@ export class AddOrEditpermissionComponent implements OnInit {
   SubmitEdit(){
     this.transactionForm.value.From = this.returndate(this.transactions.From.year, this.transactions.From.month, this.transactions.From.day);
     this.transactionForm.value.To = this.returndate(this.transactions.To.year, this.transactions.To.month, this.transactions.To.day);
+    this.transactionForm.value.UserCode = this.UserCode
     console.log(this.transactionForm.value);
     this.transactionServices.updateTransaction( this.transactionId,this.transactionForm.value).subscribe((res:any) => {
          console.log('company Updated successfully!');

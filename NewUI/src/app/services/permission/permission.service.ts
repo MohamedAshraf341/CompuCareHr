@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { forkJoin, Observable } from 'rxjs';
@@ -15,7 +16,12 @@ export class PermissionService {
   }
   getuserpermissionbyid(id:number)
   {
+    
     return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPage/${id}`);
+  }
+  getuserpermissionbypageid(userid:number,pageid:number)
+  {
+    return this.http.get(`${environment.apiUrl}userrole/GetUserSystemPageById/${userid}/${pageid}`);
   }
   edituserpermission(Id:number,data:any)
   {

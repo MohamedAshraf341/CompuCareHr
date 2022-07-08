@@ -462,6 +462,8 @@ namespace Site4Check.Controllers
             try
             {
                 _context.SaveChanges();
+                return Ok(200);
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -601,7 +603,7 @@ namespace Site4Check.Controllers
             try
             {
                 _context.SaveChanges();
-                return Ok(attVm);
+                return Ok();
 
             }
             catch (Exception)

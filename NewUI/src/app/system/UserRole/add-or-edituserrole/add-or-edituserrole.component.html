@@ -81,7 +81,7 @@
                     </div>
                     <div class="row justify-content-center mt-5">
                         <button type="submit" class="btn btn-success mr-3" [disabled]="!userroleForm.valid"
-                            (click)="SubmitAddoredit()">Save</button>
+                            (click)="SubmitAdd()">Save</button>
                         <button class="btn btn-danger" (click)="clear()">Clear</button>
                     </div>
                 </form>
@@ -101,12 +101,11 @@
                         <i class="fa fa-arrow-left mr-2"></i>
                     </a>
                 </div>
-                <form [formGroup]="userroleForm">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="username">User Name</label>
-                                <input  type="text" class="form-control" formControlName="username" id="username"
+                                <input [(ngModel)]="this.userpages[0].username"  type="text" class="form-control"  id="username"
                                     >
                                 <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger">
                                     <div *ngIf="f['username'].errors && f['username'].errors['required']">username is
@@ -117,7 +116,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="text" class="form-control" formControlName="password" id="password"
+                                <input [(ngModel)]="this.userpages[0].password" type="text" class="form-control"  id="password"
                                    >
                                 <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
                                     <div *ngIf="f['password'].errors && f['password'].errors['required']">password is
@@ -133,6 +132,7 @@
                                     <thead>
                                         <tr> 
                                             
+                                            
                                             <th>Name</th> 
                                             <th> <input  (change)="checkAllCheckBox('New',$event)" type="checkbox" class="mr-2"  id="selectallNew" >Create</th>
                                             <th><input (change)="checkAllCheckBox('edit',$event)" type="checkbox" class="mr-2" id="selectalledit">Edit</th> 
@@ -142,24 +142,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let userpage of userpages ">                       
+                                        <tr *ngFor="let userpage of userpages ; let i = index;trackBy:trackByIdx">                       
                                             <td class="align-middle text-truncate">{{userpage.PaageName}}</td>
                                             <td class="align-middle text-truncate">
-                                                <input [(ngModel)]="this.userpage.New" type="checkbox" formControlName="New" id="{{userpage.PaageName}}New">
+                                                <input [checked]="userpage.New"[(ngModel)]="userpage.New"   type="checkbox"  id="{{userpage.PaageName}}New">{{userpage.New}}
                                             </td>
                                             <td class="align-middle text-truncate">
-                                                <input [(ngModel)]="this.userpage.edit" type="checkbox" formControlName="edit" id="{{userpage.PaageName}}edit">
+                                                <input type="checkbox"  [checked]="userpage.edit"[(ngModel)]="userpage.edit" id="{{userpage.PaageName}}edit">{{userpage.edit}}
                                             </td> 
                                             <td class="align-middle text-truncate">
-                                                <input [(ngModel)]="this.userpage.delete" type="checkbox" formControlName="delete" id="{{userpage.PaageName}}delete">
+                                                <input type="checkbox" [checked]="userpage.delete"[(ngModel)]="userpage.delete" id="{{userpage.PaageName}}delete">{{userpage.delete}}
                                             </td> 
                                             <td class="align-middle text-truncate">
-                                                <input [(ngModel)]="this.userpage.login" type="checkbox" formControlName="login" id="{{userpage.PaageName}}login">
+                                                <input type="checkbox"  [checked]="userpage.login"[(ngModel)]="userpage.login" id="{{userpage.PaageName}}login">{{userpage.login}}
                                             </td> 
-                                           
-
-
-                    
                                         </tr>
                                     </tbody>
                                 </table>
@@ -167,11 +163,10 @@
                         </div>
                     </div>
                     <div class="row justify-content-center mt-5">
-                        <button type="submit" class="btn btn-success mr-3" [disabled]="!userroleForm.valid"
-                            (click)="SubmitAddoredit()">Update</button>
+                        <button type="submit" class="btn btn-success mr-3" 
+                            (click)="Submitedit()">Update</button>
                         <button class="btn btn-danger" (click)="clear()">Clear</button>
                     </div>
-                </form>
             </div>
         </div>
 

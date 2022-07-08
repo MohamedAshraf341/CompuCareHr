@@ -23,6 +23,8 @@ export class AddOrEditerrandComponent implements OnInit {
   button:any;
   employees: employee[] = [];
   leavesTypes: leavesType[] = [];
+  UserCode!: number;
+
   constructor(private location: Location,
     private LeavesTypesService: LeavesTypesService,
     private transactionServices: TransactionService,
@@ -30,6 +32,7 @@ export class AddOrEditerrandComponent implements OnInit {
     private router: Router,
     private activateRout:ActivatedRoute,) { }
   ngOnInit(): void {
+    this.UserCode = JSON.parse(localStorage.getItem('UserId') as any);
     this.transactionId=this.activateRout.snapshot.paramMap.get('id');
     this.button=this.activateRout.snapshot.paramMap.get('button');
     console.log(this.button);
@@ -46,7 +49,7 @@ export class AddOrEditerrandComponent implements OnInit {
     this.getListOfemployees();
     this.getListOfleavesTypes();
     this.transactionForm = new FormGroup({
-      UserCode: new FormControl('1'),
+      UserCode: new FormControl(),
       EmpCode: new FormControl(),
       From: new FormControl('', [Validators.required]),
       To: new FormControl('', Validators.required),
@@ -72,7 +75,7 @@ export class AddOrEditerrandComponent implements OnInit {
   SubmitAdd(){
     this.transactionForm.value.From = this.returndate(this.modelCustom1.year, this.modelCustom1.month, this.modelCustom1.day);
     this.transactionForm.value.To = this.returndate(this.modelCustom.year, this.modelCustom.month, this.modelCustom.day);
-
+    this.transactionForm.value.UserCode = this.UserCode
     console.log(this.transactionForm.value);
     this.transactionServices.addTransaction( this.transactionForm.value).subscribe((res:any) => {
          console.log('company Added successfully!');
@@ -83,6 +86,8 @@ export class AddOrEditerrandComponent implements OnInit {
   SubmitEdit(){
     this.transactionForm.value.From = this.returndate(this.transactions.From.year, this.transactions.From.month, this.transactions.From.day);
     this.transactionForm.value.To = this.returndate(this.transactions.To.year, this.transactions.To.month, this.transactions.To.day);
+    this.transactionForm.value.UserCode = this.UserCode
+
     console.log(this.transactionForm.value);
     this.transactionServices.updateTransaction( this.transactionId,this.transactionForm.value).subscribe((res:any) => {
          console.log('company Updated successfully!');
